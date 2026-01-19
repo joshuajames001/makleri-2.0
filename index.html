@@ -1555,6 +1555,9 @@
             })();
     </script>
 
+    <!-- Config (Gitignored) -->
+    <script src="js/config.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const views = document.querySelectorAll('.page-view');
@@ -1703,11 +1706,11 @@
 
             try {
                 // Check if global supabase object exists from CDN
-                if (typeof window.supabase !== 'undefined') {
-                    const supabaseUrl = 'https://nfjbhwhxzwqlmhrimdak.supabase.co';
-                    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5mamJod2h4endxbG1ocmltZGFrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg3NzczMjUsImV4cCI6MjA4NDM1MzMyNX0.FHMcoH-OTpXCOKH0KEBvh5FqqDMxnCQvRxANZBcJWlE';
-                    supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-                    console.log("Supabase: Client Initialized");
+                // Check if global supabase object exists from CDN
+                if (typeof window.supabase !== 'undefined' && window.supaConfig) {
+                    // Using keys from secure local config
+                    supabase = window.supabase.createClient(window.supaConfig.url, window.supaConfig.key);
+                    console.log("Supabase: Client Initialized from Config");
                 } else {
                     console.error("Supabase: CDN Library missing! Backend features disabled.");
                 }
