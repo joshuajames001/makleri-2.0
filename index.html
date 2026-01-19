@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -339,9 +340,9 @@
 
                         <!-- Right: Image (Meeting Room) -->
                         <div class="w-full lg:w-3/5 mt-10 lg:mt-0">
-                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
                                 class="w-full h-[500px] lg:h-[600px] object-cover rounded-3xl shadow-inner"
-                                alt="Moderní zasedací místnost">
+                                alt="Moderní vila">
                         </div>
                     </div>
                 </div>
@@ -367,40 +368,46 @@
                     <div class="grid md:grid-cols-3 gap-8">
                         <!-- Active 1 -->
                         <div
-                            class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
+                            class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:bg-brand-blue">
                             <div
                                 class="absolute top-4 left-4 z-20 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded shadow">
                                 AKTIVNÍ</div>
                             <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                                 class="w-full h-64 object-cover">
                             <div class="p-6">
-                                <h4 class="font-bold text-brand-blue text-lg mb-2">Vila Průhonice</h4>
+                                <h4
+                                    class="font-bold text-brand-blue text-lg mb-2 group-hover:text-white transition-colors">
+                                    Vila Průhonice</h4>
                                 <span class="text-brand-gold font-bold text-lg">24 900 000 Kč</span>
                             </div>
                         </div>
                         <!-- Active 2 -->
                         <div
-                            class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
+                            class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:bg-brand-blue">
                             <div
                                 class="absolute top-4 left-4 z-20 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded shadow">
                                 AKTIVNÍ</div>
                             <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                                 class="w-full h-64 object-cover">
                             <div class="p-6">
-                                <h4 class="font-bold text-brand-blue text-lg mb-2">Byt Smíchov</h4>
+                                <h4
+                                    class="font-bold text-brand-blue text-lg mb-2 group-hover:text-white transition-colors">
+                                    Byt Smíchov</h4>
                                 <span class="text-brand-gold font-bold text-lg">14 500 000 Kč</span>
                             </div>
                         </div>
                         <!-- Active 3 -->
                         <div
-                            class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
+                            class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:bg-brand-blue">
                             <div
                                 class="absolute top-4 left-4 z-20 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded shadow">
                                 AKTIVNÍ</div>
                             <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                                 class="w-full h-64 object-cover">
                             <div class="p-6">
-                                <h4 class="font-bold text-brand-blue text-lg mb-2">Dům Beroun</h4>
+                                <h4
+                                    class="font-bold text-brand-blue text-lg mb-2 group-hover:text-white transition-colors">
+                                    Dům Beroun</h4>
                                 <span class="text-brand-gold font-bold text-lg">11 200 000 Kč</span>
                             </div>
                         </div>
@@ -709,16 +716,370 @@
             </div>
         </div>
 
-        <!-- #jak-prodat-page (Placeholder) -->
+        <!-- #jak-prodat-page (Full 7-Step Journey) -->
         <div id="jak-prodat-page" class="page-view page-hidden">
-            <div
-                class="container mx-auto px-6 lg:px-12 pt-32 pb-24 text-center min-h-screen flex flex-col items-center justify-center">
-                <div class="bg-brand-gray/50 p-12 rounded-full mb-8 text-6xl">✨</div>
-                <h2 class="text-4xl font-bold text-brand-blue mb-4">Jak prodat nemovitost</h2>
-                <p class="text-lg text-gray-600 mb-8">Průvodce prodejem je ve výrobě.</p>
-                <a href="#home-page"
-                    class="bg-brand-blue text-white font-bold py-3 px-8 rounded-lg hover:bg-brand-gold transition-colors uppercase nav-link"
-                    data-type="view">Zpět na úvod</a>
+            <div class="pt-20 pb-0 bg-white">
+
+                <!-- INTRO -->
+                <div class="container mx-auto px-6 lg:px-12 pt-8 pb-16 text-center">
+                    <a href="#home-page" class="text-brand-blue font-bold uppercase text-xs mb-8 inline-block nav-link"
+                        data-type="view">← Zpět na úvod</a>
+                    <h2 class="text-brand-gold font-bold uppercase tracking-widest text-sm mb-2">Průvodce Prodejem</h2>
+                    <h1 class="text-4xl lg:text-5xl font-bold text-brand-blue mb-8">Jak probíhá prodej nemovitosti?</h1>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-12">
+                        Prodej nemovitosti je věda. Můj systém stojí na 4 pevných pilířích, které zaručují, že vaše
+                        nemovitost nezapadne
+                        v šedi průměrných inzerátů.
+                    </p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center max-w-4xl mx-auto">
+                        <div
+                            class="bg-gray-50 p-6 rounded-xl border border-gray-100 group hover:bg-brand-blue transition-colors duration-300">
+                            <span class="text-brand-gold text-2xl font-bold">✔</span>
+                            <h4 class="font-bold text-brand-blue mt-2 group-hover:text-white transition-colors">
+                                Strategická Cena</h4>
+                        </div>
+                        <div
+                            class="bg-gray-50 p-6 rounded-xl border border-gray-100 group hover:bg-brand-blue transition-colors duration-300">
+                            <span class="text-brand-gold text-2xl font-bold">✔</span>
+                            <h4 class="font-bold text-brand-blue mt-2 group-hover:text-white transition-colors">Špičková
+                                Prezentace</h4>
+                        </div>
+                        <div
+                            class="bg-gray-50 p-6 rounded-xl border border-gray-100 group hover:bg-brand-blue transition-colors duration-300">
+                            <span class="text-brand-gold text-2xl font-bold">✔</span>
+                            <h4 class="font-bold text-brand-blue mt-2 group-hover:text-white transition-colors">Masivní
+                                Marketing</h4>
+                        </div>
+                        <div
+                            class="bg-gray-50 p-6 rounded-xl border border-gray-100 group hover:bg-brand-blue transition-colors duration-300">
+                            <span class="text-brand-gold text-2xl font-bold">✔</span>
+                            <h4 class="font-bold text-brand-blue mt-2 group-hover:text-white transition-colors">Bezpečná
+                                administrativa</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 1: HOME STAGING (BG White) -->
+                <section
+                    class="py-20 border-t border-gray-100 transition-colors duration-300 hover:bg-brand-blue group">
+                    <div class="container mx-auto px-6 lg:px-12">
+                        <div class="grid lg:grid-cols-2 gap-16 items-center">
+                            <div>
+                                <div
+                                    class="w-12 h-12 bg-brand-gold rounded-full flex items-center justify-center text-white font-bold text-xl mb-6 shadow-glow">
+                                    1</div>
+                                <h3
+                                    class="text-3xl font-bold text-brand-blue mb-4 group-hover:text-white transition-colors">
+                                    Home Staging & Příprava</h3>
+                                <p class="text-gray-600 mb-6 leading-relaxed group-hover:text-white transition-colors">
+                                    Lidé nekupují domy, kupují domov. Ještě před první fotkou připravíme interiér tak,
+                                    aby vyvolal emoce.
+                                    Odstraníme rušivé prvky, přidáme dekorace a správné osvětlení.
+                                </p>
+                                <ul class="space-y-3 mb-8 text-gray-700 group-hover:text-white transition-colors">
+                                    <li class="flex items-center"><span
+                                            class="w-2 h-2 bg-brand-gold rounded-full mr-3"></span>Konzultace s
+                                        designérem</li>
+                                    <li class="flex items-center"><span
+                                            class="w-2 h-2 bg-brand-gold rounded-full mr-3"></span>Zapůjčení nábytku a
+                                        doplňků</li>
+                                    <li class="flex items-center"><span
+                                            class="w-2 h-2 bg-brand-gold rounded-full mr-3"></span>Profesionální úklid
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4f9d?w=600&q=80"
+                                    class="rounded-2xl shadow-lg w-full h-64 object-cover col-span-2">
+                                <img src="https://images.unsplash.com/photo-1616137466211-f939a420be84?w=600&q=80"
+                                    class="rounded-2xl shadow-lg w-full h-40 object-cover">
+                                <img src="https://images.unsplash.com/photo-1615873968403-89e068629265?w=600&q=80"
+                                    class="rounded-2xl shadow-lg w-full h-40 object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- STEP 2: PHOTO & FLOORPLANS (BG Gray) -->
+                <section class="py-20 bg-gray-50 transition-colors duration-300 hover:bg-brand-blue group">
+                    <div class="container mx-auto px-6 lg:px-12">
+                        <div class="grid lg:grid-cols-2 gap-16 items-center">
+                            <div class="order-2 lg:order-1 relative">
+                                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80"
+                                    class="rounded-2xl shadow-2xl w-full h-[500px] object-cover relative z-10">
+                                <div
+                                    class="absolute -bottom-10 -right-10 bg-white p-4 rounded-xl shadow-xl z-20 border border-gray-100 hidden md:block">
+                                    <div
+                                        class="w-48 h-32 bg-blue-50 rounded border-2 border-dashed border-blue-200 flex items-center justify-center text-blue-300">
+                                        2D/3D Půdorys
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order-1 lg:order-2">
+                                <div
+                                    class="w-12 h-12 bg-white border-2 border-brand-gold text-brand-gold rounded-full flex items-center justify-center font-bold text-xl mb-6">
+                                    2</div>
+                                <h3
+                                    class="text-3xl font-bold text-brand-blue mb-4 group-hover:text-white transition-colors">
+                                    Profesionální Foto & Půdorysy</h3>
+                                <p class="text-gray-600 mb-6 leading-relaxed group-hover:text-white transition-colors">
+                                    První dojem se dělá jen jednou. Většina zájemců se rozhodne během prvních 3 vteřin u
+                                    fotky.
+                                    Proto fotím pouze s profesionální technikou a využívám HDR postprodukci.
+                                </p>
+                                <p class="text-gray-600 mb-4 leading-relaxed group-hover:text-white transition-colors">
+                                    Nedílnou součástí je <strong>přehledný půdorys</strong>, aby si klient dokázal
+                                    představit dispozici ještě před prohlídkou.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- STEP 3: VIDEO (BG White) -->
+                <section class="py-20 transition-colors duration-300 hover:bg-brand-blue group">
+                    <div class="container mx-auto px-6 lg:px-12 text-center">
+                        <div
+                            class="w-12 h-12 bg-brand-gold rounded-full flex items-center justify-center text-white font-bold text-xl mb-6 shadow-glow mx-auto">
+                            3</div>
+                        <h3 class="text-3xl font-bold text-brand-blue mb-4 group-hover:text-white transition-colors">
+                            Videoprohlídky - Příběh, který prodává</h3>
+                        <p class="text-gray-600 max-w-3xl mx-auto mb-12 group-hover:text-white transition-colors">
+                            Video vládne internetu. Videoprohlídka dokáže přenést atmosféru nemovitosti lépe než tisíc
+                            fotek.
+                            Zvyšuje dosah inzerce na sociálních sítích až o 400 %.
+                        </p>
+                        <div class="grid md:grid-cols-3 gap-8">
+                            <!-- Placeholder Video 1 -->
+                            <div
+                                class="bg-gray-100 rounded-xl aspect-video flex items-center justify-center relative group cursor-pointer overflow-hidden">
+                                <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors">
+                                </div>
+                                <div
+                                    class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
+                                    <svg class="w-6 h-6 text-brand-blue ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <!-- Placeholder Video 2 -->
+                            <div
+                                class="bg-gray-100 rounded-xl aspect-video flex items-center justify-center relative group cursor-pointer overflow-hidden">
+                                <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors">
+                                </div>
+                                <div
+                                    class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
+                                    <svg class="w-6 h-6 text-brand-blue ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <!-- Placeholder Video 3 -->
+                            <div
+                                class="bg-gray-100 rounded-xl aspect-video flex items-center justify-center relative group cursor-pointer overflow-hidden">
+                                <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors">
+                                </div>
+                                <div
+                                    class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
+                                    <svg class="w-6 h-6 text-brand-blue ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- STEP 4: 3D SCAN (BG Gray) -->
+                <section class="py-20 bg-gray-50 transition-colors duration-300 hover:bg-brand-blue group">
+                    <div class="container mx-auto px-6 lg:px-12">
+                        <div class="grid lg:grid-cols-2 gap-16 items-center">
+                            <div class="order-2 lg:order-2">
+                                <div
+                                    class="aspect-[4/3] bg-gray-800 rounded-2xl shadow-2xl relative overflow-hidden flex items-center justify-center group">
+                                    <!-- Placeholder for Matterport -->
+                                    <img src="https://images.unsplash.com/photo-1558227679-b71bb7643e0f?auto=format&fit=crop&q=80&w=800"
+                                        class="absolute inset-0 w-full h-full object-cover opacity-50">
+                                    <div class="relative z-10 text-center">
+                                        <div
+                                            class="w-20 h-20 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center mx-auto mb-4 border border-white/20 group-hover:bg-brand-gold transition-colors">
+                                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5">
+                                                </path>
+                                            </svg>
+                                        </div>
+                                        <span class="text-white font-bold tracking-widest uppercase text-sm">Spustit
+                                            3D Sken</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="order-1 lg:order-1">
+                                <div
+                                    class="w-12 h-12 bg-white border-2 border-brand-gold text-brand-gold rounded-full flex items-center justify-center font-bold text-xl mb-6">
+                                    4</div>
+                                <h3
+                                    class="text-3xl font-bold text-brand-blue mb-4 group-hover:text-white transition-colors">
+                                    Matterport 3D Sken</h3>
+                                <p class="text-gray-600 mb-6 leading-relaxed group-hover:text-white transition-colors">
+                                    Technologie zítřka již dnes. Umožněte klientům projít si vaši nemovitost z pohodlí
+                                    jejich obýváku.
+                                    3D sken filtruje "realitní turisty" a přivádí na prohlídku jen vážné zájemce.
+                                </p>
+                                <div class="bg-white p-6 rounded-xl border-l-4 border-brand-gold shadow-sm">
+                                    <p class="text-sm text-gray-500 italic">"3D prohlídka nám ušetřila 15 zbytečných
+                                        návštěv. Přišel až ten, kdo opravdu chtěl koupit."</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- STEP 5: CUSTOM WEB (BG White) -->
+                <section class="py-20 transition-colors duration-300 hover:bg-brand-blue group">
+                    <div class="container mx-auto px-6 lg:px-12 text-center">
+                        <div
+                            class="w-12 h-12 bg-brand-gold rounded-full flex items-center justify-center text-white font-bold text-xl mb-6 shadow-glow mx-auto">
+                            5</div>
+                        <h3 class="text-3xl font-bold text-brand-blue mb-8 group-hover:text-white transition-colors">
+                            Vlastní web nemovitosti</h3>
+                        <div
+                            class="bg-brand-dark text-white rounded-3xl p-8 lg:p-16 max-w-4xl mx-auto relative overflow-hidden shadow-2xl">
+                            <div
+                                class="absolute top-0 right-0 w-64 h-64 bg-brand-blue rounded-full filter blur-3xl opacity-50 -translate-y-1/2 translate-x-1/2">
+                            </div>
+                            <div class="relative z-10 grid md:grid-cols-2 gap-12 items-center">
+                                <div class="text-left">
+                                    <h4 class="text-2xl font-bold mb-4">Doména: vase-adresa.cz</h4>
+                                    <p class="text-gray-300 mb-8">
+                                        Vaše nemovitost si zaslouží exkluzivitu. Nejen odkaz na realitním serveru, ale
+                                        vlastní webovou prezentaci
+                                        plnou fotek, videí a informací bez reklam konkurence.
+                                    </p>
+                                    <span
+                                        class="inline-block border border-brand-gold text-brand-gold font-bold py-3 px-8 rounded-full">
+                                        UKÁZKA WEBU
+                                    </span>
+                                </div>
+                                <div>
+                                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80"
+                                        class="rounded-lg shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-500">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- STEP 6: SOCIAL MEDIA (BG Gray) -->
+                <section class="py-20 bg-gray-50 transition-colors duration-300 hover:bg-brand-blue group">
+                    <div class="container mx-auto px-6 lg:px-12 text-center">
+                        <div
+                            class="w-12 h-12 bg-white border-2 border-brand-gold text-brand-gold rounded-full flex items-center justify-center font-bold text-xl mb-6 mx-auto">
+                            6</div>
+                        <h3 class="text-3xl font-bold text-brand-blue mb-12 group-hover:text-white transition-colors">
+                            Cílený Marketing na Sociálních
+                            Sítích</h3>
+                        <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                            <!-- Social Post 1 (FB) -->
+                            <div class="bg-white p-4 rounded-xl shadow border border-gray-100 text-left">
+                                <div class="flex items-center mb-4">
+                                    <div
+                                        class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
+                                        FB</div>
+                                    <div class="ml-3">
+                                        <p class="text-xs font-bold text-gray-800">Jan Novák Reality</p>
+                                        <p class="text-[10px] text-gray-400">Sponzorováno</p>
+                                    </div>
+                                </div>
+                                <div class="h-40 bg-gray-100 rounded mb-4"></div>
+                                <div class="h-2 w-3/4 bg-gray-100 rounded mb-2"></div>
+                                <div class="h-2 w-1/2 bg-gray-100 rounded"></div>
+                            </div>
+                            <!-- Social Post 2 (IG) -->
+                            <div
+                                class="bg-white p-4 rounded-xl shadow border border-gray-100 text-left transform md:-translate-y-4">
+                                <div class="flex items-center mb-4">
+                                    <div
+                                        class="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
+                                        IG</div>
+                                    <div class="ml-3">
+                                        <p class="text-xs font-bold text-gray-800">jan_novak_reality</p>
+                                        <p class="text-[10px] text-gray-400">Instagram Stories</p>
+                                    </div>
+                                </div>
+                                <div class="h-64 bg-gray-100 rounded mb-4 relative overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1600596542815-6ad4c4279250?w=400"
+                                        class="object-cover w-full h-full opacity-80">
+                                </div>
+                            </div>
+                            <!-- Social Post 3 (YT) -->
+                            <div class="bg-white p-4 rounded-xl shadow border border-gray-100 text-left">
+                                <div class="flex items-center mb-4">
+                                    <div
+                                        class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
+                                        YT</div>
+                                    <div class="ml-3">
+                                        <p class="text-xs font-bold text-gray-800">Video Prohlídky</p>
+                                        <p class="text-[10px] text-gray-400">YouTube Ads</p>
+                                    </div>
+                                </div>
+                                <div class="h-40 bg-gray-100 rounded mb-4"></div>
+                                <div class="h-2 w-full bg-gray-100 rounded mb-2"></div>
+                                <div class="h-2 w-2/3 bg-gray-100 rounded"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- STEP 7: FINAL CTA (BG Brand Blue) -->
+                <section class="py-24 bg-brand-blue text-white text-center relative overflow-hidden">
+                    <div class="container mx-auto px-6 lg:px-12 relative z-10">
+                        <div class="w-16 h-1 bg-brand-gold mx-auto mb-8"></div>
+                        <h2 class="text-3xl lg:text-4xl font-bold mb-6">Prodáte sami, nebo využijete sílu profesionála?
+                        </h2>
+                        <p class="text-blue-100 max-w-2xl mx-auto mb-12 text-lg">
+                            Prodej nemovitosti je pravděpodobně vaší největší životní transakcí. Neriskujte chyby, které
+                            vás mohou stát miliony.
+                            Svěřte prodej mně a mému týmu ANELA Digital.
+                        </p>
+
+                        <div class="flex flex-wrap justify-center gap-4 mb-12">
+                            <div
+                                class="bg-white/10 px-4 py-2 rounded-full border border-white/20 text-xs font-bold uppercase tracking-wider">
+                                Certifikovaný Makléř ISO
+                            </div>
+                            <div
+                                class="bg-white/10 px-4 py-2 rounded-full border border-white/20 text-xs font-bold uppercase tracking-wider">
+                                12 Let Zkušeností
+                            </div>
+                            <div
+                                class="bg-white/10 px-4 py-2 rounded-full border border-white/20 text-xs font-bold uppercase tracking-wider">
+                                Právní Garance
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col md:flex-row justify-center gap-6">
+                            <a href="#odhad-page"
+                                class="bg-brand-gold hover:bg-white hover:text-brand-blue text-white font-bold py-4 px-10 rounded-xl shadow-lg transition-all transform hover:-translate-y-1 nav-link"
+                                data-type="view">
+                                CHCI ODHAD CENY ZDARMA
+                            </a>
+                            <a href="#kontakt"
+                                class="border-2 border-white hover:bg-white hover:text-brand-blue text-white font-bold py-4 px-10 rounded-xl transition-all nav-link"
+                                data-type="anchor">
+                                NEZÁVAZNÁ KONZULTACE
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="text-center py-12 bg-white">
+                    <a href="#home-page"
+                        class="text-brand-blue font-bold border-b-2 border-brand-blue pb-1 hover:text-brand-gold hover:border-brand-gold transition-colors nav-link"
+                        data-type="view">← Zpět na úvodní stránku</a>
+                </div>
+
             </div>
         </div>
 
@@ -727,42 +1088,175 @@
         <!-- 3. STANDARD LISTING VIEWS -->
         <!-- ========================================== -->
 
-        <!-- NABÍDKA FULL VIEW -->
+        <!-- NABÍDKA FULL VIEW (Listings Engine) -->
         <div id="nabidka-view" class="page-view page-hidden">
-            <div class="pt-20 pb-24 container mx-auto px-6 lg:px-12">
+
+            <!-- 1. GRID LISTING (Default) -->
+            <div id="nabidka-all" class="pt-20 pb-24 container mx-auto px-6 lg:px-12">
                 <div class="text-center mb-12">
-                    <h2 class="text-brand-gold font-bold uppercase tracking-widest text-sm">Kompletní nabídka</h2>
+                    <a href="#home-page" class="text-brand-blue font-bold uppercase text-xs mb-8 inline-block nav-link"
+                        data-type="view">← Zpět na úvod</a>
+                    <h2 class="text-brand-gold font-bold uppercase tracking-widest text-sm mb-2">Kompletní nabídka</h2>
                     <h3 class="text-4xl font-bold text-brand-blue">Všechny nemovitosti</h3>
                 </div>
-                <!-- Full Grid -->
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- 1 -->
-                    <div class="group bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80"
-                            class="w-full h-64 object-cover">
-                        <div class="p-6">
-                            <h4 class="font-bold text-brand-blue text-lg">Vila Průhonice</h4>
-                            <p class="text-gray-500 mb-4">24 900 000 Kč</p>
-                            <button
-                                class="w-full bg-brand-blue text-white py-2 rounded font-bold hover:bg-brand-gold transition-colors">Detail</button>
-                        </div>
+
+                <!-- DYNAMIC GRID CONTAINER -->
+                <div id="nabidka-grid-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Content Rendered via JS -->
+                    <div class="col-span-full text-center py-12 text-gray-500">Načítám nemovitosti...</div>
+                </div>
+            </div>
+
+            <!-- 2. PROPERTY DETAIL (Hidden) -->
+            <div id="property-detail" class="bg-white hidden">
+                <!-- Navigation -->
+                <div class="fixed top-20 left-6 z-40">
+                    <button onclick="closePropertyDetail()"
+                        class="bg-white/90 backdrop-blur text-brand-blue hover:text-brand-gold font-bold py-2 px-6 rounded-full shadow-lg border border-gray-100 flex items-center transition-all">
+                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                        </svg>
+                        Zpět na nabídku
+                    </button>
+                </div>
+
+                <!-- Hero Section -->
+                <div class="relative h-[60vh] min-h-[500px]">
+                    <img id="detail-hero-img" src="" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-blue/90 via-transparent to-transparent">
                     </div>
-                    <!-- Same cards as defined previously... -->
-                    <div class="group bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
-                        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80"
-                            class="w-full h-64 object-cover">
-                        <div class="p-6">
-                            <h4 class="font-bold text-brand-blue text-lg">Byt Smíchov</h4>
-                            <p class="text-gray-500 mb-4">14 500 000 Kč</p>
-                            <button
-                                class="w-full bg-brand-blue text-white py-2 rounded font-bold hover:bg-brand-gold transition-colors">Detail</button>
+                    <div class="absolute bottom-0 left-0 w-full p-6 lg:p-12 text-white z-10">
+                        <div class="container mx-auto">
+                            <span id="detail-price"
+                                class="bg-brand-gold text-white px-4 py-2 rounded-lg font-bold text-xl mb-4 inline-block shadow-lg"></span>
+                            <h1 id="detail-title" class="text-4xl md:text-6xl font-bold leading-tight drop-shadow-lg">
+                            </h1>
+                            <p id="detail-location-text" class="text-lg opacity-90 mt-2 flex items-center"><svg
+                                    class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                    </path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg> <span id="detail-location"></span></p>
                         </div>
                     </div>
                 </div>
-                <div class="text-center mt-12">
-                    <a href="#home-page"
-                        class="text-brand-blue font-bold border-b-2 border-brand-blue pb-1 hover:text-brand-gold hover:border-brand-gold transition-colors nav-link"
-                        data-type="view">← Zpět na úvodní stránku</a>
+
+                <div class="container mx-auto px-6 lg:px-12 py-16">
+                    <div class="grid lg:grid-cols-3 gap-12">
+                        <!-- Left Content -->
+                        <div class="lg:col-span-2 space-y-12">
+                            <!-- About -->
+                            <section>
+                                <h3 class="text-2xl font-bold text-brand-blue mb-6 border-l-4 border-brand-gold pl-4">O
+                                    nemovitosti</h3>
+                                <p id="detail-desc" class="text-gray-600 leading-relaxed text-lg text-justify"></p>
+                            </section>
+
+                            <!-- Params Grid -->
+                            <section
+                                class="grid grid-cols-2 md:grid-cols-4 gap-4 bg-gray-50 p-8 rounded-2xl border border-gray-100">
+                                <div class="text-center">
+                                    <span class="block text-gray-400 text-xs uppercase tracking-widest">Dispozice</span>
+                                    <strong id="item-disposition" class="text-brand-blue text-xl"></strong>
+                                </div>
+                                <div class="text-center">
+                                    <span class="block text-gray-400 text-xs uppercase tracking-widest">Plocha</span>
+                                    <strong id="item-area" class="text-brand-blue text-xl"></strong>
+                                </div>
+                                <div class="text-center">
+                                    <span class="block text-gray-400 text-xs uppercase tracking-widest">Podlaží</span>
+                                    <strong id="item-floor" class="text-brand-blue text-xl"></strong>
+                                </div>
+                                <div class="text-center">
+                                    <span class="block text-gray-400 text-xs uppercase tracking-widest">PENB</span>
+                                    <strong id="item-penb" class="text-brand-blue text-xl"></strong>
+                                </div>
+                            </section>
+
+                            <!-- Gallery -->
+                            <section>
+                                <h3 class="text-2xl font-bold text-brand-blue mb-6 border-l-4 border-brand-gold pl-4">
+                                    Fotogalerie</h3>
+                                <div id="detail-gallery" class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                                    <!-- JS Generated -->
+                                </div>
+                            </section>
+
+                            <!-- Table -->
+                            <section>
+                                <h3 class="text-2xl font-bold text-brand-blue mb-6 border-l-4 border-brand-gold pl-4">
+                                    Jednotky v projektu</h3>
+                                <div class="overflow-x-auto rounded-xl shadow border border-gray-100">
+                                    <table class="w-full text-left text-sm">
+                                        <thead class="bg-gray-50 text-brand-blue uppercase font-bold">
+                                            <tr>
+                                                <th class="p-4">Jednotka</th>
+                                                <th class="p-4">Dispozice</th>
+                                                <th class="p-4">Plocha</th>
+                                                <th class="p-4">Cena</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="detail-table-body" class="divide-y divide-gray-100">
+                                            <!-- JS Generated -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+
+                            <!-- Map Placeholder -->
+                            <section>
+                                <h3 class="text-2xl font-bold text-brand-blue mb-6 border-l-4 border-brand-gold pl-4">
+                                    Lokalita</h3>
+                                <div
+                                    class="w-full h-96 bg-gray-200 rounded-xl flex items-center justify-center text-gray-400">
+                                    <span class="flex flex-col items-center">
+                                        <svg class="w-12 h-12 mb-2" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0121 18.382V7.618a1 1 0 01-.553-.894L15 7m0 13V7">
+                                            </path>
+                                        </svg>
+                                        Mapový modul (Google / Mapy.cz)
+                                    </span>
+                                </div>
+                            </section>
+                        </div>
+
+                        <!-- Sidebar Form -->
+                        <div class="lg:col-span-1">
+                            <div class="bg-brand-blue text-white rounded-2xl shadow-2xl p-8 sticky top-32">
+                                <h3 class="text-2xl font-bold mb-2">Máte zájem?</h3>
+                                <p class="text-blue-200 text-sm mb-6">Vyplňte formulář a já se vám ozvu ještě dnes.</p>
+                                <form class="space-y-4">
+                                    <input type="text" placeholder="Jméno a příjmení"
+                                        class="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white placeholder-blue-300 focus:outline-none focus:border-brand-gold transition-colors">
+                                    <input type="tel" placeholder="Telefon"
+                                        class="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white placeholder-blue-300 focus:outline-none focus:border-brand-gold transition-colors">
+                                    <input type="email" placeholder="Email"
+                                        class="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white placeholder-blue-300 focus:outline-none focus:border-brand-gold transition-colors">
+                                    <textarea rows="3" placeholder="Zpráva..."
+                                        class="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white placeholder-blue-300 focus:outline-none focus:border-brand-gold transition-colors"></textarea>
+                                    <button
+                                        class="w-full bg-brand-gold hover:bg-white hover:text-brand-blue text-white font-bold py-4 rounded-lg shadow-lg uppercase tracking-widest transition-all">Odeslat
+                                        zájem</button>
+                                </form>
+                                <div class="mt-8 pt-8 border-t border-white/10 text-center">
+                                    <button
+                                        class="flex items-center justify-center w-full border border-white/30 hover:bg-white/10 text-white py-3 rounded-lg transition-colors text-sm font-bold uppercase">
+                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                            </path>
+                                        </svg>
+                                        Stáhnout PDF
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -809,13 +1303,258 @@
                 </div>
                 <div class="md:text-right">
                     <p class="text-gray-500 text-xs mt-2">&copy; 2026 Jan Novák. <span class="text-brand-gold">ANELA
-                            Digital</span></p>
+                            Digital</span> <span class="text-gray-400 hover:text-red-500 cursor-pointer font-bold"
+                            onclick="openAdminModal()">.</span></p>
                 </div>
             </div>
         </div>
     </footer>
 
     <!-- ROUTER SCRIPT -->
+
+    <!-- ADMIN MODALS -->
+    <!-- Login Modal -->
+    <div id="admin-login-modal"
+        class="fixed inset-0 bg-black/90 z-[100] hidden flex items-center justify-center backdrop-blur-sm">
+        <div class="bg-white rounded-xl p-8 max-w-sm w-full shadow-2xl">
+            <h3 class="text-2xl font-bold text-center mb-6 text-brand-blue">Admin Přihlášení</h3>
+            <input type="password" id="admin-password" placeholder="Heslo"
+                class="w-full bg-gray-100 border border-gray-200 rounded-lg p-3 mb-4 focus:outline-none focus:border-brand-gold">
+            <button onclick="attemptAdminLogin()"
+                class="w-full bg-brand-blue hover:bg-brand-gold text-white font-bold py-3 rounded-lg transition-colors">Vstoupit</button>
+            <button onclick="closeAdminLogin()"
+                class="w-full mt-2 text-gray-400 text-sm hover:text-gray-600">Zrušit</button>
+        </div>
+    </div>
+
+    <!-- Admin Overlay (Visible when logged in) -->
+    <div id="admin-overlay" class="fixed bottom-6 right-6 z-[90] hidden">
+        <div
+            class="bg-brand-blue text-white px-4 py-2 rounded-full shadow-lg font-bold text-xs uppercase tracking-widest mb-4 text-center border border-brand-gold">
+            Admin Mode
+        </div>
+        <button onclick="openAddPropertyModal()"
+            class="w-16 h-16 bg-brand-gold rounded-full flex items-center justify-center text-white shadow-glow hover:bg-white hover:text-brand-blue transition-all transform hover:scale-110">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Add Property Modal -->
+    <div id="add-property-modal"
+        class="fixed inset-0 bg-black/80 z-[100] hidden flex items-center justify-center backdrop-blur-sm overflow-y-auto py-10">
+        <div class="bg-white rounded-2xl w-full max-w-4xl shadow-2xl m-4 flex flex-col max-h-[90vh]">
+            <div
+                class="p-6 border-b border-gray-100 flex justify-between items-center sticky top-0 bg-white rounded-t-2xl z-10">
+                <h3 class="text-2xl font-bold text-brand-blue">Nová Nemovitost</h3>
+                <button onclick="closeAddPropertyModal()" class="text-gray-400 hover:text-brand-blue"><svg
+                        class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg></button>
+            </div>
+            <div class="p-8 overflow-y-auto space-y-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Název</label>
+                        <input type="text" id="prop-title" class="w-full bg-gray-50 border border-gray-200 rounded p-3"
+                            placeholder="Vila Průhonice">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Cena</label>
+                        <input type="text" id="prop-price" class="w-full bg-gray-50 border border-gray-200 rounded p-3"
+                            placeholder="24 900 000 Kč">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Lokalita</label>
+                        <input type="text" id="prop-location"
+                            class="w-full bg-gray-50 border border-gray-200 rounded p-3" placeholder="Praha-západ">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Status</label>
+                        <select id="prop-status" class="w-full bg-gray-50 border border-gray-200 rounded p-3">
+                            <option value="AKTIVNÍ">AKTIVNÍ</option>
+                            <option value="REZERVOVÁNO">REZERVOVÁNO</option>
+                            <option value="PRODÁNO">PRODÁNO</option>
+                            <option value="VE VÝSTAVBĚ">VE VÝSTAVBĚ</option>
+                        </select>
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Hlavní Fotka (URL)</label>
+                        <input type="text" id="prop-image" class="w-full bg-gray-50 border border-gray-200 rounded p-3"
+                            placeholder="https://...">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Galerie (URL oddělené
+                            čárkou)</label>
+                        <textarea id="prop-gallery" rows="3"
+                            class="w-full bg-gray-50 border border-gray-200 rounded p-3"
+                            placeholder="url1, url2, url3..."></textarea>
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Popis</label>
+                        <textarea id="prop-desc" rows="5"
+                            class="w-full bg-gray-50 border border-gray-200 rounded p-3"></textarea>
+                    </div>
+                </div>
+                <!-- Specs -->
+                <h4 class="font-bold border-b pb-2">Parametry</h4>
+                <div class="grid grid-cols-4 gap-4">
+                    <input type="text" id="spec-disposition" placeholder="Dispozice (5+kk)" class="border p-2 rounded">
+                    <input type="text" id="spec-area" placeholder="Plocha (280 m²)" class="border p-2 rounded">
+                    <input type="text" id="spec-floor" placeholder="Podlaží (2. NP)" class="border p-2 rounded">
+                    <input type="text" id="spec-penb" placeholder="PENB (B)" class="border p-2 rounded">
+                </div>
+                <!-- Units Dynamic UI -->
+                <div class="md:col-span-2 border-t pt-4 mt-2">
+                    <h4 class="font-bold mb-2">Jednotky v projektu</h4>
+                    <!-- Hidden JSON Input for Logic -->
+                    <textarea id="prop-units" class="hidden"></textarea>
+
+                    <!-- UI Container -->
+                    <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                        <!-- Header -->
+                        <div class="grid grid-cols-12 gap-2 text-xs font-bold text-brand-blue uppercase mb-2">
+                            <div class="col-span-3">Jednotka</div>
+                            <div class="col-span-2">Dispozice</div>
+                            <div class="col-span-3">Plocha</div>
+                            <div class="col-span-3">Cena</div>
+                            <div class="col-span-1"></div>
+                        </div>
+                        <!-- Rows Container -->
+                        <div id="units-rows-container" class="space-y-2">
+                            <!-- Rows will be injected here -->
+                        </div>
+                        <!-- Add Button -->
+                        <button onclick="addUnitRow()"
+                            class="mt-4 w-full py-2 border-2 border-dashed border-gray-300 rounded text-gray-500 hover:border-brand-blue hover:text-brand-blue font-bold transition-all text-sm flex items-center justify-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 4v16m8-8H4"></path>
+                            </svg>
+                            PŘIDAT DALŠÍ JEDNOTKU
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="p-6 border-t border-gray-100 bg-gray-50 rounded-b-2xl flex justify-end">
+                <button onclick="saveProperty()"
+                    class="bg-brand-blue text-white font-bold py-3 px-8 rounded-lg shadow hover:bg-brand-gold transition-colors">ULOŽIT
+                    NEMOVITOST</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast"
+        class="fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-8 py-4 rounded-full shadow-2xl z-[200] transition-all duration-300 translate-y-24 opacity-0 flex items-center">
+        <span class="text-green-400 mr-2">✓</span> <span id="toast-msg">Úspěšně uloženo</span>
+    </div>
+
+    <!-- SAFE ADMIN SCRIPT (Runs independently) -->
+    <script>
+            (function () {
+                console.log("Admin System: Initializing...");
+
+                // 1. Define Global Functions
+                window.openAdminModal = function () {
+                    const modal = document.getElementById('admin-login-modal');
+                    if (modal) {
+                        modal.classList.remove('hidden');
+                        console.log("Admin System: Modal Opened");
+                    } else {
+                        alert("CRITICAL ERROR: Admin Modal ID not found in DOM.");
+                    }
+                };
+
+                window.closeAdminLogin = function () {
+                    const modal = document.getElementById('admin-login-modal');
+                    if (modal) modal.classList.add('hidden');
+                };
+
+                window.attemptAdminLogin = function () {
+                    const pass = document.getElementById('admin-password').value;
+                    if (pass === 'anela2026') {
+                        document.getElementById('admin-login-modal').classList.add('hidden');
+                        document.getElementById('admin-overlay').classList.remove('hidden');
+                        showToast('Vítejte v Admin Módu');
+                        console.log("Admin System: Login Successful");
+                    } else {
+                        alert('Nesprávné heslo');
+                    }
+                };
+
+                window.openAddPropertyModal = function () {
+                    document.getElementById('add-property-modal').classList.remove('hidden');
+                    // Ensure at least one row exists if empty
+                    const container = document.getElementById('units-rows-container');
+                    if (container && container.children.length === 0) {
+                        addUnitRow();
+                    }
+                };
+                window.closeAddPropertyModal = function () {
+                    document.getElementById('add-property-modal').classList.add('hidden');
+                };
+
+                // 3. Dynamic Units Logic
+                window.addUnitRow = function () {
+                    const container = document.getElementById('units-rows-container');
+                    const rowId = 'unit-row-' + Date.now();
+                    const row = document.createElement('div');
+                    row.className = 'grid grid-cols-12 gap-2 items-center';
+                    row.id = rowId;
+                    row.innerHTML = `
+                        <div class="col-span-3"><input type="text" placeholder="Byt 101" class="unit-name w-full bg-white border border-gray-200 rounded p-2 text-sm focus:border-brand-gold outline-none"></div>
+                        <div class="col-span-2"><input type="text" placeholder="2+kk" class="unit-layout w-full bg-white border border-gray-200 rounded p-2 text-sm focus:border-brand-gold outline-none"></div>
+                        <div class="col-span-3"><input type="text" placeholder="56 m²" class="unit-size w-full bg-white border border-gray-200 rounded p-2 text-sm focus:border-brand-gold outline-none"></div>
+                        <div class="col-span-3"><input type="text" placeholder="5 600 000 Kč" class="unit-price w-full bg-white border border-gray-200 rounded p-2 text-sm focus:border-brand-gold outline-none"></div>
+                        <div class="col-span-1 text-center">
+                            <button onclick="removeUnitRow('${rowId}')" class="text-gray-400 hover:text-red-500 transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                            </button>
+                        </div>
+                    `;
+                    container.appendChild(row);
+                };
+
+                window.removeUnitRow = function (id) {
+                    const row = document.getElementById(id);
+                    if (row) row.remove();
+                };
+
+                window.serializeUnits = function () {
+                    const rows = document.querySelectorAll('#units-rows-container > div');
+                    const data = [];
+                    rows.forEach(row => {
+                        const name = row.querySelector('.unit-name').value;
+                        const layout = row.querySelector('.unit-layout').value;
+                        const size = row.querySelector('.unit-size').value;
+                        const price = row.querySelector('.unit-price').value;
+
+                        if (name || price) {
+                            data.push({ name, layout, size, price });
+                        }
+                    });
+                    return data;
+                };
+
+                // 2. Keyboard Listeners
+                window.addEventListener('keydown', function (event) {
+                    const isAltA = event.ctrlKey && event.altKey && (event.code === 'KeyA' || event.key === 'a' || event.key === 'A');
+                    const isShiftL = event.ctrlKey && event.shiftKey && (event.code === 'KeyL' || event.key === 'l' || event.key === 'L');
+
+                    if (isAltA || isShiftL) {
+                        event.preventDefault();
+                        console.log("Admin System: Shortcut Detected");
+                        openAdminModal();
+                    }
+                });
+
+                console.log("Admin System: Ready");
+            })();
+    </script>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const views = document.querySelectorAll('.page-view');
@@ -954,6 +1693,211 @@
                 slideInterval = setInterval(nextSlide, 5000);
             }
 
+
+            // ==========================================
+            // SUPABASE INTEGRATION & LOGIC
+            // ==========================================
+
+            let supabase = null;
+            let allProperties = [];
+
+            try {
+                // Check if global supabase object exists from CDN
+                if (typeof window.supabase !== 'undefined') {
+                    const supabaseUrl = 'https://nfjbhwhxzwqlmhrimdak.supabase.co';
+                    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5mamJod2h4endxbG1ocmltZGFrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg3NzczMjUsImV4cCI6MjA4NDM1MzMyNX0.FHMcoH-OTpXCOKH0KEBvh5FqqDMxnCQvRxANZBcJWlE';
+                    supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+                    console.log("Supabase: Client Initialized");
+                } else {
+                    console.error("Supabase: CDN Library missing! Backend features disabled.");
+                }
+            } catch (err) {
+                console.error("Supabase: Init Error", err);
+            }
+
+            // Fetch Data
+            async function fetchProperties() {
+                if (!supabase) {
+                    console.warn("Supabase not connected. Using placeholders.");
+                    return;
+                }
+
+                const { data, error } = await supabase
+                    .from('listings')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+
+                if (error) {
+                    console.error('Error fetching:', error);
+                    return;
+                }
+
+                allProperties = data;
+                renderProperties();
+                renderPortfolio();
+            }
+
+            // Render NABÍDKA
+            function renderProperties() {
+                const container = document.getElementById('nabidka-grid-container');
+                if (!container) return;
+
+                const activeProps = allProperties.filter(p => p.status !== 'PRODÁNO' && p.status !== 'Skryto');
+
+                if (activeProps.length === 0) {
+                    // Keep existing static content if fetch returns empty? 
+                    // Or show "No items". Let's show "No items" only if we actually fetched something specific.
+                    // For now, if activeProps is 0, we assume empty DB or filter.
+                    container.innerHTML = '<div class="col-span-full text-center py-12 text-gray-500">Zatím žádné aktivní nabídky (Live Data).</div>';
+                    return;
+                }
+
+                container.innerHTML = activeProps.map(prop => `
+        <div class="group relative bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 h-[400px] cursor-pointer" onclick="openPropertyDetail(${prop.id})">
+            <div class="absolute top-4 left-4 z-20 bg-brand-blue text-white text-xs font-bold px-3 py-1 rounded shadow uppercase tracking-wider">${prop.status}</div>
+            <img src="${prop.image}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-0"></div>
+            <div class="absolute bottom-0 left-0 w-full p-6 text-white transform transition-transform duration-300 group-hover:translate-y-full">
+                 <h4 class="font-bold text-2xl mb-1">${prop.title}</h4>
+                 <p class="text-brand-gold font-bold text-lg">${prop.price}</p>
+            </div>
+            <div class="absolute inset-0 bg-brand-blue/90 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col items-center justify-center p-6 text-center backdrop-blur-sm">
+                <h4 class="font-bold text-white text-2xl mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">${prop.title}</h4>
+                <p class="text-gray-300 mb-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-100">${prop.location}</p>
+                <button class="bg-brand-gold text-white font-bold py-3 px-8 rounded-full shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 delay-150 hover:bg-white hover:text-brand-blue uppercase text-sm tracking-wider">
+                    Prohlédnout nemovitost
+                </button>
+            </div>
+        </div>
+    `).join('');
+            }
+
+            function renderPortfolio() {
+                const container = document.querySelector('#realizovano-view .grid');
+                if (!container) return;
+                const soldProps = allProperties.filter(p => p.status === 'PRODÁNO');
+                if (soldProps.length > 0) {
+                    container.innerHTML = soldProps.map(prop => `
+                    <div class="bg-white rounded-xl shadow p-4 cursor-pointer" onclick="openPropertyDetail(${prop.id})">
+                        <img src="${prop.image}" class="rounded mb-4 w-full h-48 object-cover grayscale hover:grayscale-0 transition-all">
+                        <h4 class="font-bold text-brand-blue">${prop.title}</h4>
+                        <span class="text-brand-gold font-bold">Prodáno: ${prop.price}</span>
+                    </div>
+                    `).join('');
+                }
+            }
+
+
+            // Expose Globally
+            window.openPropertyDetail = function (id) {
+                const prop = allProperties.find(p => p.id === id);
+                if (!prop) return;
+
+                document.getElementById('detail-hero-img').src = prop.image;
+                document.getElementById('detail-title').innerText = prop.title;
+                document.getElementById('detail-price').innerText = prop.price;
+                document.getElementById('detail-location').innerText = prop.location;
+                document.getElementById('detail-desc').innerText = prop.desc;
+
+                const specs = prop.specs || {};
+                document.getElementById('item-disposition').innerText = specs.disposition || '-';
+                document.getElementById('item-area').innerText = specs.area || '-';
+                document.getElementById('item-floor').innerText = specs.floor || '-';
+                document.getElementById('item-penb').innerText = specs.penb || '-';
+
+                const gallery = prop.gallery || [];
+                document.getElementById('detail-gallery').innerHTML = gallery.map(img => `
+        <div class="rounded-xl overflow-hidden h-48 group relative">
+             <img src="${img}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+             <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+        </div>
+    `).join('');
+
+                const tableBody = document.getElementById('detail-table-body');
+                const units = prop.units_table || [];
+                if (units && units.length > 0) {
+                    tableBody.innerHTML = units.map(u => `
+            <tr class="hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-0">
+                <td class="p-4 font-bold text-brand-blue">${u.name || u.Jednotka}</td>
+                <td class="p-4">${u.layout || u.Dispozice}</td>
+                <td class="p-4">${u.size || u.Plocha}</td>
+                <td class="p-4 font-bold text-brand-gold">${u.price || u.Cena}</td>
+            </tr>
+         `).join('');
+                } else {
+                    tableBody.innerHTML = `<tr><td colspan="4" class="p-8 text-center text-gray-400 italic bg-gray-50 mt-2 rounded">Pro tuto nemovitost nejsou k dispozici další jednotky.</td></tr>`;
+                }
+
+                document.getElementById('nabidka-all').classList.add('hidden');
+                document.getElementById('property-detail').classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
+            window.closePropertyDetail = function () {
+                document.getElementById('property-detail').classList.add('hidden');
+                document.getElementById('nabidka-all').classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            };
+
+            window.saveProperty = async function () {
+                if (!supabase) {
+                    alert("Supabase Error: Backend not connected.");
+                    return;
+                }
+                const title = document.getElementById('prop-title').value;
+                const price = document.getElementById('prop-price').value;
+                const location = document.getElementById('prop-location').value;
+                const status = document.getElementById('prop-status').value;
+                const image = document.getElementById('prop-image').value;
+                const desc = document.getElementById('prop-desc').value;
+                const galleryRaw = document.getElementById('prop-gallery').value;
+
+                // NEW: Use the serializer from Admin Script
+                let units = [];
+                if (typeof window.serializeUnits === 'function') {
+                    units = window.serializeUnits();
+                } else {
+                    console.warn("Serializer not found, saving empty units.");
+                }
+
+                const gallery = galleryRaw ? galleryRaw.split(',').map(s => s.trim()) : [];
+                // Removed manual JSON parse of textarea
+
+                const specs = {
+                    disposition: document.getElementById('spec-disposition').value,
+                    area: document.getElementById('spec-area').value,
+                    floor: document.getElementById('spec-floor').value,
+                    penb: document.getElementById('spec-penb').value
+                };
+
+                const newProp = {
+                    title, price, location, status, image, desc,
+                    gallery, specs, units_table: units
+                };
+
+                const { error } = await supabase.from('listings').insert([newProp]);
+
+                if (error) {
+                    alert('Chyba při ukládání: ' + error.message);
+                } else {
+                    closeAddPropertyModal();
+                    showToast('Nemovitost úspěšně uložena!');
+                    fetchProperties();
+                    document.getElementById('prop-title').value = '';
+                }
+            }
+
+            function showToast(msg) {
+                const toast = document.getElementById('toast');
+                document.getElementById('toast-msg').innerText = msg;
+                toast.classList.remove('translate-y-24', 'opacity-0');
+                setTimeout(() => {
+                    toast.classList.add('translate-y-24', 'opacity-0');
+                }, 3000);
+            }
+
+            // Init
+            fetchProperties();
         });
     </script>
 </body>
