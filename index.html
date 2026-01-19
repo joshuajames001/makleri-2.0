@@ -24,10 +24,15 @@
                     },
                     fontFamily: {
                         sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Georgia', 'serif'],
                     },
                     boxShadow: {
                         'card': '0 10px 40px -10px rgba(0, 51, 102, 0.15)',
                         'glow': '0 0 20px rgba(197, 160, 89, 0.3)',
+                    },
+                    transitionProperty: {
+                        'height': 'height',
+                        'spacing': 'margin, padding',
                     }
                 }
             }
@@ -43,556 +48,914 @@
         .ai-gradient {
             background: linear-gradient(135deg, #003366 0%, #001122 100%);
         }
+
+        .page-view {
+            transition: opacity 0.4s ease-in-out;
+            width: 100%;
+            min-height: 100vh;
+            padding-top: 5rem;
+        }
+
+        .page-hidden {
+            display: none;
+            opacity: 0;
+        }
+
+        .page-active {
+            display: block;
+            opacity: 1;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Dropdown Styles */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* Accordion transition */
+        details>summary {
+            list-style: none;
+        }
+
+        details>summary::-webkit-details-marker {
+            display: none;
+        }
+
+        details[open] summary~* {
+            animation: slideDown 0.3s ease-in-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 3D Properties */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+
+        .rotate-y-12 {
+            transform: rotateY(-12deg);
+        }
+
+        .rotate-x-6 {
+            transform: rotateX(6deg);
+        }
+
+        html,
+        body {
+            height: 100%;
+            overflow-x: hidden;
+        }
     </style>
 </head>
 
-<body class="font-sans text-gray-800 antialiased bg-white">
+<body class="font-sans text-gray-800 antialiased bg-white flex flex-col min-h-screen">
 
-    <!-- ========================================== -->
-    <!-- MODULE: STICKY NAV -->
-    <!-- ========================================== -->
+    <!-- GLOBAL HEADER -->
     <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-md transition-all duration-300">
         <div class="container mx-auto px-6 lg:px-12 h-20 flex justify-between items-center">
-            <!-- Logo -->
-            <a href="#" class="text-2xl font-bold text-brand-blue tracking-tight uppercase">
-                Jan <span class="text-brand-gold">Novák</span>
+            <a href="#home-page" class="text-2xl font-bold text-brand-blue tracking-tight uppercase group nav-link"
+                data-type="view">
+                Jan <span class="text-brand-gold group-hover:text-brand-blue transition-colors">Novák</span>
             </a>
 
-            <!-- Menu -->
-            <div
-                class="hidden xl:flex items-center space-x-6 font-semibold text-xs text-brand-blue uppercase tracking-wide">
-                <a href="#sluzby" class="hover:text-brand-gold hover:scale-105 transition-all">Služby</a>
-                <a href="#realizovano" class="hover:text-brand-gold hover:scale-105 transition-all">Realizováno</a>
-                <a href="#pracuji" class="hover:text-brand-gold hover:scale-105 transition-all">Jak pracuji</a>
-                <a href="#ai-asistent" class="hover:text-brand-gold hover:scale-105 transition-all">AI Asistent</a>
-                <a href="#reference" class="hover:text-brand-gold hover:scale-105 transition-all">Reference</a>
-                <a href="#clanky" class="hover:text-brand-gold hover:scale-105 transition-all">Články</a>
+            <div class="hidden xl:flex items-center space-x-6 font-semibold text-xs text-brand-blue uppercase tracking-wide"
+                id="nav-links">
+
+                <!-- 1. SLUZBY DROPDOWN -->
+                <div class="relative dropdown group h-20 flex items-center">
+                    <button
+                        class="hover:text-brand-gold transition-colors flex items-center gap-1 focus:outline-none h-full cursor-pointer uppercase">
+                        SLUŽBY <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <!-- Dropdown Content -->
+                    <div
+                        class="dropdown-menu hidden absolute top-16 left-0 bg-white shadow-xl rounded-xl w-64 py-4 border border-gray-100 animate-fadeIn z-50">
+                        <!-- SPA Links -->
+                        <a href="#proc-se-mnou-page"
+                            class="block px-6 py-3 hover:bg-brand-gray hover:text-brand-gold transition-colors nav-link"
+                            data-type="view">Proč prodat se mnou</a>
+                        <a href="#jak-prodat-page"
+                            class="block px-6 py-3 hover:bg-brand-gray hover:text-brand-gold transition-colors nav-link"
+                            data-type="view">Jak prodat nemovitost</a>
+                        <a href="#odhad-page"
+                            class="block px-6 py-3 hover:bg-brand-gray hover:text-brand-gold transition-colors nav-link"
+                            data-type="view">Odhad tržní ceny</a>
+                        <a href="#kalkulacka-page"
+                            class="block px-6 py-3 hover:bg-brand-gray hover:text-brand-gold transition-colors nav-link"
+                            data-type="view">Hypoteční kalkulačka</a>
+                        <div class="h-px bg-gray-100 my-2 mx-6"></div>
+                        <!-- Anchor Links (Scrolls Home) -->
+                        <a href="#ebook-section"
+                            class="block px-6 py-3 hover:bg-brand-gray hover:text-brand-gold transition-colors nav-link"
+                            data-type="anchor">E-book zdarma</a>
+                        <a href="#ai-section"
+                            class="block px-6 py-3 hover:bg-brand-gray hover:text-brand-gold transition-colors nav-link"
+                            data-type="anchor">AI Asistentka</a>
+                    </div>
+                </div>
+
+                <!-- 2. NABÍDKA -->
+                <a href="#nabidka-view" class="hover:text-brand-gold transition-colors nav-link"
+                    data-type="view">NABÍDKA</a>
+
+                <!-- 3. REALIZOVÁNO -->
+                <a href="#realizovano-view" class="hover:text-brand-gold transition-colors nav-link"
+                    data-type="view">REALIZOVÁNO</a>
+
+                <!-- 4. REFERENCE -->
+                <a href="#testimonials-section" class="hover:text-brand-gold transition-colors nav-link"
+                    data-type="anchor">REFERENCE</a>
+
+                <!-- 5. ČLÁNKY (Placeholder) -->
+                <a href="#clanky-view" class="hover:text-brand-gold transition-colors nav-link"
+                    data-type="view">ČLÁNKY</a>
+
+                <!-- 6. KONTAKT -->
+                <a href="#kontakt" class="hover:text-brand-gold transition-colors nav-link"
+                    data-type="anchor">KONTAKT</a>
             </div>
 
-            <!-- CTA -->
-            <a href="#kontakt"
-                class="hidden md:inline-flex items-center justify-center bg-brand-gold hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:shadow-glow transform hover:scale-105 transition-all duration-300 uppercase text-xs tracking-wider">
+            <a href="#odhad-page"
+                class="hidden md:inline-flex items-center justify-center bg-brand-gold hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:shadow-glow transform hover:scale-105 transition-all duration-300 uppercase text-xs tracking-wider nav-link"
+                data-type="view">
                 Chci prodat
             </a>
-
             <!-- Mobile Toggle -->
-            <button class="xl:hidden text-brand-blue p-2">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button class="xl:hidden text-brand-blue p-2"><svg class="w-8 h-8" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
                     </path>
-                </svg>
-            </button>
+                </svg></button>
         </div>
     </nav>
 
-    <!-- ========================================== -->
-    <!-- MODULE: HERO SECTION -->
-    <!-- ========================================== -->
-    <section class="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden bg-brand-gray">
-        <div class="absolute inset-0 hero-pattern"></div>
-        <div class="container mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16 items-center relative z-10">
-            <!-- Text -->
-            <div class="order-2 lg:order-1 space-y-8">
-                <span
-                    class="inline-block py-1 px-3 rounded-full bg-brand-blue/5 text-brand-blue font-bold text-xs uppercase tracking-widest">
-                    RE/MAX Synergy | ANELA Digital
-                </span>
-                <h1 class="text-4xl lg:text-5xl xl:text-6xl font-bold text-brand-blue leading-tight">
-                    Prodám vaši nemovitost <span
-                        class="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold to-yellow-500">chytřeji a
-                        za víc</span>
-                </h1>
-                <p class="text-lg text-gray-600 leading-relaxed max-w-lg font-medium">
-                    Spojení 12 let zkušeností a nejmodernějších AI technologií od ANELA Digital.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#kontakt"
-                        class="bg-brand-blue text-white font-bold py-4 px-10 rounded-xl shadow-card hover:bg-blue-900 hover:scale-105 transition-all duration-300 text-center uppercase text-sm tracking-wide">
-                        Chci prodat nemovitost
-                    </a>
-                    <a href="#sluzby"
-                        class="border-2 border-brand-blue text-brand-blue font-bold py-4 px-10 rounded-xl hover:bg-brand-blue hover:text-white transition-all duration-300 text-center uppercase text-sm tracking-wide">
-                        Moje služby
-                    </a>
+    <!-- CONTENT CONTAINER -->
+    <main id="app-container" class="flex-grow bg-white relative">
+
+        <!-- ========================================== -->
+        <!-- 1. HOMEPAGE SHOWROOM (#home-page) -->
+        <!-- ========================================== -->
+        <div id="home-page" class="page-view page-active">
+
+            <!-- Hero Section -->
+            <section class="relative pt-20 lg:pt-32 pb-16 bg-brand-gray overflow-hidden">
+                <div class="absolute inset-0 hero-pattern"></div>
+                <div class="container mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-12 items-center relative z-10">
+                    <div class="space-y-8 z-20">
+                        <span
+                            class="inline-block py-1 px-3 rounded-full bg-brand-blue/5 text-brand-blue font-bold text-xs uppercase tracking-widest">RE/MAX
+                            Synergy</span>
+                        <h1 class="text-4xl lg:text-5xl xl:text-6xl font-bold text-brand-blue leading-tight">
+                            Prodám vaši nemovitost <span class="text-brand-gold">chytřeji a za víc</span>
+                        </h1>
+                        <p class="text-lg text-gray-600 leading-relaxed max-w-lg font-medium">Spojení 12 let zkušeností
+                            a nejmodernějších AI technologií od ANELA Digital.</p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="#odhad-page"
+                                class="bg-brand-blue text-white font-bold py-4 px-10 rounded-xl shadow-card hover:bg-blue-900 hover:scale-105 transition-all duration-300 text-center uppercase text-sm tracking-wide nav-link"
+                                data-type="view">Chci prodat nemovitost</a>
+                            <a href="#nabidka-view"
+                                class="border-2 border-brand-blue text-brand-blue font-bold py-4 px-10 rounded-xl hover:bg-brand-blue hover:text-white transition-all duration-300 text-center uppercase text-sm tracking-wide nav-link"
+                                data-type="view">Aktuální nabídka</a>
+                        </div>
+                    </div>
+                    <div class="relative h-[600px] flex justify-center lg:justify-end">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            class="h-full w-auto object-cover object-top rounded-3xl shadow-2xl skew-y-1 hover:skew-y-0 transition-all duration-500 border-8 border-white">
+                        <div
+                            class="absolute bottom-10 left-10 bg-white p-4 rounded-xl shadow-lg border-l-4 border-brand-gold">
+                            <p class="text-brand-blue font-bold text-lg">Jan Novák</p>
+                            <p class="text-gray-500 text-xs uppercase tracking-widest">Top Makléř 2024</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <!-- Image -->
-            <div class="order-1 lg:order-2 relative">
-                <div class="relative z-10 w-full max-w-lg mx-auto lg:ml-auto">
-                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                        alt="Jan Novák"
-                        class="w-full h-[600px] object-cover object-top rounded-3xl shadow-2xl border-[10px] border-white skew-y-1 hover:skew-y-0 transition-all duration-500">
-                    <!-- Badge -->
-                    <div
-                        class="absolute bottom-10 left-[-20px] bg-white p-4 rounded-xl shadow-lg flex items-center gap-3 animate-bounce hover:animate-none cursor-pointer">
-                        <div class="bg-brand-gold p-2 rounded-full text-white"><svg class="w-5 h-5" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
+            </section>
+
+            <!-- Stats Bar -->
+            <section class="bg-brand-blue text-white py-16 relative z-30 -mt-10 mx-6 lg:mx-12 rounded-2xl shadow-xl">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center divide-x divide-white/10">
+                    <div class="p-2">
+                        <p class="text-4xl lg:text-5xl font-bold text-brand-gold">12</p>
+                        <p class="text-xs uppercase tracking-widest opacity-80 mt-1">Let zkušeností</p>
+                    </div>
+                    <div class="p-2">
+                        <p class="text-4xl lg:text-5xl font-bold text-brand-gold">450+</p>
+                        <p class="text-xs uppercase tracking-widest opacity-80 mt-1">Prodejů</p>
+                    </div>
+                    <div class="p-2">
+                        <p class="text-4xl lg:text-5xl font-bold text-brand-gold">99%</p>
+                        <p class="text-xs uppercase tracking-widest opacity-80 mt-1">Úspěšnost</p>
+                    </div>
+                    <div class="p-2">
+                        <p class="text-4xl lg:text-5xl font-bold text-brand-gold">2.5k</p>
+                        <p class="text-xs uppercase tracking-widest opacity-80 mt-1">Káv s klienty</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Why Me (Blue Bubble Overlay Design) -->
+            <section class="py-24 bg-white overflow-hidden">
+                <div class="container mx-auto px-6 lg:px-12">
+                    <div class="flex flex-col lg:flex-row items-center">
+                        <!-- Left: Text (Blue Bubble) -->
+                        <div
+                            class="w-full lg:w-1/2 bg-brand-blue text-white p-10 lg:p-14 rounded-3xl shadow-2xl relative z-10 lg:-mr-20">
+                            <h2 class="text-xs font-bold text-brand-gold uppercase tracking-widest mb-4">Filozofie</h2>
+                            <h3 class="text-3xl lg:text-4xl font-bold text-white mb-6">Exkluzivní péče o vaši
+                                nemovitost.</h3>
+                            <p class="text-white/80 mb-8 leading-relaxed">
+                                Prodej nemovitosti není jen o inzerátu na internetu. Je to komplexní proces. Můj přístup
+                                kombinuje dvanáct let zkušeností s technologiemi ANELA Digital.
+                            </p>
+
+                            <!-- Accordions (White Text) -->
+                            <div class="space-y-4">
+                                <details class="bg-white/10 rounded-xl border border-white/10 group" open>
+                                    <summary
+                                        class="p-4 cursor-pointer font-bold text-white flex justify-between items-center outline-none hover:bg-white/5 transition-colors rounded-xl">
+                                        <span>Maximální prodejní cena</span>
+                                        <span
+                                            class="text-brand-gold text-2xl group-open:rotate-45 transition-transform duration-300">+</span>
+                                    </summary>
+                                    <div class="px-4 pb-4 text-sm text-white/70">
+                                        Díky homestagingu a aukčním strategiím prodávám o 12 % dráž než konkurence.
+                                    </div>
+                                </details>
+                                <details class="bg-white/10 rounded-xl border border-white/10 group">
+                                    <summary
+                                        class="p-4 cursor-pointer font-bold text-white flex justify-between items-center outline-none hover:bg-white/5 transition-colors rounded-xl">
+                                        <span>Naprosté bezpečí</span>
+                                        <span
+                                            class="text-brand-gold text-2xl group-open:rotate-45 transition-transform duration-300">+</span>
+                                    </summary>
+                                    <div class="px-4 pb-4 text-sm text-white/70">
+                                        Peníze v bezpečné advokátní úschově až do okamžiku přepisu na katastru.
+                                    </div>
+                                </details>
+                                <details class="bg-white/10 rounded-xl border border-white/10 group">
+                                    <summary
+                                        class="p-4 cursor-pointer font-bold text-white flex justify-between items-center outline-none hover:bg-white/5 transition-colors rounded-xl">
+                                        <span>Komplexní služby</span>
+                                        <span
+                                            class="text-brand-gold text-2xl group-open:rotate-45 transition-transform duration-300">+</span>
+                                    </summary>
+                                    <div class="px-4 pb-4 text-sm text-white/70">
+                                        Vše od PENB, foto, právního servisu až po přepis energií.
+                                    </div>
+                                </details>
+                            </div>
+
+                            <div class="mt-10">
+                                <a href="#proc-se-mnou-page"
+                                    class="inline-block bg-brand-gold text-brand-blue font-bold py-3 px-8 rounded-full hover:bg-white hover:text-brand-blue transition-all shadow-lg transform hover:-translate-y-1"
+                                    data-type="view">Více o mé práci</a>
+                            </div>
+                        </div>
+
+                        <!-- Right: Image (Meeting Room) -->
+                        <div class="w-full lg:w-3/5 mt-10 lg:mt-0">
+                            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                                class="w-full h-[500px] lg:h-[600px] object-cover rounded-3xl shadow-inner"
+                                alt="Moderní zasedací místnost">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Nabidka Preview (Top 3) -->
+            <section class="py-24 bg-brand-gray">
+                <div class="container mx-auto px-6 lg:px-12">
+                    <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                        <div>
+                            <h2 class="text-sm font-bold text-brand-gold uppercase tracking-widest mb-2">Nabídka</h2>
+                            <h3 class="text-4xl font-bold text-brand-blue">Aktuálně v prodeji</h3>
+                        </div>
+                        <a href="#nabidka-view"
+                            class="mt-4 md:mt-0 text-brand-blue font-bold hover:text-brand-gold transition-colors flex items-center border-b-2 border-brand-blue hover:border-brand-gold pb-1 nav-link"
+                            data-type="view">Zobrazit vše <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
-                                </path>
-                            </svg></div>
-                        <div>
-                            <p class="text-xs text-gray-400 uppercase">Kontakt</p>
-                            <p class="text-brand-blue font-bold text-sm">600 000 000</p>
+                                    d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                            </svg></a>
+                    </div>
+                    <!-- Cards Grid (Same as before) -->
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <!-- Active 1 -->
+                        <div
+                            class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
+                            <div
+                                class="absolute top-4 left-4 z-20 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded shadow">
+                                AKTIVNÍ</div>
+                            <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                class="w-full h-64 object-cover">
+                            <div class="p-6">
+                                <h4 class="font-bold text-brand-blue text-lg mb-2">Vila Průhonice</h4>
+                                <span class="text-brand-gold font-bold text-lg">24 900 000 Kč</span>
+                            </div>
+                        </div>
+                        <!-- Active 2 -->
+                        <div
+                            class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
+                            <div
+                                class="absolute top-4 left-4 z-20 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded shadow">
+                                AKTIVNÍ</div>
+                            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                class="w-full h-64 object-cover">
+                            <div class="p-6">
+                                <h4 class="font-bold text-brand-blue text-lg mb-2">Byt Smíchov</h4>
+                                <span class="text-brand-gold font-bold text-lg">14 500 000 Kč</span>
+                            </div>
+                        </div>
+                        <!-- Active 3 -->
+                        <div
+                            class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
+                            <div
+                                class="absolute top-4 left-4 z-20 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded shadow">
+                                AKTIVNÍ</div>
+                            <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                class="w-full h-64 object-cover">
+                            <div class="p-6">
+                                <h4 class="font-bold text-brand-blue text-lg mb-2">Dům Beroun</h4>
+                                <span class="text-brand-gold font-bold text-lg">11 200 000 Kč</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- Decor -->
-                <div class="absolute -top-10 -right-10 w-64 h-64 bg-brand-gold/20 rounded-full blur-3xl -z-10"></div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- ========================================== -->
-    <!-- MODULE: STATS BAR -->
-    <!-- ========================================== -->
-    <section class="bg-brand-blue text-white py-16">
-        <div class="container mx-auto px-6 lg:px-12">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-white/10">
-                <div class="p-4">
-                    <p class="text-5xl font-bold text-brand-gold mb-2">12</p>
-                    <p class="text-xs uppercase tracking-widest opacity-70">Let zkušeností</p>
-                </div>
-                <div class="p-4">
-                    <p class="text-5xl font-bold text-brand-gold mb-2">450+</p>
-                    <p class="text-xs uppercase tracking-widest opacity-70">Prodejů</p>
-                </div>
-                <div class="p-4">
-                    <p class="text-5xl font-bold text-brand-gold mb-2">99%</p>
-                    <p class="text-xs uppercase tracking-widest opacity-70">Úspěšnost</p>
-                </div>
-                <div class="p-4">
-                    <p class="text-5xl font-bold text-brand-gold mb-2">2.5k</p>
-                    <p class="text-xs uppercase tracking-widest opacity-70">Káv s klienty</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- MODULE: SERVICES (Grid 6 Cards) -->
-    <!-- ========================================== -->
-    <section id="sluzby" class="py-24 bg-white">
-        <div class="container mx-auto px-6 lg:px-12">
-            <div class="text-center mb-16">
-                <h2 class="text-sm font-bold text-brand-gold uppercase tracking-widest mb-2">Komplexní servis</h2>
-                <h3 class="text-4xl font-bold text-brand-blue">Co pro vás zajistím?</h3>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div
-                    class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 hover:-translate-y-2 transition-all duration-300 group">
-                    <div
-                        class="w-12 h-12 bg-brand-blue/5 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand-blue transition-colors text-brand-blue group-hover:text-brand-gold">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z">
-                            </path>
-                        </svg>
-                    </div>
-                    <h4 class="text-lg font-bold text-brand-blue mb-3">Home Staging</h4>
-                    <p class="text-gray-500 text-sm">Připravím váš interiér tak, aby se do něj kupci zamilovali na první
-                        pohled.</p>
-                </div>
-                <!-- Service 2 -->
-                <div
-                    class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 hover:-translate-y-2 transition-all duration-300 group">
-                    <div
-                        class="w-12 h-12 bg-brand-blue/5 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand-blue transition-colors text-brand-blue group-hover:text-brand-gold">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z">
-                            </path>
-                        </svg>
-                    </div>
-                    <h4 class="text-lg font-bold text-brand-blue mb-3">Profi Foto/Video</h4>
-                    <p class="text-gray-500 text-sm">Využívám drony a 4K techniku pro filmovou prezentaci vašeho domova.
-                    </p>
-                </div>
-                <!-- Service 3 -->
-                <div
-                    class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 hover:-translate-y-2 transition-all duration-300 group">
-                    <div
-                        class="w-12 h-12 bg-brand-blue/5 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand-blue transition-colors text-brand-blue group-hover:text-brand-gold">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                        </svg>
-                    </div>
-                    <h4 class="text-lg font-bold text-brand-blue mb-3">AI Marketing</h4>
-                    <p class="text-gray-500 text-sm">Cílená reklama, která osloví jen ty, kteří skutečně hledají bydlení
-                        ve vaší lokalitě.</p>
-                </div>
-                <!-- Service 4 -->
-                <div
-                    class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 hover:-translate-y-2 transition-all duration-300 group">
-                    <div
-                        class="w-12 h-12 bg-brand-blue/5 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand-blue transition-colors text-brand-blue group-hover:text-brand-gold">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z">
-                            </path>
-                        </svg>
-                    </div>
-                    <h4 class="text-lg font-bold text-brand-blue mb-3">Virtuální prohlídky</h4>
-                    <p class="text-gray-500 text-sm">Umožním zájemcům projít se vaším domem z pohodlí jejich obýváku.
-                    </p>
-                </div>
-                <!-- Service 5 -->
-                <div
-                    class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 hover:-translate-y-2 transition-all duration-300 group">
-                    <div
-                        class="w-12 h-12 bg-brand-blue/5 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand-blue transition-colors text-brand-blue group-hover:text-brand-gold">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z">
-                            </path>
-                        </svg>
-                    </div>
-                    <h4 class="text-lg font-bold text-brand-blue mb-3">Právní jistota</h4>
-                    <p class="text-gray-500 text-sm">Kompletní servis včetně advokátní úschovy a bezpečného převodu.</p>
-                </div>
-                <!-- Service 6 -->
-                <div
-                    class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 hover:-translate-y-2 transition-all duration-300 group">
-                    <div
-                        class="w-12 h-12 bg-brand-blue/5 rounded-lg flex items-center justify-center mb-6 group-hover:bg-brand-blue transition-colors text-brand-blue group-hover:text-brand-gold">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
-                            </path>
-                        </svg>
-                    </div>
-                    <h4 class="text-lg font-bold text-brand-blue mb-3">Strategie prodeje</h4>
-                    <p class="text-gray-500 text-sm">Každá nemovitost má svůj unikátní plán pro dosažení maximální ceny.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- MODULE: PORTFOLIO (REALIZOVÁNO) -->
-    <!-- ========================================== -->
-    <section id="realizovano" class="py-24 bg-brand-gray">
-        <div class="container mx-auto px-6 lg:px-12">
-            <div class="flex justify-between items-end mb-16">
-                <div>
+            <!-- Realizovano Preview (Top 3) -->
+            <section class="py-24 bg-white">
+                <div class="container mx-auto px-6 lg:px-12 text-center">
                     <h2 class="text-sm font-bold text-brand-gold uppercase tracking-widest mb-2">Portfolio</h2>
-                    <h3 class="text-4xl font-bold text-brand-blue">Co jsem již prodal</h3>
-                </div>
-                <a href="#"
-                    class="hidden md:inline-flex items-center text-brand-blue font-bold hover:text-brand-gold transition-colors">
-                    Zobrazit vše <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                    </svg>
-                </a>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- House 1 -->
-                <div class="group relative rounded-2xl overflow-hidden shadow-lg cursor-pointer">
-                    <div
-                        class="absolute inset-0 bg-brand-blue/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 flex items-center justify-center flex-col text-white p-8 text-center">
-                        <h4 class="font-bold text-xl mb-2">Luxusní byt 3+kk</h4>
-                        <p class="text-sm mb-4">Praha 4</p>
-                        <span class="text-brand-gold font-bold">12 500 000 Kč</span>
+                    <h3 class="text-4xl font-bold text-brand-blue mb-12">Naposledy prodáno</h3>
+                    <div class="grid md:grid-cols-3 gap-8 mb-12">
+                        <!-- 1 -->
+                        <div class="relative h-64 rounded-xl overflow-hidden group">
+                            <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?w=600&h=400&fit=crop"
+                                class="w-full h-full object-cover">
+                            <div
+                                class="absolute top-4 right-4 bg-brand-gold text-white text-xs font-bold px-2 py-1 rounded">
+                                PRODÁNO</div>
+                        </div>
+                        <!-- 2 -->
+                        <div class="relative h-64 rounded-xl overflow-hidden group">
+                            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&h=400&fit=crop"
+                                class="w-full h-full object-cover">
+                            <div
+                                class="absolute top-4 right-4 bg-brand-gold text-white text-xs font-bold px-2 py-1 rounded">
+                                PRODÁNO</div>
+                        </div>
+                        <!-- 3 -->
+                        <div class="relative h-64 rounded-xl overflow-hidden group">
+                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=400&fit=crop"
+                                class="w-full h-full object-cover">
+                            <div
+                                class="absolute top-4 right-4 bg-brand-gold text-white text-xs font-bold px-2 py-1 rounded">
+                                PRODÁNO</div>
+                        </div>
                     </div>
-                    <div
-                        class="absolute top-4 right-4 z-20 bg-brand-gold text-white text-xs font-bold px-3 py-1 rounded shadow">
-                        PRODÁNO</div>
-                    <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                        alt="Byt Praha 4"
-                        class="w-full h-80 object-cover transform group-hover:scale-110 transition-transform duration-700">
-                    <div
-                        class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-6 pt-20">
-                        <p class="text-white font-bold text-lg">Praha 4</p>
-                        <p class="text-gray-300 text-sm">Luxusní byt 3+kk</p>
+                    <a href="#realizovano-view"
+                        class="bg-brand-gray text-brand-blue font-bold py-3 px-8 rounded-lg hover:bg-brand-blue hover:text-white transition-colors uppercase nav-link"
+                        data-type="view">Celé portfolio</a>
+                </div>
+            </section>
+
+            <!-- Testimonials Slider -->
+            <section id="testimonials-section" class="py-24 bg-brand-gray overflow-hidden">
+                <div class="container mx-auto px-6 lg:px-12 text-center">
+                    <h2 class="text-sm font-bold text-brand-gold uppercase tracking-widest mb-2">Reference</h2>
+                    <h3 class="text-4xl font-bold text-brand-blue mb-12">Co o mně říkají klienti</h3>
+
+                    <div class="relative max-w-4xl mx-auto">
+                        <!-- Slider Track -->
+                        <div id="testimonial-track" class="flex transition-transform duration-700 ease-in-out">
+                            <!-- Slide 1 -->
+                            <div class="w-full flex-shrink-0 px-6">
+                                <div class="bg-white p-10 rounded-3xl shadow-lg border border-gray-100">
+                                    <div class="text-brand-gold text-4xl font-serif mb-6">“</div>
+                                    <p class="text-xl text-gray-600 italic mb-8 leading-relaxed">
+                                        "Pan Novák je naprostý profesionál. Prodej našeho bytu proběhl hladce a
+                                        rychleji, než jsme čekali. Skvělá komunikace a servis."
+                                    </p>
+                                    <h4 class="font-bold text-brand-blue uppercase tracking-wider text-sm">Petr Svoboda
+                                    </h4>
+                                    <p class="text-xs text-brand-gold mt-1">Prodávající, Praha 4</p>
+                                </div>
+                            </div>
+                            <!-- Slide 2 -->
+                            <div class="w-full flex-shrink-0 px-6">
+                                <div class="bg-white p-10 rounded-3xl shadow-lg border border-gray-100">
+                                    <div class="text-brand-gold text-4xl font-serif mb-6">“</div>
+                                    <p class="text-xl text-gray-600 italic mb-8 leading-relaxed">
+                                        "Díky homestagingu vypadal náš dům úžasně a prodal se za cenu, kterou jsme si
+                                        ani nepředstavovali. Doporučuji všem."
+                                    </p>
+                                    <h4 class="font-bold text-brand-blue uppercase tracking-wider text-sm">Jana
+                                        Dvořáková</h4>
+                                    <p class="text-xs text-brand-gold mt-1">Prodávající, Říčany</p>
+                                </div>
+                            </div>
+                            <!-- Slide 3 -->
+                            <div class="w-full flex-shrink-0 px-6">
+                                <div class="bg-white p-10 rounded-3xl shadow-lg border border-gray-100">
+                                    <div class="text-brand-gold text-4xl font-serif mb-6">“</div>
+                                    <p class="text-xl text-gray-600 italic mb-8 leading-relaxed">
+                                        "Spolehlivost, férovost a lidský přístup. Kdybychom prodávali znovu, jedině s
+                                        panem Novákem."
+                                    </p>
+                                    <h4 class="font-bold text-brand-blue uppercase tracking-wider text-sm">Manželé Černí
+                                    </h4>
+                                    <p class="text-xs text-brand-gold mt-1">Kupující, Hostivice</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Dots Indicators -->
+                        <div class="flex justify-center space-x-2 mt-8" id="testimonial-dots">
+                            <button class="w-3 h-3 rounded-full bg-brand-gold" onclick="goToSlide(0)"></button>
+                            <button class="w-3 h-3 rounded-full bg-gray-300 hover:bg-brand-gold transition-colors"
+                                onclick="goToSlide(1)"></button>
+                            <button class="w-3 h-3 rounded-full bg-gray-300 hover:bg-brand-gold transition-colors"
+                                onclick="goToSlide(2)"></button>
+                        </div>
                     </div>
                 </div>
+            </section>
 
-                <!-- House 2 -->
-                <div class="group relative rounded-2xl overflow-hidden shadow-lg cursor-pointer">
-                    <div
-                        class="absolute inset-0 bg-brand-blue/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 flex items-center justify-center flex-col text-white p-8 text-center">
-                        <h4 class="font-bold text-xl mb-2">Rodinný dům se zahradou</h4>
-                        <p class="text-sm mb-4">Říčany</p>
-                        <span class="text-brand-gold font-bold">18 200 000 Kč</span>
-                    </div>
-                    <div
-                        class="absolute top-4 right-4 z-20 bg-brand-gold text-white text-xs font-bold px-3 py-1 rounded shadow">
-                        PRODÁNO</div>
-                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                        alt="Dům Říčany"
-                        class="w-full h-80 object-cover transform group-hover:scale-110 transition-transform duration-700">
-                    <div
-                        class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-6 pt-20">
-                        <p class="text-white font-bold text-lg">Říčany</p>
-                        <p class="text-gray-300 text-sm">Rodinný dům se zahradou</p>
-                    </div>
-                </div>
-
-                <!-- House 3 -->
-                <div class="group relative rounded-2xl overflow-hidden shadow-lg cursor-pointer">
-                    <div
-                        class="absolute inset-0 bg-brand-blue/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 flex items-center justify-center flex-col text-white p-8 text-center">
-                        <h4 class="font-bold text-xl mb-2">Moderní loft</h4>
-                        <p class="text-sm mb-4">Karlín</p>
-                        <span class="text-brand-gold font-bold">9 800 000 Kč</span>
-                    </div>
-                    <div
-                        class="absolute top-4 right-4 z-20 bg-brand-gold text-white text-xs font-bold px-3 py-1 rounded shadow">
-                        PRODÁNO</div>
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                        alt="Loft Karlín"
-                        class="w-full h-80 object-cover transform group-hover:scale-110 transition-transform duration-700">
-                    <div
-                        class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 to-transparent p-6 pt-20">
-                        <p class="text-white font-bold text-lg">Praha - Karlín</p>
-                        <p class="text-gray-300 text-sm">Moderní loft</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- MODULE: HOW I WORK (STEPS) -->
-    <!-- ========================================== -->
-    <section id="pracuji" class="py-24 bg-white">
-        <div class="container mx-auto px-6 lg:px-12">
-            <div class="text-center mb-16">
-                <h2 class="text-sm font-bold text-brand-gold uppercase tracking-widest mb-2">Proces</h2>
-                <h3 class="text-4xl font-bold text-brand-blue">Jak probíhá spolupráce?</h3>
-            </div>
-            <div class="grid md:grid-cols-5 gap-6">
-                <!-- Steps 1-5 -->
-                <div
-                    class="bg-gray-50 p-6 rounded-xl text-center hover:-translate-y-2 transition-transform duration-300">
-                    <div class="text-4xl mb-4">🔍</div>
-                    <h4 class="font-bold text-brand-blue mb-2">1. Analýza</h4>
-                    <p class="text-xs text-gray-500">Stanovení tržní ceny.</p>
-                </div>
-                <div
-                    class="bg-gray-50 p-6 rounded-xl text-center hover:-translate-y-2 transition-transform duration-300">
-                    <div class="text-4xl mb-4">✨</div>
-                    <h4 class="font-bold text-brand-blue mb-2">2. Příprava</h4>
-                    <p class="text-xs text-gray-500">Staging a foto.</p>
-                </div>
-                <div
-                    class="bg-gray-50 p-6 rounded-xl text-center hover:-translate-y-2 transition-transform duration-300">
-                    <div class="text-4xl mb-4">📢</div>
-                    <h4 class="font-bold text-brand-blue mb-2">3. Marketing</h4>
-                    <p class="text-xs text-gray-500">Online kampaně.</p>
-                </div>
-                <div
-                    class="bg-gray-50 p-6 rounded-xl text-center hover:-translate-y-2 transition-transform duration-300">
-                    <div class="text-4xl mb-4">⚖️</div>
-                    <h4 class="font-bold text-brand-blue mb-2">4. Právo</h4>
-                    <p class="text-xs text-gray-500">Bezpečný převod.</p>
-                </div>
-                <div
-                    class="bg-gray-50 p-6 rounded-xl text-center hover:-translate-y-2 transition-transform duration-300">
-                    <div class="text-4xl mb-4">🔑</div>
-                    <h4 class="font-bold text-brand-blue mb-2">5. Předání</h4>
-                    <p class="text-xs text-gray-500">Předání klíčů.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- MODULE: AI ASSISTANT -->
-    <!-- ========================================== -->
-    <section id="ai-asistent" class="py-24 ai-gradient text-white relative overflow-hidden">
-        <!-- Abstract Tech Decor -->
-        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-gold/10 rounded-full blur-3xl opacity-30"></div>
-        <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-400/10 rounded-full blur-3xl opacity-30"></div>
-
-        <div class="container mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16 items-center relative z-10">
-            <div>
-                <span class="text-brand-gold font-bold tracking-widest uppercase text-sm mb-4 block">Inovace 2026</span>
-                <h3 class="text-4xl lg:text-5xl font-bold mb-6">Moje AI asistentka Aira<br>K dispozici 24/7</h3>
-                <p class="text-blue-100 text-lg mb-8 leading-relaxed max-w-md">
-                    Moje AI asistentka Aira je vám k dispozici 24/7. Odpoví na vaše dotazy ohledně cen a prodeje
-                    okamžitě.
-                </p>
-                <button
-                    class="bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold py-4 px-8 rounded-xl backdrop-blur-md transition-all flex items-center gap-3">
-                    <span>Vyzkoušet AI chat</span>
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z">
-                        </path>
-                    </svg>
-                </button>
-            </div>
-
-            <!-- Chat Widget Mockup -->
-            <div
-                class="bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl p-6 text-gray-800 max-w-md mx-auto relative border border-white/10">
-                <div class="flex items-center gap-3 border-b pb-4 mb-4">
-                    <div
-                        class="w-10 h-10 rounded-full bg-brand-gold flex items-center justify-center text-white text-xs font-bold">
-                        AI</div>
+            <!-- Modular AI Socket -->
+            <section id="ai-section" class="py-24 ai-gradient text-white overflow-hidden relative">
+                <div class="container mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-12 items-center relative z-10">
                     <div>
-                        <p class="font-bold text-sm">Aira - Asistentka</p>
-                        <p class="text-xs text-green-500 font-bold flex items-center"><span
-                                class="w-2 h-2 bg-green-500 rounded-full mr-1"></span> Online</p>
+                        <span
+                            class="text-brand-gold font-bold tracking-widest uppercase text-sm mb-4 block">Inovace</span>
+                        <h3 class="text-4xl lg:text-5xl font-bold mb-6">Aira<br>AI Asistentka</h3>
+                        <p class="text-blue-100 text-lg mb-8 leading-relaxed">
+                            Jsem tu pro vás 24/7. Zeptejte se mě na cokoliv ohledně prodeje nemovitosti.
+                        </p>
+                    </div>
+                    <div id="anela-ai-widget-container"
+                        class="bg-white/95 text-gray-800 rounded-2xl p-6 shadow-2xl h-[400px] flex flex-col relative justify-center items-center text-center">
+                        <div class="z-10 bg-brand-blue/5 p-6 rounded-full mb-6">
+                            <svg class="w-16 h-16 text-brand-blue" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z">
+                                </path>
+                            </svg>
+                        </div>
+                        <h4 class="text-xl font-bold text-brand-blue mb-2">Vaše AI asistentka Aira</h4>
+                        <p class="text-gray-500 mb-6 max-w-xs mx-auto">Momentálně čekám na aktivaci.</p>
+                        <button
+                            class="bg-brand-gold text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:shadow-glow transition-all uppercase text-sm tracking-widest">
+                            Zjistit více
+                        </button>
                     </div>
                 </div>
+            </section>
 
-                <!-- PLACEHOLDER FOR AI WIDGET -->
+            <!-- Lead Magnet (E-book) -->
+            <section id="ebook-section" class="py-24 bg-brand-blue text-white overflow-hidden relative">
                 <div
-                    class="bg-gray-100 p-8 rounded-xl text-center border-2 border-dashed border-gray-300 text-gray-400">
-                    <div class="text-4xl mb-2">🤖</div>
-                    [Sem vložit kód pro AI Widget ANELA Digital]
+                    class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10">
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- MODULE: TESTIMONIALS (REFERENCE) - NEW -->
-    <!-- ========================================== -->
-    <section id="reference" class="py-24 bg-white">
-        <div class="container mx-auto px-6 lg:px-12">
-            <h2 class="text-3xl font-bold text-brand-blue mb-12 text-center">Co říkají klienti</h2>
-            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <!-- Review 1 -->
-                <div class="bg-gray-50 p-8 rounded-2xl shadow-sm border border-gray-100 relative">
-                    <div class="text-brand-gold text-4xl font-serif absolute top-4 left-6">“</div>
-                    <p class="text-gray-600 italic mb-6 pt-6 relative z-10">„Pan Novák prodal můj dům za 3 týdny o 10 %
-                        dráž, než jsem čekal. Skvělý servis!“</p>
-                    <div class="flex items-center gap-3">
-                        <div
-                            class="w-10 h-10 bg-brand-blue rounded-full flex items-center justify-center text-white font-bold">
-                            P</div>
-                        <div>
-                            <p class="font-bold text-brand-blue text-sm">Petr S.</p>
-                            <div class="flex text-brand-gold text-xs">★★★★★</div>
+                <div class="container mx-auto px-6 lg:px-12 relative z-10">
+                    <div class="grid lg:grid-cols-2 gap-16 items-center">
+                        <div class="relative group perspective-1000 flex justify-center lg:justify-end">
+                            <div
+                                class="relative w-64 md:w-80 aspect-[3/4] bg-white rounded-r-lg shadow-2xl transform rotate-y-12 rotate-x-6 hover:rotate-y-0 hover:rotate-x-0 transition-all duration-700 cursor-pointer">
+                                <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=800"
+                                    class="w-full h-full object-cover rounded-r-lg shadow-inner" alt="Book Cover">
+                                <div
+                                    class="absolute top-0 left-0 w-4 h-full bg-gradient-to-r from-gray-300 to-white -translate-x-full rounded-l-sm">
+                                </div>
+                            </div>
+                            <div class="absolute -bottom-10 w-48 h-4 bg-black/40 blur-xl rounded-[100%]"></div>
+                        </div>
+                        <div class="text-center lg:text-left">
+                            <span
+                                class="text-brand-gold font-bold tracking-widest uppercase text-sm mb-2 block">Exkluzivní
+                                obsah</span>
+                            <h3 class="text-4xl lg:text-5xl font-bold mb-6 font-serif">Stáhněte si E-book zdarma</h3>
+                            <button
+                                class="bg-brand-gold text-white font-bold py-4 px-10 rounded-xl shadow-lg hover:shadow-glow hover:bg-yellow-600 transition-all uppercase text-sm tracking-widest transform hover:-translate-y-1">
+                                Stáhnout E-book
+                            </button>
                         </div>
                     </div>
                 </div>
-                <!-- Review 2 -->
-                <div class="bg-gray-50 p-8 rounded-2xl shadow-sm border border-gray-100 relative">
-                    <div class="text-brand-gold text-4xl font-serif absolute top-4 left-6">“</div>
-                    <p class="text-gray-600 italic mb-6 pt-6 relative z-10">„Profesionální přístup a úžasné video.
-                        Doporučuji všem.“</p>
-                    <div class="flex items-center gap-3">
-                        <div
-                            class="w-10 h-10 bg-brand-blue rounded-full flex items-center justify-center text-white font-bold">
-                            J</div>
-                        <div>
-                            <p class="font-bold text-brand-blue text-sm">Jana M.</p>
-                            <div class="flex text-brand-gold text-xs">★★★★★</div>
+            </section>
+
+        </div> <!-- END HOME SHOWROOM -->
+
+
+        <!-- ========================================== -->
+        <!-- 2. SPECIAL SUB-PAGES -->
+        <!-- ========================================== -->
+
+        <!-- #proc-se-mnou-page (Rich Profile) -->
+        <div id="proc-se-mnou-page" class="page-view page-hidden">
+            <div class="container mx-auto px-6 lg:px-12 pt-16 pb-24">
+                <a href="#home-page" class="text-brand-blue font-bold uppercase text-xs mb-8 inline-block nav-link"
+                    data-type="view">← Zpět na úvod</a>
+                <div class="grid lg:grid-cols-2 gap-16 items-start">
+                    <!-- Left Image -->
+                    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        class="w-full h-[600px] object-cover rounded-3xl shadow-2xl sticky top-24"
+                        alt="Makléř při práci">
+                    <!-- Right Text -->
+                    <div>
+                        <h1 class="text-4xl lg:text-5xl font-bold text-brand-blue mb-8">Exkluzivní péče o vaši
+                            nemovitost.</h1>
+                        <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                            Prodej nemovitosti není jen o inzerátu na internetu. Je to komplexní proces, kde rozhodují
+                            detaily. Můj přístup kombinuje dvanáct let zkušeností na trhu s nejmodernějšími
+                            technologiemi
+                            ANELA Digital. Od profesionálního home stagingu, přes dronové záběry až po cílený marketing
+                            – dělám maximum pro to, abychom vaši nemovitost prodali za nejvyšší možnou cenu.
+                        </p>
+                        <!-- Detailed Accordions -->
+                        <div class="space-y-4">
+                            <details class="bg-gray-50 rounded-xl shadow-sm group" open>
+                                <summary
+                                    class="p-6 cursor-pointer font-bold text-brand-blue flex justify-between items-center outline-none">
+                                    <span>Maximální prodejní cena</span>
+                                    <span
+                                        class="text-brand-gold text-2xl group-open:rotate-45 transition-transform duration-300">+</span>
+                                </summary>
+                                <div class="px-6 pb-6 text-sm text-gray-500">
+                                    Díky homestagingu, špičkovému marketingu, videoprohlídkám a aukčním strategiím
+                                    prodávám nemovitosti v průměru o 12 % dráž než konkurence.
+                                </div>
+                            </details>
+                            <details class="bg-gray-50 rounded-xl shadow-sm group">
+                                <summary
+                                    class="p-6 cursor-pointer font-bold text-brand-blue flex justify-between items-center outline-none">
+                                    <span>Naprosté bezpečí</span>
+                                    <span
+                                        class="text-brand-gold text-2xl group-open:rotate-45 transition-transform duration-300">+</span>
+                                </summary>
+                                <div class="px-6 pb-6 text-sm text-gray-500">
+                                    Spolupracuji s renomovanou advokátní kanceláří. Vaše peníze jsou v bezpečné
+                                    advokátní úschově až do okamžiku přepisu na katastru.
+                                </div>
+                            </details>
+                            <details class="bg-gray-50 rounded-xl shadow-sm group">
+                                <summary
+                                    class="p-6 cursor-pointer font-bold text-brand-blue flex justify-between items-center outline-none">
+                                    <span>Komplexní služby</span>
+                                    <span
+                                        class="text-brand-gold text-2xl group-open:rotate-45 transition-transform duration-300">+</span>
+                                </summary>
+                                <div class="px-6 pb-6 text-sm text-gray-500">
+                                    Zajišťuji vše od PENB, přes profesionální foto, 3D skeny, právní servis, až po
+                                    předávací protokol a přepis energií.
+                                </div>
+                            </details>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- ========================================== -->
-    <!-- MODULE: ARTICLES -->
-    <!-- ========================================== -->
-    <section id="clanky" class="py-24 bg-brand-gray">
-        <div class="container mx-auto px-6 lg:px-12">
-            <h2 class="text-3xl font-bold text-brand-blue mb-12 text-center">Doporučujeme přečíst</h2>
-            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <!-- Article 1 -->
-                <article
-                    class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-card transition-all duration-300 flex flex-col">
-                    <div class="h-48 bg-gray-200 relative"><img
-                            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?fit=crop&w=600&h=400"
-                            class="w-full h-full object-cover"></div>
-                    <div class="p-6 flex-grow flex flex-col">
-                        <h3 class="font-bold text-brand-blue mb-2">Trh 2026: Co čekat?</h3>
-                        <p class="text-sm text-gray-500 mb-4 flex-grow">Výhled realitního trhu na nadcházející rok.</p>
-                        <a href="https://seznam.cz" target="_blank"
-                            class="text-brand-gold font-bold text-sm uppercase">Číst na Seznam.cz &rarr;</a>
-                    </div>
-                </article>
-                <!-- Article 2 -->
-                <article
-                    class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-card transition-all duration-300 flex flex-col">
-                    <div class="h-48 bg-gray-200 relative"><img
-                            src="https://images.unsplash.com/photo-1556910103-1c02745a30bf?fit=crop&w=600&h=400"
-                            class="w-full h-full object-cover"></div>
-                    <div class="p-6 flex-grow flex flex-col">
-                        <h3 class="font-bold text-brand-blue mb-2">Jak zvýšit hodnotu bytu?</h3>
-                        <p class="text-sm text-gray-500 mb-4 flex-grow">Praktické tipy před prodejem.</p>
-                        <a href="https://google.com" target="_blank"
-                            class="text-brand-gold font-bold text-sm uppercase">Číst na Google &rarr;</a>
-                    </div>
-                </article>
+        <!-- #odhad-page (Lead Gen Form) -->
+        <div id="odhad-page" class="page-view page-hidden">
+            <div class="container mx-auto px-6 lg:px-12 pt-16 pb-24 min-h-screen flex flex-col justify-center">
+                <div class="text-center mb-12">
+                    <a href="#home-page" class="text-brand-blue font-bold uppercase text-xs mb-8 inline-block nav-link"
+                        data-type="view">← Zpět na úvod</a>
+                    <h2 class="text-brand-gold font-bold uppercase tracking-widest text-sm mb-2">Tržní Odhad</h2>
+                    <h3 class="text-4xl font-bold text-brand-blue">Získejte odhad ceny zdarma</h3>
+                </div>
+
+                <div
+                    class="max-w-3xl mx-auto w-full bg-white rounded-2xl shadow-2xl p-8 lg:p-12 border border-gray-100">
+                    <form>
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Jméno</label>
+                                <input type="text"
+                                    class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-gold transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Příjmení</label>
+                                <input type="text"
+                                    class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-gold transition-colors">
+                            </div>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Email</label>
+                                <input type="email"
+                                    class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-gold transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Telefon</label>
+                                <input type="tel"
+                                    class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-gold transition-colors">
+                            </div>
+                        </div>
+                        <div class="mb-8">
+                            <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Popis
+                                nemovitosti</label>
+                            <textarea rows="4"
+                                class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-gold transition-colors"
+                                placeholder="Lokalita, velikost, stav..."></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full bg-brand-gold hover:bg-yellow-600 text-white font-bold py-4 rounded-xl shadow-lg transition-all uppercase tracking-wide">
+                            Odeslat nezávaznou poptávku
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
-    </section>
 
-    <!-- ========================================== -->
-    <!-- MODULE: LEAD MAGNET (E-BOOK) -->
-    <!-- ========================================== -->
-    <section class="py-24 bg-white">
-        <div class="container mx-auto px-6 lg:px-12">
+        <!-- #kalkulacka-page (Placeholder) -->
+        <div id="kalkulacka-page" class="page-view page-hidden">
             <div
-                class="bg-brand-blue rounded-3xl p-10 flex flex-col md:flex-row items-center gap-12 text-white relative overflow-hidden shadow-2xl">
-                <div
-                    class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+                class="container mx-auto px-6 lg:px-12 pt-32 pb-24 text-center min-h-screen flex flex-col items-center justify-center">
+                <div class="bg-brand-gray/50 p-12 rounded-full mb-8 text-6xl">💰</div>
+                <h2 class="text-4xl font-bold text-brand-blue mb-4">Hypoteční kalkulačka</h2>
+                <p class="text-lg text-gray-600 mb-8">Na této funkci usilovně pracujeme. Brzy si zde spočítáte svou
+                    hypotéku online.</p>
+                <a href="#home-page"
+                    class="bg-brand-blue text-white font-bold py-3 px-8 rounded-lg hover:bg-brand-gold transition-colors uppercase nav-link"
+                    data-type="view">Zpět na úvod</a>
+            </div>
+        </div>
+
+        <!-- #jak-prodat-page (Placeholder) -->
+        <div id="jak-prodat-page" class="page-view page-hidden">
+            <div
+                class="container mx-auto px-6 lg:px-12 pt-32 pb-24 text-center min-h-screen flex flex-col items-center justify-center">
+                <div class="bg-brand-gray/50 p-12 rounded-full mb-8 text-6xl">✨</div>
+                <h2 class="text-4xl font-bold text-brand-blue mb-4">Jak prodat nemovitost</h2>
+                <p class="text-lg text-gray-600 mb-8">Průvodce prodejem je ve výrobě.</p>
+                <a href="#home-page"
+                    class="bg-brand-blue text-white font-bold py-3 px-8 rounded-lg hover:bg-brand-gold transition-colors uppercase nav-link"
+                    data-type="view">Zpět na úvod</a>
+            </div>
+        </div>
+
+
+        <!-- ========================================== -->
+        <!-- 3. STANDARD LISTING VIEWS -->
+        <!-- ========================================== -->
+
+        <!-- NABÍDKA FULL VIEW -->
+        <div id="nabidka-view" class="page-view page-hidden">
+            <div class="pt-20 pb-24 container mx-auto px-6 lg:px-12">
+                <div class="text-center mb-12">
+                    <h2 class="text-brand-gold font-bold uppercase tracking-widest text-sm">Kompletní nabídka</h2>
+                    <h3 class="text-4xl font-bold text-brand-blue">Všechny nemovitosti</h3>
                 </div>
-                <div class="relative z-10 w-full md:w-1/3 flex justify-center">
-                    <div
-                        class="w-40 h-56 bg-white text-brand-blue flex items-center justify-center rounded shadow-xl rotate-[-5deg] font-bold text-center p-4 border-l-8 border-brand-gold">
-                        E-BOOK<br>ZDARMA
+                <!-- Full Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 1 -->
+                    <div class="group bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+                        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80"
+                            class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h4 class="font-bold text-brand-blue text-lg">Vila Průhonice</h4>
+                            <p class="text-gray-500 mb-4">24 900 000 Kč</p>
+                            <button
+                                class="w-full bg-brand-blue text-white py-2 rounded font-bold hover:bg-brand-gold transition-colors">Detail</button>
+                        </div>
+                    </div>
+                    <!-- Same cards as defined previously... -->
+                    <div class="group bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+                        <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&q=80"
+                            class="w-full h-64 object-cover">
+                        <div class="p-6">
+                            <h4 class="font-bold text-brand-blue text-lg">Byt Smíchov</h4>
+                            <p class="text-gray-500 mb-4">14 500 000 Kč</p>
+                            <button
+                                class="w-full bg-brand-blue text-white py-2 rounded font-bold hover:bg-brand-gold transition-colors">Detail</button>
+                        </div>
                     </div>
                 </div>
-                <div class="relative z-10 w-full md:w-2/3">
-                    <h3 class="text-3xl font-bold mb-4">Průvodce bezpečným prodejem</h3>
-                    <p class="text-blue-200 mb-8">Stáhněte si můj e-book zdarma a zjistěte, jak se vyhnout ztrátám.</p>
-                    <a href="https://anela.cz/ebook" target="_blank"
-                        class="bg-brand-gold hover:bg-yellow-500 text-white font-bold py-4 px-8 rounded-lg shadow-lg inline-block uppercase tracking-wider text-sm transition-colors">Stáhnout
-                        e-book</a>
+                <div class="text-center mt-12">
+                    <a href="#home-page"
+                        class="text-brand-blue font-bold border-b-2 border-brand-blue pb-1 hover:text-brand-gold hover:border-brand-gold transition-colors nav-link"
+                        data-type="view">← Zpět na úvodní stránku</a>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- ========================================== -->
-    <!-- MODULE: FOOTER -->
-    <!-- ========================================== -->
-    <footer id="kontakt" class="bg-brand-dark text-white py-16 border-t border-white/5">
-        <div class="container mx-auto px-6 lg:px-12">
-            <div class="grid md:grid-cols-3 gap-12 mb-12">
-                <div>
-                    <h4 class="text-xl font-bold mb-4">Jan <span class="text-brand-gold">Novák</span></h4>
-                    <p class="text-gray-400 text-sm mb-4">Prodám vaši nemovitost chytřeji a za víc.</p>
-                    <p class="text-brand-gold font-bold">RE/MAX Synergy</p>
+        <!-- REALIZOVÁNO FULL VIEW -->
+        <div id="realizovano-view" class="page-view page-hidden">
+            <div class="pt-20 pb-24 container mx-auto px-6 lg:px-12 bg-gray-50 min-h-screen">
+                <div class="text-center mb-12">
+                    <h2 class="text-brand-gold font-bold uppercase tracking-widest text-sm">Portfolio</h2>
+                    <h3 class="text-4xl font-bold text-brand-blue">Historie prodejů</h3>
                 </div>
-                <div>
-                    <h4 class="font-bold mb-4">Rychlý kontakt</h4>
-                    <p class="text-gray-300 mb-2 hover:text-white transition-colors cursor-pointer">+420 600 000 000</p>
-                    <p class="text-gray-300 hover:text-white transition-colors cursor-pointer">info@makler.cz</p>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-white rounded-xl shadow p-4">
+                        <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?w=600&h=400&fit=crop"
+                            class="rounded mb-4 w-full h-48 object-cover grayscale hover:grayscale-0 transition-all">
+                        <h4 class="font-bold text-brand-blue">Byt Podolí</h4>
+                        <span class="text-brand-gold font-bold">Prodáno 12.5M</span>
+                    </div>
+                    <!-- More items... -->
                 </div>
-                <div>
-                    <h4 class="font-bold mb-4">Menu</h4>
-                    <ul class="text-sm text-gray-400 space-y-2">
-                        <li><a href="#" class="hover:text-brand-gold">Úvod</a></li>
-                        <li><a href="#sluzby" class="hover:text-brand-gold">Služby</a></li>
-                        <li><a href="#realizovano" class="hover:text-brand-gold">Realizováno</a></li>
-                        <li><a href="#reference" class="hover:text-brand-gold">Reference</a></li>
-                        <li><a href="#kontakt" class="hover:text-brand-gold">Kontakt</a></li>
-                    </ul>
+                <div class="text-center mt-12">
+                    <a href="#home-page"
+                        class="text-brand-blue font-bold border-b-2 border-brand-blue pb-1 hover:text-brand-gold hover:border-brand-gold transition-colors nav-link"
+                        data-type="view">← Zpět na úvodní stránku</a>
                 </div>
             </div>
-            <div class="border-t border-white/10 pt-8 flex justify-between items-center text-xs text-gray-500">
-                <p>&copy; 2026 Jan Novák.</p>
-                <p>Vytvořeno v <strong class="text-brand-gold">ANELA Digital</strong></p>
+        </div>
+
+        <!-- Placeholder for Blog -->
+        <div id="clanky-view" class="page-view page-hidden">
+            <div class="pt-40 text-center font-bold text-2xl">Blog (Coming Soon) <br> <a href="#home-page"
+                    class="text-sm text-brand-gold underline mt-4 block nav-link" data-type="view">Zpět</a></div>
+        </div>
+
+    </main>
+
+    <!-- CONTACT FOOTER -->
+    <footer id="kontakt" class="bg-brand-dark text-white py-12 border-t border-white/5 relative z-20">
+        <div class="container mx-auto px-6 lg:px-12">
+            <div class="grid md:grid-cols-2 gap-8 mb-8 text-sm">
+                <div>
+                    <h4 class="font-bold mb-2 text-white">Jan <span class="text-brand-gold">Novák</span></h4>
+                    <p class="text-gray-400">RE/MAX Synergy</p>
+                </div>
+                <div class="md:text-right">
+                    <p class="text-gray-500 text-xs mt-2">&copy; 2026 Jan Novák. <span class="text-brand-gold">ANELA
+                            Digital</span></p>
+                </div>
             </div>
         </div>
     </footer>
 
+    <!-- ROUTER SCRIPT -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const views = document.querySelectorAll('.page-view');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            // AI Configuration Check
+            if (typeof window !== 'undefined' && window.anelaAiConfig) {
+                const container = document.getElementById('anela-ai-widget-container');
+                if (container) {
+                    container.innerHTML = '';
+                    const script = document.createElement('script');
+                    script.src = window.anelaAiConfig.widgetUrl || '';
+                    script.async = true;
+                    container.appendChild(script);
+                }
+            }
+
+            // ROUTER FUNCTION
+            function handleNavigation(e) {
+                // If it's a link click, prevent default ONLY if it's our controlled link
+                const link = e.currentTarget;
+                const targetHash = link.getAttribute('href');
+                const type = link.getAttribute('data-type'); // 'view' or 'anchor'
+
+                if (!targetHash) return;
+
+                // If standard view switch
+                if (type === 'view') {
+                    e.preventDefault();
+                    window.location.hash = targetHash;
+                    switchView(targetHash.substring(1));
+                    window.scrollTo(0, 0);
+                }
+                // If anchor scroll on Home
+                else if (type === 'anchor') {
+                    const targetId = targetHash.substring(1);
+                    // Check if we are currently on home-page
+                    const homeView = document.getElementById('home-page');
+
+                    if (homeView.classList.contains('page-hidden')) {
+                        // We are on a sub-page, need to go Home first
+                        e.preventDefault();
+                        window.location.hash = 'home-page';
+                        switchView('home-page');
+
+                        // Wait for view switch then scroll
+                        setTimeout(() => {
+                            const el = document.getElementById(targetId);
+                            if (el) el.scrollIntoView({ behavior: 'smooth' });
+                        }, 100);
+                    } else {
+                        // Already on home, just let default anchor behavior happen or smooth scroll
+                        e.preventDefault();
+                        const el = document.getElementById(targetId);
+                        if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            }
+
+            function switchView(viewId) {
+                const target = document.getElementById(viewId);
+                if (target) {
+                    views.forEach(v => {
+                        v.classList.remove('page-active');
+                        v.classList.add('page-hidden');
+                    });
+                    target.classList.remove('page-hidden');
+                    target.classList.add('page-active');
+                }
+            }
+
+            // Bind Events
+            navLinks.forEach(link => {
+                link.addEventListener('click', handleNavigation);
+            });
+
+            // Handle Initial Load / Back Button
+            window.addEventListener('hashchange', () => {
+                const hash = window.location.hash.substring(1);
+                if (hash && document.getElementById(hash) && document.getElementById(hash).classList.contains('page-view')) {
+                    switchView(hash);
+                } else if (!hash) {
+                    switchView('home-page');
+                }
+            });
+
+            // Initial Check
+            const initialHash = window.location.hash.substring(1);
+            if (initialHash && document.getElementById(initialHash) && document.getElementById(initialHash).classList.contains('page-view')) {
+                switchView(initialHash);
+            } else {
+                switchView('home-page');
+            }
+
+            // TESTIMONIALS SLIDER LOGIC
+            let currentSlide = 0;
+            const slides = document.querySelectorAll('#testimonial-track > div');
+            const totalSlides = slides.length;
+            const track = document.getElementById('testimonial-track');
+            const dots = document.querySelectorAll('#testimonial-dots button');
+
+            // Expose goToSlide globally for onclick handlers
+            window.goToSlide = function (slideIndex) {
+                currentSlide = slideIndex;
+                updateSlider();
+                resetTimer();
+            }
+
+            function updateSlider() {
+                if (!track) return;
+                const percent = currentSlide * 100;
+                track.style.transform = `translateX(-${percent}%)`;
+
+                // Update dots
+                dots.forEach((dot, index) => {
+                    if (index === currentSlide) {
+                        dot.classList.remove('bg-gray-300');
+                        dot.classList.add('bg-brand-gold');
+                    } else {
+                        dot.classList.add('bg-gray-300');
+                        dot.classList.remove('bg-brand-gold');
+                    }
+                });
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateSlider();
+            }
+
+            // Auto Play
+            let slideInterval = setInterval(nextSlide, 5000); // 5 seconds
+
+            function resetTimer() {
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, 5000);
+            }
+
+        });
+    </script>
 </body>
 
 </html>
