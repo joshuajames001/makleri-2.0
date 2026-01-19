@@ -128,6 +128,35 @@
             height: 100%;
             overflow-x: hidden;
         }
+
+        /* Admin Edit Pencil - STRICT USER CSS */
+        .edit-pencil {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #C5A059;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 9999;
+            border: 2px solid white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            visibility: hidden;
+            /* Hidden by default */
+        }
+
+        body.admin-mode .edit-pencil {
+            visibility: visible;
+        }
+
+        [data-editable="true"] {
+            position: relative !important;
+        }
     </style>
 </head>
 
@@ -137,7 +166,7 @@
     <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-md transition-all duration-300">
         <div class="container mx-auto px-6 lg:px-12 h-20 flex justify-between items-center">
             <a href="#home-page" class="text-2xl font-bold text-brand-blue tracking-tight uppercase group nav-link"
-                data-type="view">
+                data-type="view" data-editable="true" data-section="nav" data-key="brand-name">
                 Jan <span class="text-brand-gold group-hover:text-brand-blue transition-colors">Novák</span>
             </a>
 
@@ -234,8 +263,18 @@
                         <h1 class="text-4xl lg:text-5xl xl:text-6xl font-bold text-brand-blue leading-tight">
                             Prodám vaši nemovitost <span class="text-brand-gold">chytřeji a za víc</span>
                         </h1>
-                        <p class="text-lg text-gray-600 leading-relaxed max-w-lg font-medium">Spojení 12 let zkušeností
-                            a nejmodernějších AI technologií od ANELA Digital.</p>
+                        <p class="text-lg text-gray-600 leading-relaxed max-w-lg font-medium">
+                            <span data-editable="true" data-section="profile" data-key="first_name">Jan</span>
+                            <span class="text-brand-gold" data-editable="true" data-section="profile"
+                                data-key="last_name">Novák</span>
+                            <br>
+                            <span class="text-2xl text-gray-500 font-normal block mt-4">
+                                Spojení <span class="font-bold text-brand-blue" data-editable="true"
+                                    data-section="profile" data-key="years_active">12</span> let zkušeností a
+                                nejmodernějších AI
+                                technologií od ANELA Digital.
+                            </span>
+                        </p>
                         <div class="flex flex-col sm:flex-row gap-4">
                             <a href="#odhad-page"
                                 class="bg-brand-blue text-white font-bold py-4 px-10 rounded-xl shadow-card hover:bg-blue-900 hover:scale-105 transition-all duration-300 text-center uppercase text-sm tracking-wide nav-link"
@@ -246,12 +285,24 @@
                         </div>
                     </div>
                     <div class="relative h-[600px] flex justify-center lg:justify-end">
-                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                            class="h-full w-auto object-cover object-top rounded-3xl shadow-2xl skew-y-1 hover:skew-y-0 transition-all duration-500 border-8 border-white">
+                        <!-- Wrapper for styling/skew to ensure Edit Pencil works -->
+                        <div
+                            class="relative h-full w-auto rounded-3xl shadow-2xl skew-y-1 hover:skew-y-0 transition-all duration-500 border-8 border-white overflow-hidden group/image">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                                class="w-full h-full object-cover object-top" data-editable="true"
+                                data-section="profile" data-key="main_photo" data-type="image">
+                        </div>
+
+
+
                         <div
                             class="absolute bottom-10 left-10 bg-white p-4 rounded-xl shadow-lg border-l-4 border-brand-gold">
-                            <p class="text-brand-blue font-bold text-lg">Jan Novák</p>
-                            <p class="text-gray-500 text-xs uppercase tracking-widest">Top Makléř 2024</p>
+                            <p class="text-brand-blue font-bold text-lg">
+                                <span data-editable="true" data-section="profile" data-key="first_name">Jan</span>
+                                <span data-editable="true" data-section="profile" data-key="last_name">Novák</span>
+                            </p>
+                            <p class="text-gray-500 text-xs uppercase tracking-widest" data-editable="true"
+                                data-section="profile" data-key="title_role">Top Makléř 2024</p>
                         </div>
                     </div>
                 </div>
@@ -261,20 +312,27 @@
             <section class="bg-brand-blue text-white py-16 relative z-30 -mt-10 mx-6 lg:mx-12 rounded-2xl shadow-xl">
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center divide-x divide-white/10">
                     <div class="p-2">
-                        <p class="text-4xl lg:text-5xl font-bold text-brand-gold">12</p>
-                        <p class="text-xs uppercase tracking-widest opacity-80 mt-1">Let zkušeností</p>
+                        <p class="text-4xl lg:text-5xl font-bold text-brand-gold" data-editable="true"
+                            data-section="profile" data-key="years_active">12</p>
+                        <p class="text-xs uppercase tracking-widest opacity-80 mt-1" data-editable="true"
+                            data-section="stats" data-key="years-label">Let zkušeností</p>
                     </div>
                     <div class="p-2">
-                        <p class="text-4xl lg:text-5xl font-bold text-brand-gold">450+</p>
-                        <p class="text-xs uppercase tracking-widest opacity-80 mt-1">Prodejů</p>
+                        <p class="text-4xl lg:text-5xl font-bold text-brand-gold" data-editable="true"
+                            data-section="profile" data-key="sales_count">450+</p>
+                        <p class="text-xs uppercase tracking-widest opacity-80 mt-1" data-editable="true"
+                            data-section="stats" data-key="sales-label">Prodejů</p>
                     </div>
                     <div class="p-2">
-                        <p class="text-4xl lg:text-5xl font-bold text-brand-gold">99%</p>
-                        <p class="text-xs uppercase tracking-widest opacity-80 mt-1">Úspěšnost</p>
+                        <p class="text-4xl lg:text-5xl font-bold text-brand-gold" data-editable="true"
+                            data-section="profile" data-key="success_rate">99%</p>
+                        <p class="text-xs uppercase tracking-widest opacity-80 mt-1" data-editable="true"
+                            data-section="stats" data-key="success-label">Úspěšnost</p>
                     </div>
                     <div class="p-2">
-                        <p class="text-4xl lg:text-5xl font-bold text-brand-gold">2.5k</p>
-                        <p class="text-xs uppercase tracking-widest opacity-80 mt-1">Káv s klienty</p>
+                        <p class="text-4xl lg:text-5xl font-bold text-brand-gold" id="stats-coffee">2.5k</p>
+                        <p class="text-xs uppercase tracking-widest opacity-80 mt-1" data-editable="true"
+                            data-section="stats" data-key="coffee-label">Káv s klienty</p>
                     </div>
                 </div>
             </section>
@@ -286,46 +344,62 @@
                         <!-- Left: Text (Blue Bubble) -->
                         <div
                             class="w-full lg:w-1/2 bg-brand-blue text-white p-10 lg:p-14 rounded-3xl shadow-2xl relative z-10 lg:-mr-20">
-                            <h2 class="text-xs font-bold text-brand-gold uppercase tracking-widest mb-4">Filozofie</h2>
-                            <h3 class="text-3xl lg:text-4xl font-bold text-white mb-6">Exkluzivní péče o vaši
+                            <h2 class="text-xs font-bold text-brand-gold uppercase tracking-widest mb-4"
+                                data-editable="true" data-section="whyme" data-key="subheading">Filozofie</h2>
+                            <h3 class="text-3xl lg:text-4xl font-bold text-white mb-6" data-editable="true"
+                                data-section="whyme" data-key="heading" data-type="text">Exkluzivní péče o vaši
                                 nemovitost.</h3>
-                            <p class="text-white/80 mb-8 leading-relaxed">
+                            <p class="text-white/80 mb-8 leading-relaxed" data-editable="true" data-section="whyme"
                                 Prodej nemovitosti není jen o inzerátu na internetu. Je to komplexní proces. Můj přístup
-                                kombinuje dvanáct let zkušeností s technologiemi ANELA Digital.
-                            </p>
+                                kombinuje dvanáct let zkušeností s technologiemi ANELA Digital. </p>
+
+                                <!-- Awards Container -->
+                            <div id="awards-container" class="mt-8 mb-8 hidden">
+                                <h4 class="text-xs font-bold text-brand-gold uppercase tracking-widest mb-4">Ocenění &
+                                    Úspěchy</h4>
+                                <ul id="awards-list" class="space-y-2">
+                                    <!-- Dynamic Awards Injection -->
+                                </ul>
+                            </div>
 
                             <!-- Accordions (White Text) -->
                             <div class="space-y-4">
                                 <details class="bg-white/10 rounded-xl border border-white/10 group" open>
                                     <summary
                                         class="p-4 cursor-pointer font-bold text-white flex justify-between items-center outline-none hover:bg-white/5 transition-colors rounded-xl">
-                                        <span>Maximální prodejní cena</span>
+                                        <span data-editable="true" data-section="whyme" data-key="acc-1-title">Maximální
+                                            prodejní cena</span>
                                         <span
                                             class="text-brand-gold text-2xl group-open:rotate-45 transition-transform duration-300">+</span>
                                     </summary>
-                                    <div class="px-4 pb-4 text-sm text-white/70">
+                                    <div class="px-4 pb-4 text-sm text-white/70" data-editable="true"
+                                        data-section="whyme" data-key="acc-1-text">
                                         Díky homestagingu a aukčním strategiím prodávám o 12 % dráž než konkurence.
                                     </div>
                                 </details>
                                 <details class="bg-white/10 rounded-xl border border-white/10 group">
                                     <summary
                                         class="p-4 cursor-pointer font-bold text-white flex justify-between items-center outline-none hover:bg-white/5 transition-colors rounded-xl">
-                                        <span>Naprosté bezpečí</span>
+                                        <span data-editable="true" data-section="whyme" data-key="acc-2-title">Naprosté
+                                            bezpečí</span>
                                         <span
                                             class="text-brand-gold text-2xl group-open:rotate-45 transition-transform duration-300">+</span>
                                     </summary>
-                                    <div class="px-4 pb-4 text-sm text-white/70">
+                                    <div class="px-4 pb-4 text-sm text-white/70" data-editable="true"
+                                        data-section="whyme" data-key="acc-2-text">
                                         Peníze v bezpečné advokátní úschově až do okamžiku přepisu na katastru.
                                     </div>
                                 </details>
                                 <details class="bg-white/10 rounded-xl border border-white/10 group">
                                     <summary
                                         class="p-4 cursor-pointer font-bold text-white flex justify-between items-center outline-none hover:bg-white/5 transition-colors rounded-xl">
-                                        <span>Komplexní služby</span>
+                                        <span data-editable="true" data-section="whyme" data-key="acc-3-title">Komplexní
+                                            služby</span>
                                         <span
                                             class="text-brand-gold text-2xl group-open:rotate-45 transition-transform duration-300">+</span>
                                     </summary>
-                                    <div class="px-4 pb-4 text-sm text-white/70">
+                                    <div class="px-4 pb-4 text-sm text-white/70" data-editable="true"
+                                        data-section="whyme" data-key="acc-3-text">
                                         Vše od PENB, foto, právního servisu až po přepis energií.
                                     </div>
                                 </details>
@@ -342,7 +416,8 @@
                         <div class="w-full lg:w-3/5 mt-10 lg:mt-0">
                             <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
                                 class="w-full h-[500px] lg:h-[600px] object-cover rounded-3xl shadow-inner"
-                                alt="Moderní vila">
+                                alt="Moderní vila" data-editable="true" data-section="media" data-key="whyme-main"
+                                data-type="image">
                         </div>
                     </div>
                 </div>
@@ -353,8 +428,10 @@
                 <div class="container mx-auto px-6 lg:px-12">
                     <div class="flex flex-col md:flex-row justify-between items-end mb-12">
                         <div>
-                            <h2 class="text-sm font-bold text-brand-gold uppercase tracking-widest mb-2">Nabídka</h2>
-                            <h3 class="text-4xl font-bold text-brand-blue">Aktuálně v prodeji</h3>
+                            <h2 class="text-sm font-bold text-brand-gold uppercase tracking-widest mb-2"
+                                data-editable="true" data-section="offer" data-key="subheading">Nabídka</h2>
+                            <h3 class="text-4xl font-bold text-brand-blue" data-editable="true" data-section="offer"
+                                data-key="heading">Aktuálně v prodeji</h3>
                         </div>
                         <a href="#nabidka-view"
                             class="mt-4 md:mt-0 text-brand-blue font-bold hover:text-brand-gold transition-colors flex items-center border-b-2 border-brand-blue hover:border-brand-gold pb-1 nav-link"
@@ -365,52 +442,10 @@
                             </svg></a>
                     </div>
                     <!-- Cards Grid (Same as before) -->
-                    <div class="grid md:grid-cols-3 gap-8">
-                        <!-- Active 1 -->
-                        <div
-                            class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:bg-brand-blue">
-                            <div
-                                class="absolute top-4 left-4 z-20 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded shadow">
-                                AKTIVNÍ</div>
-                            <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                class="w-full h-64 object-cover">
-                            <div class="p-6">
-                                <h4
-                                    class="font-bold text-brand-blue text-lg mb-2 group-hover:text-white transition-colors">
-                                    Vila Průhonice</h4>
-                                <span class="text-brand-gold font-bold text-lg">24 900 000 Kč</span>
-                            </div>
-                        </div>
-                        <!-- Active 2 -->
-                        <div
-                            class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:bg-brand-blue">
-                            <div
-                                class="absolute top-4 left-4 z-20 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded shadow">
-                                AKTIVNÍ</div>
-                            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                class="w-full h-64 object-cover">
-                            <div class="p-6">
-                                <h4
-                                    class="font-bold text-brand-blue text-lg mb-2 group-hover:text-white transition-colors">
-                                    Byt Smíchov</h4>
-                                <span class="text-brand-gold font-bold text-lg">14 500 000 Kč</span>
-                            </div>
-                        </div>
-                        <!-- Active 3 -->
-                        <div
-                            class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:bg-brand-blue">
-                            <div
-                                class="absolute top-4 left-4 z-20 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded shadow">
-                                AKTIVNÍ</div>
-                            <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                                class="w-full h-64 object-cover">
-                            <div class="p-6">
-                                <h4
-                                    class="font-bold text-brand-blue text-lg mb-2 group-hover:text-white transition-colors">
-                                    Dům Beroun</h4>
-                                <span class="text-brand-gold font-bold text-lg">11 200 000 Kč</span>
-                            </div>
-                        </div>
+                    <!-- Cards Grid (Same as before) -->
+                    <div id="home-listings-container" class="grid md:grid-cols-3 gap-8">
+                        <!-- Content Rendered via JS -->
+                        <div class="col-span-full text-center py-12 text-gray-500">Načítám...</div>
                     </div>
                 </div>
             </section>
@@ -418,8 +453,10 @@
             <!-- Realizovano Preview (Top 3) -->
             <section class="py-24 bg-white">
                 <div class="container mx-auto px-6 lg:px-12 text-center">
-                    <h2 class="text-sm font-bold text-brand-gold uppercase tracking-widest mb-2">Portfolio</h2>
-                    <h3 class="text-4xl font-bold text-brand-blue mb-12">Naposledy prodáno</h3>
+                    <h2 class="text-sm font-bold text-brand-gold uppercase tracking-widest mb-2" data-editable="true"
+                        data-section="portfolio" data-key="subheading">Portfolio</h2>
+                    <h3 class="text-4xl font-bold text-brand-blue mb-12" data-editable="true" data-section="portfolio"
+                        data-key="heading">Naposledy prodáno</h3>
                     <div class="grid md:grid-cols-3 gap-8 mb-12">
                         <!-- 1 -->
                         <div class="relative h-64 rounded-xl overflow-hidden group">
@@ -455,8 +492,10 @@
             <!-- Testimonials Slider -->
             <section id="testimonials-section" class="py-24 bg-brand-gray overflow-hidden">
                 <div class="container mx-auto px-6 lg:px-12 text-center">
-                    <h2 class="text-sm font-bold text-brand-gold uppercase tracking-widest mb-2">Reference</h2>
-                    <h3 class="text-4xl font-bold text-brand-blue mb-12">Co o mně říkají klienti</h3>
+                    <h2 class="text-sm font-bold text-brand-gold uppercase tracking-widest mb-2" data-editable="true"
+                        data-section="testim" data-key="subheading">Reference</h2>
+                    <h3 class="text-4xl font-bold text-brand-blue mb-12" data-editable="true" data-section="testim"
+                        data-key="heading">Co o mně říkají klienti</h3>
 
                     <div class="relative max-w-4xl mx-auto">
                         <!-- Slider Track -->
@@ -465,39 +504,48 @@
                             <div class="w-full flex-shrink-0 px-6">
                                 <div class="bg-white p-10 rounded-3xl shadow-lg border border-gray-100">
                                     <div class="text-brand-gold text-4xl font-serif mb-6">“</div>
-                                    <p class="text-xl text-gray-600 italic mb-8 leading-relaxed">
+                                    <p class="text-xl text-gray-600 italic mb-8 leading-relaxed" data-editable="true"
+                                        data-section="testim-1" data-key="quote">
                                         "Pan Novák je naprostý profesionál. Prodej našeho bytu proběhl hladce a
                                         rychleji, než jsme čekali. Skvělá komunikace a servis."
                                     </p>
-                                    <h4 class="font-bold text-brand-blue uppercase tracking-wider text-sm">Petr Svoboda
+                                    <h4 class="font-bold text-brand-blue uppercase tracking-wider text-sm"
+                                        data-editable="true" data-section="testim-1" data-key="name">Petr Svoboda
                                     </h4>
-                                    <p class="text-xs text-brand-gold mt-1">Prodávající, Praha 4</p>
+                                    <p class="text-xs text-brand-gold mt-1" data-editable="true" data-section="testim-1"
+                                        data-key="role">Prodávající, Praha 4</p>
                                 </div>
                             </div>
                             <!-- Slide 2 -->
                             <div class="w-full flex-shrink-0 px-6">
                                 <div class="bg-white p-10 rounded-3xl shadow-lg border border-gray-100">
                                     <div class="text-brand-gold text-4xl font-serif mb-6">“</div>
-                                    <p class="text-xl text-gray-600 italic mb-8 leading-relaxed">
+                                    <p class="text-xl text-gray-600 italic mb-8 leading-relaxed" data-editable="true"
+                                        data-section="testim-2" data-key="quote">
                                         "Díky homestagingu vypadal náš dům úžasně a prodal se za cenu, kterou jsme si
                                         ani nepředstavovali. Doporučuji všem."
                                     </p>
-                                    <h4 class="font-bold text-brand-blue uppercase tracking-wider text-sm">Jana
+                                    <h4 class="font-bold text-brand-blue uppercase tracking-wider text-sm"
+                                        data-editable="true" data-section="testim-2" data-key="name">Jana
                                         Dvořáková</h4>
-                                    <p class="text-xs text-brand-gold mt-1">Prodávající, Říčany</p>
+                                    <p class="text-xs text-brand-gold mt-1" data-editable="true" data-section="testim-2"
+                                        data-key="role">Prodávající, Říčany</p>
                                 </div>
                             </div>
                             <!-- Slide 3 -->
                             <div class="w-full flex-shrink-0 px-6">
                                 <div class="bg-white p-10 rounded-3xl shadow-lg border border-gray-100">
                                     <div class="text-brand-gold text-4xl font-serif mb-6">“</div>
-                                    <p class="text-xl text-gray-600 italic mb-8 leading-relaxed">
+                                    <p class="text-xl text-gray-600 italic mb-8 leading-relaxed" data-editable="true"
+                                        data-section="testim-3" data-key="quote">
                                         "Spolehlivost, férovost a lidský přístup. Kdybychom prodávali znovu, jedině s
                                         panem Novákem."
                                     </p>
-                                    <h4 class="font-bold text-brand-blue uppercase tracking-wider text-sm">Manželé Černí
+                                    <h4 class="font-bold text-brand-blue uppercase tracking-wider text-sm"
+                                        data-editable="true" data-section="testim-3" data-key="name">Manželé Černí
                                     </h4>
-                                    <p class="text-xs text-brand-gold mt-1">Kupující, Hostivice</p>
+                                    <p class="text-xs text-brand-gold mt-1" data-editable="true" data-section="testim-3"
+                                        data-key="role">Kupující, Hostivice</p>
                                 </div>
                             </div>
                         </div>
@@ -518,10 +566,12 @@
             <section id="ai-section" class="py-24 ai-gradient text-white overflow-hidden relative">
                 <div class="container mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-12 items-center relative z-10">
                     <div>
-                        <span
-                            class="text-brand-gold font-bold tracking-widest uppercase text-sm mb-4 block">Inovace</span>
-                        <h3 class="text-4xl lg:text-5xl font-bold mb-6">Aira<br>AI Asistentka</h3>
-                        <p class="text-blue-100 text-lg mb-8 leading-relaxed">
+                        <span class="text-brand-gold font-bold tracking-widest uppercase text-sm mb-4 block"
+                            data-editable="true" data-section="ai" data-key="badge">Inovace</span>
+                        <h3 class="text-4xl lg:text-5xl font-bold mb-6" data-editable="true" data-section="ai"
+                            data-key="heading" data-type="html">Aira<br>AI Asistentka</h3>
+                        <p class="text-blue-100 text-lg mb-8 leading-relaxed" data-editable="true" data-section="ai"
+                            data-key="perex" data-type="text">
                             Jsem tu pro vás 24/7. Zeptejte se mě na cokoliv ohledně prodeje nemovitosti.
                         </p>
                     </div>
@@ -546,32 +596,37 @@
             </section>
 
             <!-- Lead Magnet (E-book) -->
+            <!-- Lead Magnet (E-book) -->
             <section id="ebook-section" class="py-24 bg-brand-blue text-white overflow-hidden relative">
-                <div
-                    class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10">
+                <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"
+                    data-editable="true" data-section="ebook" data-key="bg-pattern" data-type="background">
                 </div>
                 <div class="container mx-auto px-6 lg:px-12 relative z-10">
-                    <div class="grid lg:grid-cols-2 gap-16 items-center">
-                        <div class="relative group perspective-1000 flex justify-center lg:justify-end">
-                            <div
-                                class="relative w-64 md:w-80 aspect-[3/4] bg-white rounded-r-lg shadow-2xl transform rotate-y-12 rotate-x-6 hover:rotate-y-0 hover:rotate-x-0 transition-all duration-700 cursor-pointer">
-                                <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=800"
-                                    class="w-full h-full object-cover rounded-r-lg shadow-inner" alt="Book Cover">
-                                <div
-                                    class="absolute top-0 left-0 w-4 h-full bg-gradient-to-r from-gray-300 to-white -translate-x-full rounded-l-sm">
-                                </div>
-                            </div>
-                            <div class="absolute -bottom-10 w-48 h-4 bg-black/40 blur-xl rounded-[100%]"></div>
+                    <div class="grid lg:grid-cols-2 gap-0 items-center overflow-hidden rounded-3xl bg-white shadow-2xl">
+                        <div class="relative h-[500px] lg:h-[600px] w-full">
+                            <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=800"
+                                class="w-full h-full object-cover" alt="Book Cover" data-editable="true"
+                                data-section="ebook" data-key="cover" data-type="image">
                         </div>
-                        <div class="text-center lg:text-left">
-                            <span
-                                class="text-brand-gold font-bold tracking-widest uppercase text-sm mb-2 block">Exkluzivní
+                        <div
+                            class="p-12 lg:p-16 text-center lg:text-left bg-brand-blue h-full flex flex-col justify-center">
+                            <span class="text-brand-gold font-bold tracking-widest uppercase text-sm mb-4 block"
+                                data-editable="true" data-section="ebook" data-key="badge">Exkluzivní
                                 obsah</span>
-                            <h3 class="text-4xl lg:text-5xl font-bold mb-6 font-serif">Stáhněte si E-book zdarma</h3>
-                            <button
-                                class="bg-brand-gold text-white font-bold py-4 px-10 rounded-xl shadow-lg hover:shadow-glow hover:bg-yellow-600 transition-all uppercase text-sm tracking-widest transform hover:-translate-y-1">
-                                Stáhnout E-book
-                            </button>
+                            <h3 class="text-4xl lg:text-5xl font-bold mb-6 font-serif leading-tight"
+                                data-editable="true" data-section="ebook" data-key="title" data-type="text">Stáhněte si
+                                E-book zdarma</h3>
+                            <p class="text-blue-100 mb-8 leading-relaxed text-lg" data-editable="true"
+                                data-section="ebook" data-key="perex">
+                                Kompletní průvodce prodejem nemovitosti v roce 2026. Vyhněte se chybám, které vás mohou
+                                stát miliony.
+                            </p>
+                            <div>
+                                <button
+                                    class="bg-brand-gold text-white font-bold py-4 px-10 rounded-xl shadow-lg hover:shadow-glow hover:bg-yellow-600 transition-all uppercase text-sm tracking-widest transform hover:-translate-y-1">
+                                    Stáhnout E-book
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -593,12 +648,15 @@
                     <!-- Left Image -->
                     <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                         class="w-full h-[600px] object-cover rounded-3xl shadow-2xl sticky top-24"
-                        alt="Makléř při práci">
+                        alt="Makléř při práci" data-editable="true" data-section="sub-whyme" data-key="main-img"
+                        data-type="image">
                     <!-- Right Text -->
                     <div>
-                        <h1 class="text-4xl lg:text-5xl font-bold text-brand-blue mb-8">Exkluzivní péče o vaši
+                        <h1 class="text-4xl lg:text-5xl font-bold text-brand-blue mb-8" data-editable="true"
+                            data-section="sub-whyme" data-key="title">Exkluzivní péče o vaši
                             nemovitost.</h1>
-                        <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        <p class="text-lg text-gray-600 mb-8 leading-relaxed" data-editable="true"
+                            data-section="sub-whyme" data-key="perex">
                             Prodej nemovitosti není jen o inzerátu na internetu. Je to komplexní proces, kde rozhodují
                             detaily. Můj přístup kombinuje dvanáct let zkušeností na trhu s nejmodernějšími
                             technologiemi
@@ -610,11 +668,13 @@
                             <details class="bg-gray-50 rounded-xl shadow-sm group" open>
                                 <summary
                                     class="p-6 cursor-pointer font-bold text-brand-blue flex justify-between items-center outline-none">
-                                    <span>Maximální prodejní cena</span>
+                                    <span data-editable="true" data-section="sub-whyme" data-key="acc-1-title">Maximální
+                                        prodejní cena</span>
                                     <span
                                         class="text-brand-gold text-2xl group-open:rotate-45 transition-transform duration-300">+</span>
                                 </summary>
-                                <div class="px-6 pb-6 text-sm text-gray-500">
+                                <div class="px-6 pb-6 text-sm text-gray-500" data-editable="true"
+                                    data-section="sub-whyme" data-key="acc-1-text">
                                     Díky homestagingu, špičkovému marketingu, videoprohlídkám a aukčním strategiím
                                     prodávám nemovitosti v průměru o 12 % dráž než konkurence.
                                 </div>
@@ -622,11 +682,13 @@
                             <details class="bg-gray-50 rounded-xl shadow-sm group">
                                 <summary
                                     class="p-6 cursor-pointer font-bold text-brand-blue flex justify-between items-center outline-none">
-                                    <span>Naprosté bezpečí</span>
+                                    <span data-editable="true" data-section="sub-whyme" data-key="acc-2-title">Naprosté
+                                        bezpečí</span>
                                     <span
                                         class="text-brand-gold text-2xl group-open:rotate-45 transition-transform duration-300">+</span>
                                 </summary>
-                                <div class="px-6 pb-6 text-sm text-gray-500">
+                                <div class="px-6 pb-6 text-sm text-gray-500" data-editable="true"
+                                    data-section="sub-whyme" data-key="acc-2-text">
                                     Spolupracuji s renomovanou advokátní kanceláří. Vaše peníze jsou v bezpečné
                                     advokátní úschově až do okamžiku přepisu na katastru.
                                 </div>
@@ -634,11 +696,13 @@
                             <details class="bg-gray-50 rounded-xl shadow-sm group">
                                 <summary
                                     class="p-6 cursor-pointer font-bold text-brand-blue flex justify-between items-center outline-none">
-                                    <span>Komplexní služby</span>
+                                    <span data-editable="true" data-section="sub-whyme" data-key="acc-3-title">Komplexní
+                                        služby</span>
                                     <span
                                         class="text-brand-gold text-2xl group-open:rotate-45 transition-transform duration-300">+</span>
                                 </summary>
-                                <div class="px-6 pb-6 text-sm text-gray-500">
+                                <div class="px-6 pb-6 text-sm text-gray-500" data-editable="true"
+                                    data-section="sub-whyme" data-key="acc-3-text">
                                     Zajišťuji vše od PENB, přes profesionální foto, 3D skeny, právní servis, až po
                                     předávací protokol a přepis energií.
                                 </div>
@@ -655,8 +719,10 @@
                 <div class="text-center mb-12">
                     <a href="#home-page" class="text-brand-blue font-bold uppercase text-xs mb-8 inline-block nav-link"
                         data-type="view">← Zpět na úvod</a>
-                    <h2 class="text-brand-gold font-bold uppercase tracking-widest text-sm mb-2">Tržní Odhad</h2>
-                    <h3 class="text-4xl font-bold text-brand-blue">Získejte odhad ceny zdarma</h3>
+                    <h2 class="text-brand-gold font-bold uppercase tracking-widest text-sm mb-2" data-editable="true"
+                        data-section="sub-estim" data-key="subheading">Tržní Odhad</h2>
+                    <h3 class="text-4xl font-bold text-brand-blue" data-editable="true" data-section="sub-estim"
+                        data-key="heading">Získejte odhad ceny zdarma</h3>
                 </div>
 
                 <div
@@ -707,8 +773,10 @@
             <div
                 class="container mx-auto px-6 lg:px-12 pt-32 pb-24 text-center min-h-screen flex flex-col items-center justify-center">
                 <div class="bg-brand-gray/50 p-12 rounded-full mb-8 text-6xl">💰</div>
-                <h2 class="text-4xl font-bold text-brand-blue mb-4">Hypoteční kalkulačka</h2>
-                <p class="text-lg text-gray-600 mb-8">Na této funkci usilovně pracujeme. Brzy si zde spočítáte svou
+                <h2 class="text-4xl font-bold text-brand-blue mb-4" data-editable="true" data-section="sub-calc"
+                    data-key="heading">Hypoteční kalkulačka</h2>
+                <p class="text-lg text-gray-600 mb-8" data-editable="true" data-section="sub-calc" data-key="text">Na
+                    této funkci usilovně pracujeme. Brzy si zde spočítáte svou
                     hypotéku online.</p>
                 <a href="#home-page"
                     class="bg-brand-blue text-white font-bold py-3 px-8 rounded-lg hover:bg-brand-gold transition-colors uppercase nav-link"
@@ -724,9 +792,12 @@
                 <div class="container mx-auto px-6 lg:px-12 pt-8 pb-16 text-center">
                     <a href="#home-page" class="text-brand-blue font-bold uppercase text-xs mb-8 inline-block nav-link"
                         data-type="view">← Zpět na úvod</a>
-                    <h2 class="text-brand-gold font-bold uppercase tracking-widest text-sm mb-2">Průvodce Prodejem</h2>
-                    <h1 class="text-4xl lg:text-5xl font-bold text-brand-blue mb-8">Jak probíhá prodej nemovitosti?</h1>
-                    <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-12">
+                    <h2 class="text-brand-gold font-bold uppercase tracking-widest text-sm mb-2" data-editable="true"
+                        data-section="sub-how" data-key="subheading">Průvodce Prodejem</h2>
+                    <h1 class="text-4xl lg:text-5xl font-bold text-brand-blue mb-8" data-editable="true"
+                        data-section="sub-how" data-key="heading">Jak probíhá prodej nemovitosti?</h1>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto mb-12" data-editable="true" data-section="sub-how"
+                        data-key="perex">
                         Prodej nemovitosti je věda. Můj systém stojí na 4 pevných pilířích, které zaručují, že vaše
                         nemovitost nezapadne
                         v šedi průměrných inzerátů.
@@ -768,10 +839,11 @@
                                 <div
                                     class="w-12 h-12 bg-brand-gold rounded-full flex items-center justify-center text-white font-bold text-xl mb-6 shadow-glow">
                                     1</div>
-                                <h3
-                                    class="text-3xl font-bold text-brand-blue mb-4 group-hover:text-white transition-colors">
+                                <h3 class="text-3xl font-bold text-brand-blue mb-4 group-hover:text-white transition-colors"
+                                    data-editable="true" data-section="sub-how-step-1" data-key="title">
                                     Home Staging & Příprava</h3>
-                                <p class="text-gray-600 mb-6 leading-relaxed group-hover:text-white transition-colors">
+                                <p class="text-gray-600 mb-6 leading-relaxed group-hover:text-white transition-colors"
+                                    data-editable="true" data-section="sub-how-step-1" data-key="text">
                                     Lidé nekupují domy, kupují domov. Ještě před první fotkou připravíme interiér tak,
                                     aby vyvolal emoce.
                                     Odstraníme rušivé prvky, přidáme dekorace a správné osvětlení.
@@ -790,11 +862,15 @@
                             </div>
                             <div class="grid grid-cols-2 gap-4">
                                 <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4f9d?w=600&q=80"
-                                    class="rounded-2xl shadow-lg w-full h-64 object-cover col-span-2">
+                                    class="rounded-2xl shadow-lg w-full h-64 object-cover col-span-2"
+                                    data-editable="true" data-section="sub-how-step-1" data-key="img-1"
+                                    data-type="image">
                                 <img src="https://images.unsplash.com/photo-1616137466211-f939a420be84?w=600&q=80"
-                                    class="rounded-2xl shadow-lg w-full h-40 object-cover">
+                                    class="rounded-2xl shadow-lg w-full h-40 object-cover" data-editable="true"
+                                    data-section="sub-how-step-1" data-key="img-2" data-type="image">
                                 <img src="https://images.unsplash.com/photo-1615873968403-89e068629265?w=600&q=80"
-                                    class="rounded-2xl shadow-lg w-full h-40 object-cover">
+                                    class="rounded-2xl shadow-lg w-full h-40 object-cover" data-editable="true"
+                                    data-section="sub-how-step-1" data-key="img-3" data-type="image">
                             </div>
                         </div>
                     </div>
@@ -806,7 +882,8 @@
                         <div class="grid lg:grid-cols-2 gap-16 items-center">
                             <div class="order-2 lg:order-1 relative">
                                 <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80"
-                                    class="rounded-2xl shadow-2xl w-full h-[500px] object-cover relative z-10">
+                                    class="rounded-2xl shadow-2xl w-full h-[500px] object-cover relative z-10"
+                                    data-editable="true" data-section="sub-how-step-2" data-key="img" data-type="image">
                                 <div
                                     class="absolute -bottom-10 -right-10 bg-white p-4 rounded-xl shadow-xl z-20 border border-gray-100 hidden md:block">
                                     <div
@@ -819,15 +896,17 @@
                                 <div
                                     class="w-12 h-12 bg-white border-2 border-brand-gold text-brand-gold rounded-full flex items-center justify-center font-bold text-xl mb-6">
                                     2</div>
-                                <h3
-                                    class="text-3xl font-bold text-brand-blue mb-4 group-hover:text-white transition-colors">
+                                <h3 class="text-3xl font-bold text-brand-blue mb-4 group-hover:text-white transition-colors"
+                                    data-editable="true" data-section="sub-how-step-2" data-key="title">
                                     Profesionální Foto & Půdorysy</h3>
-                                <p class="text-gray-600 mb-6 leading-relaxed group-hover:text-white transition-colors">
+                                <p class="text-gray-600 mb-6 leading-relaxed group-hover:text-white transition-colors"
+                                    data-editable="true" data-section="sub-how-step-2" data-key="text-1">
                                     První dojem se dělá jen jednou. Většina zájemců se rozhodne během prvních 3 vteřin u
                                     fotky.
                                     Proto fotím pouze s profesionální technikou a využívám HDR postprodukci.
                                 </p>
-                                <p class="text-gray-600 mb-4 leading-relaxed group-hover:text-white transition-colors">
+                                <p class="text-gray-600 mb-4 leading-relaxed group-hover:text-white transition-colors"
+                                    data-editable="true" data-section="sub-how-step-2" data-key="text-2">
                                     Nedílnou součástí je <strong>přehledný půdorys</strong>, aby si klient dokázal
                                     představit dispozici ještě před prohlídkou.
                                 </p>
@@ -842,49 +921,42 @@
                         <div
                             class="w-12 h-12 bg-brand-gold rounded-full flex items-center justify-center text-white font-bold text-xl mb-6 shadow-glow mx-auto">
                             3</div>
-                        <h3 class="text-3xl font-bold text-brand-blue mb-4 group-hover:text-white transition-colors">
+                        <h3 class="text-3xl font-bold text-brand-blue mb-4 group-hover:text-white transition-colors"
+                            data-editable="true" data-section="sub-how-step-3" data-key="title">
                             Videoprohlídky - Příběh, který prodává</h3>
-                        <p class="text-gray-600 max-w-3xl mx-auto mb-12 group-hover:text-white transition-colors">
+                        <p class="text-gray-600 max-w-3xl mx-auto mb-12 group-hover:text-white transition-colors"
+                            data-editable="true" data-section="sub-how-step-3" data-key="text">
                             Video vládne internetu. Videoprohlídka dokáže přenést atmosféru nemovitosti lépe než tisíc
                             fotek.
                             Zvyšuje dosah inzerce na sociálních sítích až o 400 %.
                         </p>
                         <div class="grid md:grid-cols-3 gap-8">
-                            <!-- Placeholder Video 1 -->
-                            <div
-                                class="bg-gray-100 rounded-xl aspect-video flex items-center justify-center relative group cursor-pointer overflow-hidden">
-                                <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors">
-                                </div>
-                                <div
-                                    class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
-                                    <svg class="w-6 h-6 text-brand-blue ml-1" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M8 5v14l11-7z" />
-                                    </svg>
-                                </div>
+                            <!-- Video 1 -->
+                            <div class="rounded-xl overflow-hidden shadow-lg aspect-video relative group">
+                                <iframe data-editable="true" data-section="video-slots" data-key="video-1"
+                                    data-type="video" class="w-full h-full"
+                                    src="https://www.youtube.com/embed/Jya_NHf4Hdo" title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
                             </div>
-                            <!-- Placeholder Video 2 -->
-                            <div
-                                class="bg-gray-100 rounded-xl aspect-video flex items-center justify-center relative group cursor-pointer overflow-hidden">
-                                <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors">
-                                </div>
-                                <div
-                                    class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
-                                    <svg class="w-6 h-6 text-brand-blue ml-1" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M8 5v14l11-7z" />
-                                    </svg>
-                                </div>
+                            <!-- Video 2 -->
+                            <div class="rounded-xl overflow-hidden shadow-lg aspect-video relative group">
+                                <iframe data-editable="true" data-section="video-slots" data-key="video-2"
+                                    data-type="video" class="w-full h-full"
+                                    src="https://www.youtube.com/embed/X8v_5TxYtHA" title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
                             </div>
-                            <!-- Placeholder Video 3 -->
-                            <div
-                                class="bg-gray-100 rounded-xl aspect-video flex items-center justify-center relative group cursor-pointer overflow-hidden">
-                                <div class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors">
-                                </div>
-                                <div
-                                    class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform">
-                                    <svg class="w-6 h-6 text-brand-blue ml-1" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M8 5v14l11-7z" />
-                                    </svg>
-                                </div>
+                            <!-- Video 3 -->
+                            <div class="rounded-xl overflow-hidden shadow-lg aspect-video relative group">
+                                <iframe data-editable="true" data-section="video-slots" data-key="video-3"
+                                    data-type="video" class="w-full h-full"
+                                    src="https://www.youtube.com/embed/IhEnXJ6Pk2s" title="YouTube video player"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen></iframe>
                             </div>
                         </div>
                     </div>
@@ -896,20 +968,24 @@
                         <div class="grid lg:grid-cols-2 gap-16 items-center">
                             <div class="order-2 lg:order-2">
                                 <div
-                                    class="aspect-[4/3] bg-gray-800 rounded-2xl shadow-2xl relative overflow-hidden flex items-center justify-center group">
+                                    class="aspect-video bg-gray-800 rounded-2xl shadow-2xl relative overflow-hidden group">
                                     <!-- Placeholder for Matterport -->
-                                    <img src="https://images.unsplash.com/photo-1558227679-b71bb7643e0f?auto=format&fit=crop&q=80&w=800"
-                                        class="absolute inset-0 w-full h-full object-cover opacity-50">
-                                    <div class="relative z-10 text-center">
-                                        <div
-                                            class="w-20 h-20 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center mx-auto mb-4 border border-white/20 group-hover:bg-brand-gold transition-colors">
+                                    <img src="img/matterport-preview.png"
+                                        class="absolute inset-0 w-full h-full object-cover" data-editable="true"
+                                        data-section="sub-how-step-4" data-key="thumbnail-image" data-type="image">
+                                    <div
+                                        class="absolute inset-0 z-10 flex flex-col items-center justify-center text-center pointer-events-none">
+                                        <a href="https://my.matterport.com/show/?m=J3yLZkwqbzF" target="_blank"
+                                            data-editable="true" data-section="sub-how-step-4" data-key="scan-link"
+                                            data-type="link"
+                                            class="w-20 h-20 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center mx-auto mb-4 border border-white/20 group-hover:bg-brand-gold transition-colors cursor-pointer hover:scale-110 pointer-events-auto">
                                             <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor"
                                                 viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                     d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5">
                                                 </path>
                                             </svg>
-                                        </div>
+                                        </a>
                                         <span class="text-white font-bold tracking-widest uppercase text-sm">Spustit
                                             3D Sken</span>
                                     </div>
@@ -919,10 +995,11 @@
                                 <div
                                     class="w-12 h-12 bg-white border-2 border-brand-gold text-brand-gold rounded-full flex items-center justify-center font-bold text-xl mb-6">
                                     4</div>
-                                <h3
-                                    class="text-3xl font-bold text-brand-blue mb-4 group-hover:text-white transition-colors">
+                                <h3 class="text-3xl font-bold text-brand-blue mb-4 group-hover:text-white transition-colors"
+                                    data-editable="true" data-section="sub-how-step-4" data-key="title">
                                     Matterport 3D Sken</h3>
-                                <p class="text-gray-600 mb-6 leading-relaxed group-hover:text-white transition-colors">
+                                <p class="text-gray-600 mb-6 leading-relaxed group-hover:text-white transition-colors"
+                                    data-editable="true" data-section="sub-how-step-4" data-key="text">
                                     Technologie zítřka již dnes. Umožněte klientům projít si vaši nemovitost z pohodlí
                                     jejich obýváku.
                                     3D sken filtruje "realitní turisty" a přivádí na prohlídku jen vážné zájemce.
@@ -942,7 +1019,8 @@
                         <div
                             class="w-12 h-12 bg-brand-gold rounded-full flex items-center justify-center text-white font-bold text-xl mb-6 shadow-glow mx-auto">
                             5</div>
-                        <h3 class="text-3xl font-bold text-brand-blue mb-8 group-hover:text-white transition-colors">
+                        <h3 class="text-3xl font-bold text-brand-blue mb-8 group-hover:text-white transition-colors"
+                            data-editable="true" data-section="sub-how-step-5" data-key="title">
                             Vlastní web nemovitosti</h3>
                         <div
                             class="bg-brand-dark text-white rounded-3xl p-8 lg:p-16 max-w-4xl mx-auto relative overflow-hidden shadow-2xl">
@@ -964,7 +1042,9 @@
                                 </div>
                                 <div>
                                     <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80"
-                                        class="rounded-lg shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-500">
+                                        class="rounded-lg shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-500"
+                                        data-editable="true" data-section="sub-how-step-5" data-key="img"
+                                        data-type="image">
                                 </div>
                             </div>
                         </div>
@@ -977,57 +1057,33 @@
                         <div
                             class="w-12 h-12 bg-white border-2 border-brand-gold text-brand-gold rounded-full flex items-center justify-center font-bold text-xl mb-6 mx-auto">
                             6</div>
-                        <h3 class="text-3xl font-bold text-brand-blue mb-12 group-hover:text-white transition-colors">
+                        <h3 class="text-3xl font-bold text-brand-blue mb-12 group-hover:text-white transition-colors"
+                            data-editable="true" data-section="sub-how-step-6" data-key="title">
                             Cílený Marketing na Sociálních
                             Sítích</h3>
                         <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                             <!-- Social Post 1 (FB) -->
-                            <div class="bg-white p-4 rounded-xl shadow border border-gray-100 text-left">
-                                <div class="flex items-center mb-4">
-                                    <div
-                                        class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                                        FB</div>
-                                    <div class="ml-3">
-                                        <p class="text-xs font-bold text-gray-800">Jan Novák Reality</p>
-                                        <p class="text-[10px] text-gray-400">Sponzorováno</p>
-                                    </div>
-                                </div>
-                                <div class="h-40 bg-gray-100 rounded mb-4"></div>
-                                <div class="h-2 w-3/4 bg-gray-100 rounded mb-2"></div>
-                                <div class="h-2 w-1/2 bg-gray-100 rounded"></div>
-                            </div>
+                            <a href="#" class="block group/card relative transform transition-all hover:scale-105"
+                                data-editable="true" data-section="socials" data-key="link-1" data-type="link">
+                                <img src="https://filipvorlicek.cz/files/user-files/uploads/1413/jak_pracuji/fb_market_place_top.png"
+                                    class="w-full rounded-xl shadow-lg border border-gray-100" data-editable="true"
+                                    data-section="socials" data-key="img-1" data-type="image">
+                            </a>
                             <!-- Social Post 2 (IG) -->
-                            <div
-                                class="bg-white p-4 rounded-xl shadow border border-gray-100 text-left transform md:-translate-y-4">
-                                <div class="flex items-center mb-4">
-                                    <div
-                                        class="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                                        IG</div>
-                                    <div class="ml-3">
-                                        <p class="text-xs font-bold text-gray-800">jan_novak_reality</p>
-                                        <p class="text-[10px] text-gray-400">Instagram Stories</p>
-                                    </div>
-                                </div>
-                                <div class="h-64 bg-gray-100 rounded mb-4 relative overflow-hidden">
-                                    <img src="https://images.unsplash.com/photo-1600596542815-6ad4c4279250?w=400"
-                                        class="object-cover w-full h-full opacity-80">
-                                </div>
-                            </div>
-                            <!-- Social Post 3 (YT) -->
-                            <div class="bg-white p-4 rounded-xl shadow border border-gray-100 text-left">
-                                <div class="flex items-center mb-4">
-                                    <div
-                                        class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                                        YT</div>
-                                    <div class="ml-3">
-                                        <p class="text-xs font-bold text-gray-800">Video Prohlídky</p>
-                                        <p class="text-[10px] text-gray-400">YouTube Ads</p>
-                                    </div>
-                                </div>
-                                <div class="h-40 bg-gray-100 rounded mb-4"></div>
-                                <div class="h-2 w-full bg-gray-100 rounded mb-2"></div>
-                                <div class="h-2 w-2/3 bg-gray-100 rounded"></div>
-                            </div>
+                            <a href="#"
+                                class="block group/card relative transform transition-all hover:scale-105 md:-translate-y-4"
+                                data-editable="true" data-section="socials" data-key="link-2" data-type="link">
+                                <img src="https://filipvorlicek.cz/files/user-files/uploads/1413/jak_pracuji/insta_stories_top.png"
+                                    class="w-full rounded-xl shadow-lg border border-gray-100" data-editable="true"
+                                    data-section="socials" data-key="img-2" data-type="image">
+                            </a>
+                            <!-- Social Post 3 (FB Stories) -->
+                            <a href="#" class="block group/card relative transform transition-all hover:scale-105"
+                                data-editable="true" data-section="socials" data-key="link-3" data-type="link">
+                                <img src="https://filipvorlicek.cz/files/user-files/uploads/1413/jak_pracuji/fb_stories_top.png"
+                                    class="w-full rounded-xl shadow-lg border border-gray-100" data-editable="true"
+                                    data-section="socials" data-key="img-3" data-type="image">
+                            </a>
                         </div>
                     </div>
                 </section>
@@ -1036,9 +1092,12 @@
                 <section class="py-24 bg-brand-blue text-white text-center relative overflow-hidden">
                     <div class="container mx-auto px-6 lg:px-12 relative z-10">
                         <div class="w-16 h-1 bg-brand-gold mx-auto mb-8"></div>
-                        <h2 class="text-3xl lg:text-4xl font-bold mb-6">Prodáte sami, nebo využijete sílu profesionála?
+                        <h2 class="text-3xl lg:text-4xl font-bold mb-6" data-editable="true"
+                            data-section="sub-how-step-7" data-key="title">Prodáte sami, nebo využijete sílu
+                            profesionála?
                         </h2>
-                        <p class="text-blue-100 max-w-2xl mx-auto mb-12 text-lg">
+                        <p class="text-blue-100 max-w-2xl mx-auto mb-12 text-lg" data-editable="true"
+                            data-section="sub-how-step-7" data-key="text">
                             Prodej nemovitosti je pravděpodobně vaší největší životní transakcí. Neriskujte chyby, které
                             vás mohou stát miliony.
                             Svěřte prodej mně a mému týmu ANELA Digital.
@@ -1107,158 +1166,7 @@
                 </div>
             </div>
 
-            <!-- 2. PROPERTY DETAIL (Hidden) -->
-            <div id="property-detail" class="bg-white hidden">
-                <!-- Navigation -->
-                <div class="fixed top-20 left-6 z-40">
-                    <button onclick="closePropertyDetail()"
-                        class="bg-white/90 backdrop-blur text-brand-blue hover:text-brand-gold font-bold py-2 px-6 rounded-full shadow-lg border border-gray-100 flex items-center transition-all">
-                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                        </svg>
-                        Zpět na nabídku
-                    </button>
-                </div>
 
-                <!-- Hero Section -->
-                <div class="relative h-[60vh] min-h-[500px]">
-                    <img id="detail-hero-img" src="" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-brand-blue/90 via-transparent to-transparent">
-                    </div>
-                    <div class="absolute bottom-0 left-0 w-full p-6 lg:p-12 text-white z-10">
-                        <div class="container mx-auto">
-                            <span id="detail-price"
-                                class="bg-brand-gold text-white px-4 py-2 rounded-lg font-bold text-xl mb-4 inline-block shadow-lg"></span>
-                            <h1 id="detail-title" class="text-4xl md:text-6xl font-bold leading-tight drop-shadow-lg">
-                            </h1>
-                            <p id="detail-location-text" class="text-lg opacity-90 mt-2 flex items-center"><svg
-                                    class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
-                                    </path>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                </svg> <span id="detail-location"></span></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="container mx-auto px-6 lg:px-12 py-16">
-                    <div class="grid lg:grid-cols-3 gap-12">
-                        <!-- Left Content -->
-                        <div class="lg:col-span-2 space-y-12">
-                            <!-- About -->
-                            <section>
-                                <h3 class="text-2xl font-bold text-brand-blue mb-6 border-l-4 border-brand-gold pl-4">O
-                                    nemovitosti</h3>
-                                <p id="detail-desc" class="text-gray-600 leading-relaxed text-lg text-justify"></p>
-                            </section>
-
-                            <!-- Params Grid -->
-                            <section
-                                class="grid grid-cols-2 md:grid-cols-4 gap-4 bg-gray-50 p-8 rounded-2xl border border-gray-100">
-                                <div class="text-center">
-                                    <span class="block text-gray-400 text-xs uppercase tracking-widest">Dispozice</span>
-                                    <strong id="item-disposition" class="text-brand-blue text-xl"></strong>
-                                </div>
-                                <div class="text-center">
-                                    <span class="block text-gray-400 text-xs uppercase tracking-widest">Plocha</span>
-                                    <strong id="item-area" class="text-brand-blue text-xl"></strong>
-                                </div>
-                                <div class="text-center">
-                                    <span class="block text-gray-400 text-xs uppercase tracking-widest">Podlaží</span>
-                                    <strong id="item-floor" class="text-brand-blue text-xl"></strong>
-                                </div>
-                                <div class="text-center">
-                                    <span class="block text-gray-400 text-xs uppercase tracking-widest">PENB</span>
-                                    <strong id="item-penb" class="text-brand-blue text-xl"></strong>
-                                </div>
-                            </section>
-
-                            <!-- Gallery -->
-                            <section>
-                                <h3 class="text-2xl font-bold text-brand-blue mb-6 border-l-4 border-brand-gold pl-4">
-                                    Fotogalerie</h3>
-                                <div id="detail-gallery" class="grid grid-cols-2 md:grid-cols-3 gap-4">
-                                    <!-- JS Generated -->
-                                </div>
-                            </section>
-
-                            <!-- Table -->
-                            <section>
-                                <h3 class="text-2xl font-bold text-brand-blue mb-6 border-l-4 border-brand-gold pl-4">
-                                    Jednotky v projektu</h3>
-                                <div class="overflow-x-auto rounded-xl shadow border border-gray-100">
-                                    <table class="w-full text-left text-sm">
-                                        <thead class="bg-gray-50 text-brand-blue uppercase font-bold">
-                                            <tr>
-                                                <th class="p-4">Jednotka</th>
-                                                <th class="p-4">Dispozice</th>
-                                                <th class="p-4">Plocha</th>
-                                                <th class="p-4">Cena</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="detail-table-body" class="divide-y divide-gray-100">
-                                            <!-- JS Generated -->
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </section>
-
-                            <!-- Map Placeholder -->
-                            <section>
-                                <h3 class="text-2xl font-bold text-brand-blue mb-6 border-l-4 border-brand-gold pl-4">
-                                    Lokalita</h3>
-                                <div
-                                    class="w-full h-96 bg-gray-200 rounded-xl flex items-center justify-center text-gray-400">
-                                    <span class="flex flex-col items-center">
-                                        <svg class="w-12 h-12 mb-2" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0121 18.382V7.618a1 1 0 01-.553-.894L15 7m0 13V7">
-                                            </path>
-                                        </svg>
-                                        Mapový modul (Google / Mapy.cz)
-                                    </span>
-                                </div>
-                            </section>
-                        </div>
-
-                        <!-- Sidebar Form -->
-                        <div class="lg:col-span-1">
-                            <div class="bg-brand-blue text-white rounded-2xl shadow-2xl p-8 sticky top-32">
-                                <h3 class="text-2xl font-bold mb-2">Máte zájem?</h3>
-                                <p class="text-blue-200 text-sm mb-6">Vyplňte formulář a já se vám ozvu ještě dnes.</p>
-                                <form class="space-y-4">
-                                    <input type="text" placeholder="Jméno a příjmení"
-                                        class="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white placeholder-blue-300 focus:outline-none focus:border-brand-gold transition-colors">
-                                    <input type="tel" placeholder="Telefon"
-                                        class="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white placeholder-blue-300 focus:outline-none focus:border-brand-gold transition-colors">
-                                    <input type="email" placeholder="Email"
-                                        class="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white placeholder-blue-300 focus:outline-none focus:border-brand-gold transition-colors">
-                                    <textarea rows="3" placeholder="Zpráva..."
-                                        class="w-full bg-white/10 border border-white/20 rounded-lg p-3 text-white placeholder-blue-300 focus:outline-none focus:border-brand-gold transition-colors"></textarea>
-                                    <button
-                                        class="w-full bg-brand-gold hover:bg-white hover:text-brand-blue text-white font-bold py-4 rounded-lg shadow-lg uppercase tracking-widest transition-all">Odeslat
-                                        zájem</button>
-                                </form>
-                                <div class="mt-8 pt-8 border-t border-white/10 text-center">
-                                    <button
-                                        class="flex items-center justify-center w-full border border-white/30 hover:bg-white/10 text-white py-3 rounded-lg transition-colors text-sm font-bold uppercase">
-                                        <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
-                                            </path>
-                                        </svg>
-                                        Stáhnout PDF
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <!-- REALIZOVÁNO FULL VIEW -->
@@ -1285,10 +1193,65 @@
             </div>
         </div>
 
-        <!-- Placeholder for Blog -->
+        <!-- BLOG / ARTICLES VIEW -->
         <div id="clanky-view" class="page-view page-hidden">
-            <div class="pt-40 text-center font-bold text-2xl">Blog (Coming Soon) <br> <a href="#home-page"
-                    class="text-sm text-brand-gold underline mt-4 block nav-link" data-type="view">Zpět</a></div>
+            <div class="pt-20 pb-24 container mx-auto px-6 lg:px-12">
+                <div class="text-center mb-16">
+                    <a href="#home-page" class="text-brand-blue font-bold uppercase text-xs mb-8 inline-block nav-link"
+                        data-type="view">← Zpět na úvod</a>
+                    <h2 class="text-brand-gold font-bold uppercase tracking-widest text-sm mb-2" data-editable="true"
+                        data-section="blog" data-key="subheading">Blog & Novinky</h2>
+                    <h3 class="text-4xl font-bold text-brand-blue" data-editable="true" data-section="blog"
+                        data-key="heading">Ze světa realit</h3>
+                </div>
+
+                <!-- Article List -->
+                <div class="space-y-12 max-w-5xl mx-auto">
+                    <!-- Article 1 -->
+                    <div class="flex flex-col md:flex-row gap-8 items-start group">
+                        <div class="w-full md:w-2/5 aspect-[4/3] rounded-2xl overflow-hidden shadow-lg relative">
+                            <img src="https://filipvorlicek.cz/files/user-files/uploads/1413/byt_hostivice/3D2_Kreslici_platno_1.[1].jpg"
+                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                data-editable="true" data-section="blog-1" data-key="img" data-type="image">
+                            <div
+                                class="absolute top-4 left-4 bg-brand-gold text-white text-xs font-bold px-3 py-1 rounded">
+                                TIP</div>
+                        </div>
+                        <div class="w-full md:w-3/5">
+                            <div class="flex items-center text-xs text-gray-400 mb-3 space-x-4">
+                                <span class="flex items-center"><svg class="w-3 h-3 mr-1" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                        </path>
+                                    </svg> 12. 1. 2026</span>
+                                <span class="flex items-center"><svg class="w-3 h-3 mr-1" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg> 5 min čtení</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-brand-blue mb-4 group-hover:text-brand-gold transition-colors"
+                                data-editable="true" data-section="blog-1" data-key="title" data-type="text">
+                                Jak připravit nemovitost k prodeji?
+                            </h3>
+                            <p class="text-gray-600 leading-relaxed mb-6" data-editable="true" data-section="blog-1"
+                                data-key="excerpt" data-type="text">
+                                První dojem prodává. Přečtěte si 5 osvědčených tipů, jak zvýšit hodnotu vaší nemovitosti
+                                před prodejem pomocí jednoduchých úprav a Home Stagingu.
+                            </p>
+                            <a href="#"
+                                class="inline-flex items-center font-bold text-brand-blue hover:text-brand-gold transition-colors">
+                                Číst celý článek <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </main>
@@ -1296,13 +1259,30 @@
     <!-- CONTACT FOOTER -->
     <footer id="kontakt" class="bg-brand-dark text-white py-12 border-t border-white/5 relative z-20">
         <div class="container mx-auto px-6 lg:px-12">
-            <div class="grid md:grid-cols-2 gap-8 mb-8 text-sm">
+            <div class="grid md:grid-cols-4 gap-8 mb-8 text-sm">
                 <div>
-                    <h4 class="font-bold mb-2 text-white">Jan <span class="text-brand-gold">Novák</span></h4>
-                    <p class="text-gray-400">RE/MAX Synergy</p>
+                    <h4 class="font-bold mb-2 text-white" data-editable="true" data-section="footer" data-key="brand">
+                        Jan <span class="text-brand-gold">Novák</span></h4>
+                    <p class="text-gray-400" data-editable="true" data-section="footer" data-key="agency">RE/MAX Synergy
+                    </p>
                 </div>
+
+                <!-- NEW: Dynamic Contact -->
+                <div class="md:col-span-2 flex flex-col md:items-center text-center space-y-2">
+                    <h4 class="font-bold text-white mb-1">Kontakt</h4>
+                    <a href="#" class="block text-gray-400 hover:text-brand-gold transition-colors font-semibold"
+                        data-editable="true" data-section="profile" data-key="phone" data-type="link">
+                        +420 777 123 456
+                    </a>
+                    <a href="#" class="block text-gray-400 hover:text-brand-gold transition-colors" data-editable="true"
+                        data-section="profile" data-key="lead_email" data-type="link">
+                        jan.novak@remax.cz
+                    </a>
+                </div>
+
                 <div class="md:text-right">
-                    <p class="text-gray-500 text-xs mt-2">&copy; 2026 Jan Novák. <span class="text-brand-gold">ANELA
+                    <p class="text-gray-500 text-xs mt-2" data-editable="true" data-section="footer"
+                        data-key="copyright">&copy; 2026 Jan Novák. <span class="text-brand-gold">ANELA
                             Digital</span> <span class="text-gray-400 hover:text-red-500 cursor-pointer font-bold"
                             onclick="openAdminModal()">.</span></p>
                 </div>
@@ -1468,6 +1448,18 @@
                     }
                 };
 
+                window.showToast = function (msg) {
+                    const toast = document.getElementById('toast');
+                    const toastMsg = document.getElementById('toast-msg');
+                    if (toast && toastMsg) {
+                        toastMsg.innerText = msg;
+                        toast.classList.remove('opacity-0', 'translate-y-24');
+                        setTimeout(() => {
+                            toast.classList.add('opacity-0', 'translate-y-24');
+                        }, 3000);
+                    }
+                };
+
                 window.closeAdminLogin = function () {
                     const modal = document.getElementById('admin-login-modal');
                     if (modal) modal.classList.add('hidden');
@@ -1480,6 +1472,29 @@
                         document.getElementById('admin-overlay').classList.remove('hidden');
                         showToast('Vítejte v Admin Módu');
                         console.log("Admin System: Login Successful");
+
+                        // STRICT REQUIREMENT: Add admin-mode class
+                        document.body.classList.add('admin-mode');
+
+                        // Init Universal Editor - Visuals First, Data Second
+                        if (typeof window.UniversalEditor !== 'undefined') {
+                            // Use the GLOBALLY exposed client
+                            const sbClient = window.supabaseClient || null;
+
+                            console.log("Admin System: Activating Editor...");
+                            window.UniversalEditor.init({ supabase: sbClient });
+                            window.UniversalEditor.toggleMode(true);
+
+                            // DOUBLE FORCE: Ensure state is true and icons render
+                            window.UniversalEditor.isEnabled = true;
+                            setTimeout(() => {
+                                window.UniversalEditor.renderEditIcons();
+                                console.log("Admin System: Icons Rendered (Forced)");
+                            }, 100);
+                        } else {
+                            console.error("Admin System: CRITICAL - UniversalEditor not found");
+                            alert("Chyba: Editor nenalezen. Zkontrolujte konzoli.");
+                        }
                     } else {
                         alert('Nesprávné heslo');
                     }
@@ -1557,9 +1572,77 @@
 
     <!-- Config (Gitignored) -->
     <script src="js/config.js"></script>
+    <!-- Universal Admin CMS -->
+    <script src="js/universal-admin.js"></script>
 
+    <div id="property-detail" class="hidden"></div>
+
+    <!-- PRELOADER -->
+    <div id="app-preloader"
+        class="fixed inset-0 bg-white z-[9999] flex items-center justify-center transition-opacity duration-500">
+        <div class="flex flex-col items-center">
+            <div class="w-12 h-12 border-4 border-gray-200 border-t-brand-gold rounded-full animate-spin mb-4"></div>
+            <p class="text-brand-blue font-bold text-sm tracking-widest uppercase">Načítám...</p>
+        </div>
+    </div>
+
+    <!-- MAIN APP SCRIPT -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', async () => {
+            const preloader = document.getElementById('app-preloader');
+
+            // 1. SUPABASE INIT (PRIORITY)
+            try {
+                if (typeof window.supabase !== 'undefined' && window.supaConfig) {
+                    // Create Global Client Instance
+                    window.supabaseClient = window.supabase.createClient(window.supaConfig.url, window.supaConfig.key);
+                    console.log("System: Supabase Client Configured.");
+                } else {
+                    console.error("System: Supabase Lib not found.");
+                }
+            } catch (e) {
+                console.error("System: Supabase Init Failed", e);
+            }
+
+            // 2. UNIVERSAL EDITOR INIT (PRIORITY)
+            if (typeof window.UniversalEditor !== 'undefined' && window.supabaseClient) {
+                try {
+                    console.log("System: Starting Universal Editor...");
+                    // Init with client
+                    window.UniversalEditor.init({ supabase: window.supabaseClient });
+
+                    // FETCH CONTENT BEFORE REVEALING PAGE
+                    await window.UniversalEditor.fetchAndApplyContent();
+                    applyBusinessLogic();
+
+                } catch (e) {
+                    console.error("System: Editor Auto-Fetch Failed", e);
+                }
+            }
+
+            // 3. REMOVE PRELOADER (Reveal Page)
+            if (preloader) {
+                preloader.classList.add('opacity-0');
+                setTimeout(() => preloader.remove(), 500);
+            }
+
+            // --- BUSINESS LOGIC HELPER ---
+            function applyBusinessLogic() {
+                const socialLinks = document.querySelectorAll('[data-section="socials"][data-type="link"]');
+                socialLinks.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (!href || href === '#' || href === '') {
+                        link.removeAttribute('href');
+                        link.classList.add('cursor-default', 'opacity-90');
+                        link.classList.remove('hover:scale-105', 'transform');
+                    } else {
+                        link.classList.remove('cursor-default', 'opacity-90');
+                        link.classList.add('hover:scale-105', 'transform');
+                    }
+                });
+            }
+
+            // 4. ROUTER & UI LOGIC
             const views = document.querySelectorAll('.page-view');
             const navLinks = document.querySelectorAll('.nav-link');
 
@@ -1577,39 +1660,31 @@
 
             // ROUTER FUNCTION
             function handleNavigation(e) {
-                // If it's a link click, prevent default ONLY if it's our controlled link
                 const link = e.currentTarget;
                 const targetHash = link.getAttribute('href');
                 const type = link.getAttribute('data-type'); // 'view' or 'anchor'
 
                 if (!targetHash) return;
 
-                // If standard view switch
                 if (type === 'view') {
                     e.preventDefault();
                     window.location.hash = targetHash;
                     switchView(targetHash.substring(1));
                     window.scrollTo(0, 0);
                 }
-                // If anchor scroll on Home
                 else if (type === 'anchor') {
                     const targetId = targetHash.substring(1);
-                    // Check if we are currently on home-page
                     const homeView = document.getElementById('home-page');
 
                     if (homeView.classList.contains('page-hidden')) {
-                        // We are on a sub-page, need to go Home first
                         e.preventDefault();
                         window.location.hash = 'home-page';
                         switchView('home-page');
-
-                        // Wait for view switch then scroll
                         setTimeout(() => {
                             const el = document.getElementById(targetId);
                             if (el) el.scrollIntoView({ behavior: 'smooth' });
                         }, 100);
                     } else {
-                        // Already on home, just let default anchor behavior happen or smooth scroll
                         e.preventDefault();
                         const el = document.getElementById(targetId);
                         if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -1630,36 +1705,245 @@
             }
 
             // Bind Events
-            navLinks.forEach(link => {
-                link.addEventListener('click', handleNavigation);
-            });
+            navLinks.forEach(link => link.addEventListener('click', handleNavigation));
 
-            // Handle Initial Load / Back Button
-            window.addEventListener('hashchange', () => {
-                const hash = window.location.hash.substring(1);
-                if (hash && document.getElementById(hash) && document.getElementById(hash).classList.contains('page-view')) {
-                    switchView(hash);
-                } else if (!hash) {
+            // --- LISTING DETAIL LOGIC (Jeseniova Standard) ---
+            // --- LISTING DETAIL LOGIC (Jeseniova Standard) ---
+            // --- LISTING DETAIL LOGIC (Jeseniova Standard) ---
+            window.openPropertyDetail = async function (idInput) {
+                console.log("OPENING DETAIL FOR ID:", idInput);
+
+                const detailEl = document.getElementById('property-detail');
+                if (!detailEl) { console.error("Missing #property-detail"); return; }
+
+                // 1. Force Loading & Visibility
+                detailEl.innerHTML = '<div class="flex items-center justify-center h-screen bg-white"><div class="text-2xl font-bold text-brand-blue animate-pulse">Načítám luxusní detail...</div></div>';
+                detailEl.style.cssText = "display:block !important; position:fixed; top:0; left:0; width:100%; height:100vh; background:white; z-index:9999; overflow-y:auto;";
+                document.body.classList.add('detail-view-active');
+
+                try {
+                    const id = parseInt(idInput);
+                    if (isNaN(id)) throw new Error("Invalid ID");
+
+                    // 2. Fetch from LISTINGS (Strict Rule)
+                    const { data: item, error } = await window.supabaseClient
+                        .from('listings')
+                        .select('*')
+                        .eq('id', id)
+                        .single();
+
+                    if (error || !item) throw error || new Error("Nemovitost nenalezena");
+
+                    // 3. Construct Gallery HTML
+                    const gallery = (item.gallery || []).map(img =>
+                        `<div onclick="window.open('${img}', '_blank')" class="cursor-pointer aspect-[4/3] rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform"><img src="${img}" class="w-full h-full object-cover"></div>`
+                    ).join('');
+
+                    // 4. Construct Units HTML
+                    let units = '';
+                    if (item.units_table && Array.isArray(item.units_table) && item.units_table.length > 0) {
+                        const rows = item.units_table.map(u =>
+                            `<tr class="border-b hover:bg-gray-50"><td class="p-4 font-bold text-brand-blue">${u.name}</td><td class="p-4">${u.layout}</td><td class="p-4">${u.size}</td><td class="p-4 font-bold text-brand-gold">${u.price}</td><td class="p-4 text-xs font-bold">${u.status}</td></tr>`
+                        ).join('');
+                        units = `<div class="bg-white rounded-2xl shadow-lg run-flow-root"><h3 class="text-xl font-bold bg-gray-50 p-6 border-b">Jednotky</h3><div class="overflow-x-auto"><table class="w-full text-left"><tbody>${rows}</tbody></table></div></div>`;
+                    }
+
+                    // 5. Construct FULL HTML (JESENIOVA STYLE)
+                    const html = `
+                        <div class="relative bg-white min-h-screen pb-0">
+                            <!-- Close Button (Fixed) -->
+                            <button onclick="window.closePropertyDetail()" class="fixed top-6 right-6 bg-white/10 backdrop-blur-md rounded-full p-4 shadow-2xl z-50 hover:bg-white hover:text-brand-blue text-white transition-all transform hover:scale-110 border border-white/20 group">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                <span class="absolute right-full mr-4 bg-white text-brand-blue text-xs font-bold px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Zavřít</span>
+                            </button>
+
+                            <!-- 1. HERO SECTION (Full Screen) -->
+                            <div class="relative h-screen w-full overflow-hidden">
+                                <img src="${item.main_image || item.image || 'img/placeholder.jpg'}" class="absolute inset-0 w-full h-full object-cover">
+                                <div class="absolute inset-0 bg-black/40"></div>
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent opacity-90"></div>
+                                
+                                <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6 pb-24">
+                                    <div class="animate-fade-in-up">
+                                         <span class="inline-block bg-brand-gold text-brand-blue font-bold px-6 py-2 rounded-full text-sm uppercase tracking-widest mb-8 shadow-glow transform hover:scale-105 transition-transform cursor-default theme-badge">
+                                            ${item.status || 'NA PRODEJ'}
+                                        </span>
+                                        <h1 class="text-5xl lg:text-7xl font-bold text-white mb-6 drop-shadow-2xl max-w-5xl leading-tight font-display">
+                                            ${item.title}
+                                        </h1>
+                                        <p class="text-xl lg:text-2xl text-blue-100 font-light max-w-3xl mx-auto mb-12 flex items-center justify-center gap-2">
+                                            <svg class="w-6 h-6 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                            ${item.location}
+                                        </p>
+                                        <p class="text-4xl lg:text-5xl font-bold text-brand-gold drop-shadow-lg font-display">
+                                            ${item.price}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-white/50">
+                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                                </div>
+                            </div>
+
+                            <!-- 2. CONTENT SECTION (Centered) -->
+                            <div class="bg-white py-24 relative z-10">
+                                <div class="container mx-auto px-6 lg:px-12">
+                                    <div class="max-w-4xl mx-auto text-center mb-16">
+                                        <h2 class="text-sm font-bold text-brand-gold uppercase tracking-widest mb-4">O nemovitosti</h2>
+                                        <h3 class="text-4xl lg:text-5xl font-bold text-brand-blue mb-8 font-display">Popis projektu</h3>
+                                        <div class="prose prose-lg prose-blue mx-auto text-gray-600 leading-relaxed text-justify lg:text-center">
+                                            ${item.description || item.desc || '<p>Popis připravujeme...</p>'}
+                                        </div>
+                                    </div>
+
+                                    <!-- Specs Grid -->
+                                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto border-t border-b border-gray-100 py-12">
+                                        <div class="text-center p-6 hover:bg-gray-50 rounded-2xl transition-colors group">
+                                            <div class="text-xs text-gray-400 uppercase tracking-widest mb-2 group-hover:text-brand-gold transition-colors">Dispozice</div>
+                                            <div class="text-3xl font-bold text-brand-blue font-display">${item.specs?.disposition || '-'}</div>
+                                        </div>
+                                        <div class="text-center p-6 hover:bg-gray-50 rounded-2xl transition-colors group">
+                                            <div class="text-xs text-gray-400 uppercase tracking-widest mb-2 group-hover:text-brand-gold transition-colors">Plocha</div>
+                                            <div class="text-3xl font-bold text-brand-blue font-display">${item.specs?.area || '-'}</div>
+                                        </div>
+                                        <div class="text-center p-6 hover:bg-gray-50 rounded-2xl transition-colors group">
+                                            <div class="text-xs text-gray-400 uppercase tracking-widest mb-2 group-hover:text-brand-gold transition-colors">Podlaží</div>
+                                            <div class="text-3xl font-bold text-brand-blue font-display">${item.specs?.floor || '-'}</div>
+                                        </div>
+                                        <div class="text-center p-6 hover:bg-gray-50 rounded-2xl transition-colors group">
+                                            <div class="text-xs text-gray-400 uppercase tracking-widest mb-2 group-hover:text-brand-gold transition-colors">PENB</div>
+                                            <div class="text-3xl font-bold text-brand-blue font-display">${item.specs?.penb || '-'}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 3. GALLERY SECTION (Dark) -->
+                            <div class="bg-brand-blue py-32 text-white relative overflow-hidden">
+                                <!-- Background Pattern -->
+                                <div class="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+                                
+                                <div class="container mx-auto px-6 lg:px-12 relative z-10">
+                                    <div class="text-center mb-20">
+                                        <h2 class="text-brand-gold font-bold uppercase tracking-widest text-sm mb-4">Fotogalerie</h2>
+                                        <h3 class="text-4xl lg:text-5xl font-bold font-display">Vizuální prohlídka</h3>
+                                    </div>
+                                    
+                                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                                        ${gallery}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 4. UNITS TABLE (If exists) -->
+                            ${units ? `
+                            <div class="py-24 bg-gray-50">
+                                <div class="container mx-auto px-6 lg:px-12 max-w-5xl">
+                                    <div class="text-center mb-12">
+                                        <h3 class="text-3xl font-bold text-brand-blue font-display">Jednotky v projektu</h3>
+                                    </div>
+                                    ${units}
+                                </div>
+                            </div>` : ''}
+
+                            <!-- 5. MAP SECTION (Full Width) -->
+                            <div class="w-full h-[600px] relative group bg-gray-200">
+                                <iframe src="${item.map_url || ''}" width="100%" height="100%" style="border:0; filter: grayscale(100%); transition: filter 0.5s;" allowfullscreen="" loading="lazy" class="group-hover:grayscale-0"></iframe>
+                                <div class="absolute top-10 left-10 bg-white/90 backdrop-blur-md px-8 py-4 rounded-2xl shadow-2xl pointer-events-none">
+                                    <span class="text-brand-blue font-bold flex items-center text-lg">
+                                        <svg class="w-6 h-6 mr-3 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                        Lokalita
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- 6. CONTACT SECTION (Bottom) -->
+                             <div class="bg-white py-24">
+                                <div class="container mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16 items-center">
+                                    <div class="order-2 lg:order-1 relative">
+                                        <div class="absolute -top-10 -left-10 w-24 h-24 bg-brand-gold/10 rounded-full blur-xl"></div>
+                                        <div class="relative bg-white p-10 rounded-3xl shadow-2xl border border-gray-100 text-center">
+                                             <img src="${document.querySelector('[data-key=main_photo]')?.src || ''}" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-brand-gold shadow-md">
+                                            <h3 class="text-2xl font-bold text-brand-blue mb-2">
+                                                <span data-editable="true" data-section="profile" data-key="first_name">Jan</span>
+                                                <span data-editable="true" data-section="profile" data-key="last_name">Novák</span>
+                                            </h3>
+                                            <p class="text-gray-500 uppercase tracking-widest text-sm mb-8">Váš realitní partner</p>
+                                            
+                                            <div class="space-y-4">
+                                                <a href="#" class="block bg-brand-blue text-white font-bold py-4 rounded-xl hover:bg-brand-gold transition-colors shadow-lg transform hover:-translate-y-1" data-editable="true" data-section="profile" data-key="phone" data-type="link">
+                                                    Zavolat makléři
+                                                </a>
+                                                 <a href="#" class="block bg-white border-2 border-brand-blue text-brand-blue font-bold py-4 rounded-xl hover:bg-brand-blue hover:text-white transition-colors" data-editable="true" data-section="profile" data-key="lead_email" data-type="link">
+                                                    Napsat email
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="order-1 lg:order-2 space-y-8">
+                                        <h2 class="text-4xl lg:text-5xl font-bold text-brand-blue leading-tight font-display">Zaujala vás tato<br><span class="text-brand-gold">exkluzivní nabídka?</span></h2>
+                                        <p class="text-lg text-gray-600 leading-relaxed">
+                                            Domluvte si soukromou prohlídku ještě dnes. Rád vám nemovitost osobně představím a probereme všechny detaily u dobré kávy.
+                                        </p>
+                                        <div class="flex items-center gap-4 text-brand-blue font-bold">
+                                            <div class="w-12 h-1 bg-brand-gold"></div>
+                                            <span>Jednám rychle a férově</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>`;
+
+                    detailEl.innerHTML = html;
+                    window.scrollTo(0, 0);
+
+                    // 6. Refresh Dynamic Content (Universal Editor)
+                    if (window.UniversalEditor && typeof window.UniversalEditor.fetchAndApplyContent === 'function') {
+                        window.UniversalEditor.fetchAndApplyContent();
+                        setTimeout(() => window.UniversalEditor.renderEditIcons(), 500);
+                    }
+                } catch (e) {
+                    console.error(e);
+                    detailEl.innerHTML = `<div class="flex items-center justify-center h-screen bg-white text-red-600 font-bold p-10"><div class="text-center"><h2 class="text-2xl mb-2">Chyba načítání</h2><p>${e.message}</p><button onclick="window.closePropertyDetail()" class="mt-4 bg-gray-200 px-4 py-2 rounded">Zavřít</button></div></div>`;
+                }
+            };
+
+            // Hash Handler
+            // Hash Handler (Router)
+            async function handleHashChange() {
+                const fullHash = window.location.hash.substring(1);
+                if (!fullHash) {
+                    switchView('home-page');
+                    return;
+                }
+
+                const [viewId, queryString] = fullHash.split('?');
+
+                if (viewId === 'listing-detail') {
+                    const urlParams = new URLSearchParams(queryString);
+                    const id = urlParams.get('id');
+                    if (id) {
+                        await openPropertyDetail(id);
+                    }
+                } else if (document.getElementById(viewId) && document.getElementById(viewId).classList.contains('page-view')) {
+                    switchView(viewId);
+                } else {
                     switchView('home-page');
                 }
-            });
-
-            // Initial Check
-            const initialHash = window.location.hash.substring(1);
-            if (initialHash && document.getElementById(initialHash) && document.getElementById(initialHash).classList.contains('page-view')) {
-                switchView(initialHash);
-            } else {
-                switchView('home-page');
             }
+            window.addEventListener('hashchange', handleHashChange);
 
-            // TESTIMONIALS SLIDER LOGIC
+            // Initial Hash Check
+            handleHashChange();
+
+            // TESTIMONIALS SLIDER
             let currentSlide = 0;
             const slides = document.querySelectorAll('#testimonial-track > div');
             const totalSlides = slides.length;
             const track = document.getElementById('testimonial-track');
             const dots = document.querySelectorAll('#testimonial-dots button');
 
-            // Expose goToSlide globally for onclick handlers
             window.goToSlide = function (slideIndex) {
                 currentSlide = slideIndex;
                 updateSlider();
@@ -1670,8 +1954,6 @@
                 if (!track) return;
                 const percent = currentSlide * 100;
                 track.style.transform = `translateX(-${percent}%)`;
-
-                // Update dots
                 dots.forEach((dot, index) => {
                     if (index === currentSlide) {
                         dot.classList.remove('bg-gray-300');
@@ -1688,161 +1970,139 @@
                 updateSlider();
             }
 
-            // Auto Play
-            let slideInterval = setInterval(nextSlide, 5000); // 5 seconds
-
+            let slideInterval = setInterval(nextSlide, 5000);
             function resetTimer() {
                 clearInterval(slideInterval);
                 slideInterval = setInterval(nextSlide, 5000);
             }
 
-
-            // ==========================================
-            // SUPABASE INTEGRATION & LOGIC
-            // ==========================================
-
-            let supabase = null;
-            let allProperties = [];
-
-            try {
-                // Check if global supabase object exists from CDN
-                // Check if global supabase object exists from CDN
-                if (typeof window.supabase !== 'undefined' && window.supaConfig) {
-                    // Using keys from secure local config
-                    supabase = window.supabase.createClient(window.supaConfig.url, window.supaConfig.key);
-                    console.log("Supabase: Client Initialized from Config");
-                } else {
-                    console.error("Supabase: CDN Library missing! Backend features disabled.");
-                }
-            } catch (err) {
-                console.error("Supabase: Init Error", err);
-            }
-
-            // Fetch Data
-            async function fetchProperties() {
-                if (!supabase) {
-                    console.warn("Supabase not connected. Using placeholders.");
+            // --- LISTINGS ENGINE ---
+            window.fetchAndRenderListings = async function () {
+                if (!window.supabaseClient) {
+                    console.error("Listings: Supabase client not found.");
                     return;
                 }
 
-                const { data, error } = await supabase
-                    .from('listings')
-                    .select('*')
-                    .order('created_at', { ascending: false });
+                try {
+                    console.log("Listings: Fetching data...");
+                    const { data, error } = await window.supabaseClient
+                        .from('listings')
+                        .select('*')
+                        .order('created_at', { ascending: false });
 
-                if (error) {
-                    console.error('Error fetching:', error);
-                    return;
+                    if (error) throw error;
+
+                    const homeContainer = document.getElementById('home-listings-container');
+                    const allContainer = document.getElementById('nabidka-grid-container');
+
+                    if (!data || data.length === 0) {
+                        const emptyMsg = '<div class="col-span-full text-center py-12 text-gray-500">Žádné nemovitosti k zobrazení.</div>';
+                        if (allContainer) allContainer.innerHTML = emptyMsg;
+                        if (homeContainer) homeContainer.innerHTML = emptyMsg;
+                        return;
+                    }
+
+                    // Render All Listings
+                    if (allContainer) {
+                        allContainer.innerHTML = data.map(item => createListingCard(item)).join('');
+                    }
+
+                    // Render Home Listings (Top 3)
+                    if (homeContainer) {
+                        homeContainer.innerHTML = data.slice(0, 3).map(item => createListingCard(item)).join('');
+                    }
+
+                } catch (err) {
+                    console.error("Listings Error:", err);
+                    const errHTML = '<div class="col-span-full text-center py-12 text-red-500">Chyba při načítání nemovitostí.</div>';
+                    const homeContainer = document.getElementById('home-listings-container');
+                    const allContainer = document.getElementById('nabidka-grid-container');
+                    if (allContainer) allContainer.innerHTML = errHTML;
+                    if (homeContainer) homeContainer.innerHTML = errHTML;
                 }
-
-                allProperties = data;
-                renderProperties();
-                renderPortfolio();
-            }
-
-            // Render NABÍDKA
-            function renderProperties() {
-                const container = document.getElementById('nabidka-grid-container');
-                if (!container) return;
-
-                const activeProps = allProperties.filter(p => p.status !== 'PRODÁNO' && p.status !== 'Skryto');
-
-                if (activeProps.length === 0) {
-                    // Keep existing static content if fetch returns empty? 
-                    // Or show "No items". Let's show "No items" only if we actually fetched something specific.
-                    // For now, if activeProps is 0, we assume empty DB or filter.
-                    container.innerHTML = '<div class="col-span-full text-center py-12 text-gray-500">Zatím žádné aktivní nabídky (Live Data).</div>';
-                    return;
-                }
-
-                container.innerHTML = activeProps.map(prop => `
-        <div class="group relative bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 h-[400px] cursor-pointer" onclick="openPropertyDetail(${prop.id})">
-            <div class="absolute top-4 left-4 z-20 bg-brand-blue text-white text-xs font-bold px-3 py-1 rounded shadow uppercase tracking-wider">${prop.status}</div>
-            <img src="${prop.image}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-0"></div>
-            <div class="absolute bottom-0 left-0 w-full p-6 text-white transform transition-transform duration-300 group-hover:translate-y-full">
-                 <h4 class="font-bold text-2xl mb-1">${prop.title}</h4>
-                 <p class="text-brand-gold font-bold text-lg">${prop.price}</p>
-            </div>
-            <div class="absolute inset-0 bg-brand-blue/90 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col items-center justify-center p-6 text-center backdrop-blur-sm">
-                <h4 class="font-bold text-white text-2xl mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">${prop.title}</h4>
-                <p class="text-gray-300 mb-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-100">${prop.location}</p>
-                <button class="bg-brand-gold text-white font-bold py-3 px-8 rounded-full shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 delay-150 hover:bg-white hover:text-brand-blue uppercase text-sm tracking-wider">
-                    Prohlédnout nemovitost
-                </button>
-            </div>
-        </div>
-    `).join('');
-            }
-
-            function renderPortfolio() {
-                const container = document.querySelector('#realizovano-view .grid');
-                if (!container) return;
-                const soldProps = allProperties.filter(p => p.status === 'PRODÁNO');
-                if (soldProps.length > 0) {
-                    container.innerHTML = soldProps.map(prop => `
-                    <div class="bg-white rounded-xl shadow p-4 cursor-pointer" onclick="openPropertyDetail(${prop.id})">
-                        <img src="${prop.image}" class="rounded mb-4 w-full h-48 object-cover grayscale hover:grayscale-0 transition-all">
-                        <h4 class="font-bold text-brand-blue">${prop.title}</h4>
-                        <span class="text-brand-gold font-bold">Prodáno: ${prop.price}</span>
-                    </div>
-                    `).join('');
-                }
-            }
-
-
-            // Expose Globally
-            window.openPropertyDetail = function (id) {
-                const prop = allProperties.find(p => p.id === id);
-                if (!prop) return;
-
-                document.getElementById('detail-hero-img').src = prop.image;
-                document.getElementById('detail-title').innerText = prop.title;
-                document.getElementById('detail-price').innerText = prop.price;
-                document.getElementById('detail-location').innerText = prop.location;
-                document.getElementById('detail-desc').innerText = prop.desc;
-
-                const specs = prop.specs || {};
-                document.getElementById('item-disposition').innerText = specs.disposition || '-';
-                document.getElementById('item-area').innerText = specs.area || '-';
-                document.getElementById('item-floor').innerText = specs.floor || '-';
-                document.getElementById('item-penb').innerText = specs.penb || '-';
-
-                const gallery = prop.gallery || [];
-                document.getElementById('detail-gallery').innerHTML = gallery.map(img => `
-        <div class="rounded-xl overflow-hidden h-48 group relative">
-             <img src="${img}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
-             <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
-        </div>
-    `).join('');
-
-                const tableBody = document.getElementById('detail-table-body');
-                const units = prop.units_table || [];
-                if (units && units.length > 0) {
-                    tableBody.innerHTML = units.map(u => `
-            <tr class="hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-0">
-                <td class="p-4 font-bold text-brand-blue">${u.name || u.Jednotka}</td>
-                <td class="p-4">${u.layout || u.Dispozice}</td>
-                <td class="p-4">${u.size || u.Plocha}</td>
-                <td class="p-4 font-bold text-brand-gold">${u.price || u.Cena}</td>
-            </tr>
-         `).join('');
-                } else {
-                    tableBody.innerHTML = `<tr><td colspan="4" class="p-8 text-center text-gray-400 italic bg-gray-50 mt-2 rounded">Pro tuto nemovitost nejsou k dispozici další jednotky.</td></tr>`;
-                }
-
-                document.getElementById('nabidka-all').classList.add('hidden');
-                document.getElementById('property-detail').classList.remove('hidden');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
             };
 
+            function createListingCard(item) {
+                const title = item.title || 'Nemovitost';
+                const price = item.price || 'Cena na vyžádání';
+                const loc = item.location || '';
+                const img = item.main_image || item.image || 'https://via.placeholder.com/800x600?text=No+Image';
+                const status = item.status || 'AKTIVNÍ';
+                const id = item.id;
+
+                let badgeColor = 'bg-green-500';
+                if (status === 'REZERVOVÁNO') badgeColor = 'bg-orange-500';
+                if (status === 'PRODÁNO') badgeColor = 'bg-red-500';
+                if (status === 'VE VÝSTAVBĚ') badgeColor = 'bg-blue-500';
+
+                return `
+                <div class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:bg-brand-blue block h-full flex flex-col">
+                    <div class="relative h-64 overflow-hidden">
+                        <div class="absolute top-4 left-4 z-20 ${badgeColor} text-white text-xs font-bold px-3 py-1 rounded shadow uppercase">
+                            ${status}
+                        </div>
+                        <img src="${img}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    </div>
+                    <div class="p-6 relative z-30 flex-1 flex flex-col">
+                        <h4 class="font-bold text-brand-blue text-lg mb-2 group-hover:text-white transition-colors">${title}</h4>
+                        <span class="text-brand-gold font-bold text-lg mb-4 block">${price}</span>
+                        <div class="text-xs text-gray-400 mt-auto group-hover:text-blue-200 flex items-center">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            ${loc}
+                        </div>
+                        <a href="#listing-detail?id=${id}" class="absolute inset-0 z-40"></a>
+                    </div>
+                </div>
+                `;
+            }
+
+
+
+
+            // --- LEGACY / MODAL FUNCTIONS ---
             window.closePropertyDetail = function () {
                 document.getElementById('property-detail').classList.add('hidden');
                 document.getElementById('nabidka-all').classList.remove('hidden');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             };
 
+            // --- AWARDS RENDERER ---
+            window.renderAwards = async function () {
+                if (!window.supabaseClient) return;
+
+                try {
+                    const { data, error } = await window.supabaseClient
+                        .from('site_content')
+                        .select('value')
+                        .eq('section', 'profile')
+                        .eq('key', 'awards')
+                        .single();
+
+                    if (data && data.value) {
+                        const awards = data.value;
+                        const container = document.getElementById('awards-container');
+                        const list = document.getElementById('awards-list');
+
+                        if (Array.isArray(awards) && awards.length > 0 && container && list) {
+                            container.classList.remove('hidden');
+                            list.innerHTML = awards.map(award => `
+                                <li class="flex items-center text-sm text-gray-600">
+                                    <svg class="w-4 h-4 text-brand-gold mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                    </svg>
+                                    ${award}
+                                </li>
+                            `).join('');
+                            console.log("Awards loaded:", awards.length);
+                        }
+                    }
+                } catch (err) {
+                    console.warn("Awards load error:", err);
+                }
+            };
+
             window.saveProperty = async function () {
+                const supabase = window.supabaseClient;
                 if (!supabase) {
                     alert("Supabase Error: Backend not connected.");
                     return;
@@ -1864,7 +2124,6 @@
                 }
 
                 const gallery = galleryRaw ? galleryRaw.split(',').map(s => s.trim()) : [];
-                // Removed manual JSON parse of textarea
 
                 const specs = {
                     disposition: document.getElementById('spec-disposition').value,
@@ -1885,10 +2144,10 @@
                 } else {
                     closeAddPropertyModal();
                     showToast('Nemovitost úspěšně uložena!');
-                    fetchProperties();
+                    window.fetchAndRenderListings();
                     document.getElementById('prop-title').value = '';
                 }
-            }
+            };
 
             function showToast(msg) {
                 const toast = document.getElementById('toast');
@@ -1900,7 +2159,20 @@
             }
 
             // Init
-            fetchProperties();
+            function generateRandomCoffeeStat() {
+                const coffeeEl = document.getElementById('stats-coffee');
+                if (coffeeEl) {
+                    // Random number between 1500 and 3000
+                    const random = Math.floor(Math.random() * 1501) + 1500;
+                    // Format as "2.5k"
+                    coffeeEl.innerText = (random / 1000).toFixed(1) + 'k';
+                }
+            }
+
+            // Init
+            if (window.fetchAndRenderListings) window.fetchAndRenderListings();
+            if (window.renderAwards) window.renderAwards();
+            generateRandomCoffeeStat();
         });
     </script>
 </body>
