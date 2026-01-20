@@ -154,6 +154,14 @@
             visibility: visible;
         }
 
+        .admin-only-btn {
+            display: none;
+        }
+
+        body.admin-mode .admin-only-btn {
+            display: flex !important;
+        }
+
         [data-editable="true"] {
             position: relative !important;
         }
@@ -230,11 +238,23 @@
                     data-type="anchor">KONTAKT</a>
             </div>
 
-            <a href="#odhad-page"
-                class="hidden md:inline-flex items-center justify-center bg-brand-gold hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:shadow-glow transform hover:scale-105 transition-all duration-300 uppercase text-xs tracking-wider nav-link"
-                data-type="view">
-                Chci prodat
-            </a>
+            <div class="flex items-center gap-4">
+                <a href="#odhad-page"
+                    class="hidden md:inline-flex items-center justify-center bg-brand-gold hover:bg-yellow-600 text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:shadow-glow transform hover:scale-105 transition-all duration-300 uppercase text-xs tracking-wider nav-link"
+                    data-type="view">
+                    Chci prodat
+                </a>
+
+                <!-- ADMIN PORTAL TRIGGER (Only in Admin Mode) -->
+                <button type="button" onclick="document.getElementById('add-property-modal').classList.remove('hidden')"
+                    class="admin-only-btn bg-red-600 text-white font-bold w-10 h-10 rounded-full hover:bg-red-700 shadow-lg items-center justify-center transition-all z-50 transform hover:scale-110"
+                    title="Otevřít Admin Portál">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                    </svg>
+                </button>
+            </div>
+
             <!-- Mobile Toggle -->
             <button class="xl:hidden text-brand-blue p-2"><svg class="w-8 h-8" fill="none" stroke="currentColor"
                     viewBox="0 0 24 24">
@@ -1206,49 +1226,13 @@
                 </div>
 
                 <!-- Article List -->
-                <div class="space-y-12 max-w-5xl mx-auto">
-                    <!-- Article 1 -->
-                    <div class="flex flex-col md:flex-row gap-8 items-start group">
-                        <div class="w-full md:w-2/5 aspect-[4/3] rounded-2xl overflow-hidden shadow-lg relative">
-                            <img src="https://filipvorlicek.cz/files/user-files/uploads/1413/byt_hostivice/3D2_Kreslici_platno_1.[1].jpg"
-                                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                data-editable="true" data-section="blog-1" data-key="img" data-type="image">
-                            <div
-                                class="absolute top-4 left-4 bg-brand-gold text-white text-xs font-bold px-3 py-1 rounded">
-                                TIP</div>
+                <div id="public-blog-container" class="space-y-12 max-w-5xl mx-auto min-h-[200px]">
+                    <!-- Dynamic Content Rendered Here -->
+                    <div class="text-center text-gray-500 py-12 flex flex-col items-center">
+                        <div
+                            class="w-8 h-8 border-4 border-brand-blue border-t-transparent rounded-full animate-spin mb-4">
                         </div>
-                        <div class="w-full md:w-3/5">
-                            <div class="flex items-center text-xs text-gray-400 mb-3 space-x-4">
-                                <span class="flex items-center"><svg class="w-3 h-3 mr-1" fill="none"
-                                        stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
-                                        </path>
-                                    </svg> 12. 1. 2026</span>
-                                <span class="flex items-center"><svg class="w-3 h-3 mr-1" fill="none"
-                                        stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                    </svg> 5 min čtení</span>
-                            </div>
-                            <h3 class="text-2xl font-bold text-brand-blue mb-4 group-hover:text-brand-gold transition-colors"
-                                data-editable="true" data-section="blog-1" data-key="title" data-type="text">
-                                Jak připravit nemovitost k prodeji?
-                            </h3>
-                            <p class="text-gray-600 leading-relaxed mb-6" data-editable="true" data-section="blog-1"
-                                data-key="excerpt" data-type="text">
-                                První dojem prodává. Přečtěte si 5 osvědčených tipů, jak zvýšit hodnotu vaší nemovitosti
-                                před prodejem pomocí jednoduchých úprav a Home Stagingu.
-                            </p>
-                            <a href="#"
-                                class="inline-flex items-center font-bold text-brand-blue hover:text-brand-gold transition-colors">
-                                Číst celý článek <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                                </svg>
-                            </a>
-                        </div>
+                        Načítám články...
                     </div>
                 </div>
             </div>
@@ -1281,14 +1265,53 @@
                 </div>
 
                 <div class="md:text-right">
-                    <p class="text-gray-500 text-xs mt-2" data-editable="true" data-section="footer"
+                    <p class="text-gray-500 text-xs mt-2 mb-4" data-editable="true" data-section="footer"
                         data-key="copyright">&copy; 2026 Jan Novák. <span class="text-brand-gold">ANELA
                             Digital</span> <span class="text-gray-400 hover:text-red-500 cursor-pointer font-bold"
                             onclick="openAdminModal()">.</span></p>
+
+                    <!-- LEGAL LINKS (Premium) -->
+                    <div class="flex justify-end gap-6 text-xs font-medium text-gray-500">
+                        <button onclick="openLegalModal('vop')"
+                            class="hover:text-brand-gold transition-colors uppercase tracking-wider">Obchodní
+                            podmínky</button>
+                        <button onclick="openLegalModal('gdpr')"
+                            class="hover:text-brand-gold transition-colors uppercase tracking-wider">Ochrana
+                            údajů</button>
+                        <button onclick="openLegalModal('aml')"
+                            class="hover:text-brand-gold transition-colors uppercase tracking-wider">AML
+                            pravidla</button>
+                    </div>
                 </div>
             </div>
         </div>
     </footer>
+
+    <!-- LEGAL MODAL (Public) -->
+    <div id="legal-modal"
+        class="fixed inset-0 bg-black/90 z-[100] hidden flex items-center justify-center backdrop-blur-sm p-4">
+        <div
+            class="bg-white rounded-xl w-full max-w-4xl shadow-2xl flex flex-col max-h-[90vh] animate-scale-in relative">
+            <button onclick="document.getElementById('legal-modal').classList.add('hidden')"
+                class="absolute top-4 right-4 bg-gray-100 hover:bg-gray-200 p-2 rounded-full transition-colors z-10">
+                <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+            <div class="p-8 pb-4 border-b">
+                <h3 id="legal-modal-title" class="text-2xl font-bold text-brand-blue uppercase tracking-widest">Dokument
+                </h3>
+            </div>
+            <div id="legal-modal-content" class="p-8 overflow-y-auto prose prose-blue max-w-none text-gray-600">
+                <!-- Content will be injected here -->
+            </div>
+            <div class="p-4 border-t bg-gray-50 rounded-b-xl flex justify-end">
+                <button onclick="document.getElementById('legal-modal').classList.add('hidden')"
+                    class="px-6 py-2 bg-brand-blue text-white rounded font-bold hover:bg-brand-gold transition-colors">Zavřít</button>
+            </div>
+        </div>
+    </div>
 
     <!-- ROUTER SCRIPT -->
 
@@ -1307,12 +1330,9 @@
         </div>
     </div>
 
-    <!-- Admin Overlay (Visible when logged in) -->
+    <!-- Admin Overlay (Visible when logged in AND in Nabidka) -->
     <div id="admin-overlay" class="fixed bottom-6 right-6 z-[90] hidden">
-        <div
-            class="bg-brand-blue text-white px-4 py-2 rounded-full shadow-lg font-bold text-xs uppercase tracking-widest mb-4 text-center border border-brand-gold">
-            Admin Mode
-        </div>
+        <!-- Badge Removed per User Request -->
         <button onclick="openAddPropertyModal()"
             class="w-16 h-16 bg-brand-gold rounded-full flex items-center justify-center text-white shadow-glow hover:bg-white hover:text-brand-blue transition-all transform hover:scale-110">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1321,107 +1341,323 @@
         </button>
     </div>
 
-    <!-- Add Property Modal -->
+    <!-- ADMIN PORTAL MODAL (Replaces Add Property Modal) -->
     <div id="add-property-modal"
         class="fixed inset-0 bg-black/80 z-[100] hidden flex items-center justify-center backdrop-blur-sm overflow-y-auto py-10">
-        <div class="bg-white rounded-2xl w-full max-w-4xl shadow-2xl m-4 flex flex-col max-h-[90vh]">
-            <div
-                class="p-6 border-b border-gray-100 flex justify-between items-center sticky top-0 bg-white rounded-t-2xl z-10">
-                <h3 class="text-2xl font-bold text-brand-blue">Nová Nemovitost</h3>
-                <button onclick="closeAddPropertyModal()" class="text-gray-400 hover:text-brand-blue"><svg
-                        class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                        </path>
-                    </svg></button>
-            </div>
-            <div class="p-8 overflow-y-auto space-y-6">
-                <div class="grid md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Název</label>
-                        <input type="text" id="prop-title" class="w-full bg-gray-50 border border-gray-200 rounded p-3"
-                            placeholder="Vila Průhonice">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Cena</label>
-                        <input type="text" id="prop-price" class="w-full bg-gray-50 border border-gray-200 rounded p-3"
-                            placeholder="24 900 000 Kč">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Lokalita</label>
-                        <input type="text" id="prop-location"
-                            class="w-full bg-gray-50 border border-gray-200 rounded p-3" placeholder="Praha-západ">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Status</label>
-                        <select id="prop-status" class="w-full bg-gray-50 border border-gray-200 rounded p-3">
-                            <option value="AKTIVNÍ">AKTIVNÍ</option>
-                            <option value="REZERVOVÁNO">REZERVOVÁNO</option>
-                            <option value="PRODÁNO">PRODÁNO</option>
-                            <option value="VE VÝSTAVBĚ">VE VÝSTAVBĚ</option>
-                        </select>
-                    </div>
-                    <div class="md:col-span-2">
-                        <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Hlavní Fotka (URL)</label>
-                        <input type="text" id="prop-image" class="w-full bg-gray-50 border border-gray-200 rounded p-3"
-                            placeholder="https://...">
-                    </div>
-                    <div class="md:col-span-2">
-                        <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Galerie (URL oddělené
-                            čárkou)</label>
-                        <textarea id="prop-gallery" rows="3"
-                            class="w-full bg-gray-50 border border-gray-200 rounded p-3"
-                            placeholder="url1, url2, url3..."></textarea>
-                    </div>
-                    <div class="md:col-span-2">
-                        <label class="block text-xs font-bold uppercase text-gray-500 mb-1">Popis</label>
-                        <textarea id="prop-desc" rows="5"
-                            class="w-full bg-gray-50 border border-gray-200 rounded p-3"></textarea>
-                    </div>
-                </div>
-                <!-- Specs -->
-                <h4 class="font-bold border-b pb-2">Parametry</h4>
-                <div class="grid grid-cols-4 gap-4">
-                    <input type="text" id="spec-disposition" placeholder="Dispozice (5+kk)" class="border p-2 rounded">
-                    <input type="text" id="spec-area" placeholder="Plocha (280 m²)" class="border p-2 rounded">
-                    <input type="text" id="spec-floor" placeholder="Podlaží (2. NP)" class="border p-2 rounded">
-                    <input type="text" id="spec-penb" placeholder="PENB (B)" class="border p-2 rounded">
-                </div>
-                <!-- Units Dynamic UI -->
-                <div class="md:col-span-2 border-t pt-4 mt-2">
-                    <h4 class="font-bold mb-2">Jednotky v projektu</h4>
-                    <!-- Hidden JSON Input for Logic -->
-                    <textarea id="prop-units" class="hidden"></textarea>
+        <div class="bg-white rounded-2xl w-full max-w-6xl shadow-2xl m-4 flex flex-col max-h-[95vh] animate-scale-in">
 
-                    <!-- UI Container -->
-                    <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+            <!-- HEADER & TABS -->
+            <div class="p-0 border-b border-gray-100 sticky top-0 bg-white rounded-t-2xl z-20">
+                <div class="p-6 flex justify-between items-center pb-0">
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-blue">Admin Portál</h3>
+                        <p class="text-xs text-gray-400 uppercase tracking-widest">Makléřský Systém</p>
+                    </div>
+                    <button onclick="closeAddPropertyModal()"
+                        class="group p-2 rounded-full hover:bg-gray-100 transition-colors mb-4">
+                        <svg class="w-6 h-6 text-gray-400 group-hover:text-brand-blue transition-colors" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- TABS CONTAINER -->
+                <div class="flex px-6 space-x-8 mt-4">
+                    <button onclick="switchAdminTab('properties')" id="tab-btn-properties"
+                        class="pb-4 text-sm font-bold uppercase tracking-widest border-b-2 border-brand-gold text-brand-blue transition-colors">
+                        Nemovitosti
+                    </button>
+                    <button onclick="switchAdminTab('legal')" id="tab-btn-legal"
+                        class="pb-4 text-sm font-bold uppercase tracking-widest border-b-2 border-transparent text-gray-400 hover:text-brand-blue transition-colors">
+                        Právní Texty
+                    </button>
+                    <button onclick="switchAdminTab('articles')" id="tab-btn-articles"
+                        class="pb-4 text-sm font-bold uppercase tracking-widest border-b-2 border-transparent text-gray-400 hover:text-brand-blue transition-colors">
+                        Články
+                    </button>
+                </div>
+            </div>
+
+            <div class="p-8 overflow-y-auto space-y-8 bg-gray-50/50 min-h-[60vh]">
+
+                <!-- TAB 1: PROPERTIES (Existing Form) -->
+                <div id="admin-tab-properties" class="animate-fade-in block">
+                    <!-- 1. BASIC INFO -->
+                    <div class="grid md:grid-cols-4 gap-6 mb-8">
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Název Projektu</label>
+                            <input type="text" id="prop-title"
+                                class="w-full bg-white border border-gray-200 rounded-lg p-3 font-bold text-brand-blue focus:border-brand-gold outline-none shadow-sm"
+                                placeholder="Např. Rezidence Jeseniova">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Tagline
+                                (Podtitul)</label>
+                            <input type="text" id="prop-tagline"
+                                class="w-full bg-white border border-gray-200 rounded-lg p-3 focus:border-brand-gold outline-none shadow-sm"
+                                placeholder="Srdce Žižkova">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Status</label>
+                            <select id="prop-status"
+                                class="w-full bg-white border border-gray-200 rounded-lg p-3 font-bold shadow-sm">
+                                <option value="AKTIVNÍ">🟢 AKTIVNÍ</option>
+                                <option value="REZERVOVÁNO">🟠 REZERVOVÁNO</option>
+                                <option value="PRODÁNO">🔴 PRODÁNO</option>
+                                <option value="VE VÝSTAVBĚ">🔵 VE VÝSTAVBĚ</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Cena (Text)</label>
+                            <input type="text" id="prop-price"
+                                class="w-full bg-white border border-gray-200 rounded-lg p-3 font-bold text-brand-gold focus:border-brand-gold outline-none shadow-sm"
+                                placeholder="Např. Od 15 900 000 Kč">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Lokalita</label>
+                            <input type="text" id="prop-location"
+                                class="w-full bg-white border border-gray-200 rounded-lg p-3 focus:border-brand-gold outline-none shadow-sm"
+                                placeholder="Praha 3 - Žižkov">
+                        </div>
+                    </div>
+
+                    <!-- 2. DESCRIPTION -->
+                    <div class="mb-8">
+                        <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Detailní Popis
+                            (HTML/Text)</label>
+                        <textarea id="prop-desc" rows="6"
+                            class="w-full bg-white border border-gray-200 rounded-lg p-4 font-mono text-sm focus:border-brand-gold outline-none shadow-sm"
+                            placeholder="<p>Popis projektu...</p>"></textarea>
+                    </div>
+
+                    <!-- 3. IMAGERY BUILDER (Removed) -->
+                    <!-- Media & Gallery section removed as per user request (handled by onboarding agent) -->
+
+
+
+                    <!-- 4. SPECS -->
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div><label class="text-[10px] uppercase font-bold text-gray-400">Dispozice</label><input
+                                type="text" id="spec-disposition" placeholder="3+kk"
+                                class="w-full border p-2 rounded font-bold"></div>
+                        <div><label class="text-[10px] uppercase font-bold text-gray-400">Plocha</label><input
+                                type="text" id="spec-area" placeholder="85 m²"
+                                class="w-full border p-2 rounded font-bold"></div>
+                        <div><label class="text-[10px] uppercase font-bold text-gray-400">Podlaží</label><input
+                                type="text" id="spec-floor" placeholder="4. NP"
+                                class="w-full border p-2 rounded font-bold"></div>
+                        <div><label class="text-[10px] uppercase font-bold text-gray-400">PENB</label><input type="text"
+                                id="spec-penb" placeholder="B" class="w-full border p-2 rounded font-bold"></div>
+                    </div>
+
+                    <!-- 5. UNIT BUILDER -->
+                    <div class="bg-gray-50 rounded-xl border border-gray-200 overflow-hidden">
+                        <div class="p-4 border-b border-gray-200 flex justify-between items-center bg-gray-100">
+                            <h4 class="font-bold text-gray-700 flex items-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4">
+                                    </path>
+                                </svg>
+                                Tabulka Jednotek
+                            </h4>
+                            <button onclick="addUnitRow()"
+                                class="text-xs bg-brand-blue text-white font-bold px-4 py-2 rounded shadow hover:bg-brand-gold transition-colors flex items-center">
+                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 4v16m8-8H4">
+                                    </path>
+                                </svg>
+                                Přidat Jednotku
+                            </button>
+                        </div>
+
                         <!-- Header -->
-                        <div class="grid grid-cols-12 gap-2 text-xs font-bold text-brand-blue uppercase mb-2">
-                            <div class="col-span-3">Jednotka</div>
+                        <div
+                            class="grid grid-cols-12 gap-2 p-3 bg-white border-b border-gray-100 text-[10px] font-bold uppercase text-gray-400 tracking-wider">
+                            <div class="col-span-2">Jednotka (ID)</div>
                             <div class="col-span-2">Dispozice</div>
-                            <div class="col-span-3">Plocha</div>
-                            <div class="col-span-3">Cena</div>
+                            <div class="col-span-2">Plocha (m²)</div>
+                            <div class="col-span-1">Patro</div>
+                            <div class="col-span-2">Cena</div>
+                            <div class="col-span-2">Status</div>
                             <div class="col-span-1"></div>
                         </div>
-                        <!-- Rows Container -->
-                        <div id="units-rows-container" class="space-y-2">
-                            <!-- Rows will be injected here -->
+
+                        <!-- Rows -->
+                        <div id="units-rows-container" class="p-3 space-y-2 bg-gray-50 min-h-[100px]">
+                            <!-- Dynamic Rows -->
                         </div>
-                        <!-- Add Button -->
-                        <button onclick="addUnitRow()"
-                            class="mt-4 w-full py-2 border-2 border-dashed border-gray-300 rounded text-gray-500 hover:border-brand-blue hover:text-brand-blue font-bold transition-all text-sm flex items-center justify-center gap-2">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    </div> <!-- End of Unit Builder -->
+                </div> <!-- END OF TAB 2 -->
+
+                <!-- TAB 3: BLOG MANAGER (New) -->
+                <div id="admin-tab-articles" class="hidden animate-fade-in">
+                    <!-- 1. ARTICLE LIST -->
+                    <div id="blog-list-view">
+                        <div class="flex justify-between items-center mb-8">
+                            <h4 class="font-bold text-lg text-brand-blue">Seznam Článků</h4>
+                            <button onclick="window.BlogManager.openEditor()"
+                                class="bg-brand-gold text-white px-4 py-2 rounded-lg text-sm font-bold hover:bg-brand-blue transition-colors shadow">
+                                + Přidat Článek
+                            </button>
+                        </div>
+                        <div id="blog-items-container" class="space-y-4">
+                            <!-- Dynamic Items via JS -->
+                            <div class="text-center text-gray-400 py-8">Načítám články...</div>
+                        </div>
+                    </div>
+
+                    <!-- 2. ARTICLE EDITOR (Hidden) -->
+                    <div id="blog-editor-view" class="hidden">
+                        <div class="flex items-center mb-6 text-sm text-gray-400 font-bold uppercase cursor-pointer hover:text-brand-blue"
+                            onclick="window.BlogManager.closeEditor()">
+                            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 4v16m8-8H4"></path>
+                                    d="M15 19l-7-7 7-7"></path>
                             </svg>
-                            PŘIDAT DALŠÍ JEDNOTKU
-                        </button>
+                            Zpět na seznam
+                        </div>
+
+                        <div class="bg-white p-8 rounded-xl border border-gray-100 shadow-sm">
+                            <input type="hidden" id="blog-id"> <!-- Hidden ID for updates -->
+
+                            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                                <div class="md:col-span-2">
+                                    <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Titulek
+                                        Článku</label>
+                                    <input type="text" id="blog-title"
+                                        class="w-full bg-gray-50 border border-gray-200 rounded p-3 font-bold text-lg text-brand-blue outline-none focus:border-brand-gold"
+                                        placeholder="Např. Jak zvýšit hodnotu nemovitosti...">
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Datum
+                                        Publikace</label>
+                                    <input type="date" id="blog-date"
+                                        class="w-full bg-gray-50 border border-gray-200 rounded p-3 outline-none focus:border-brand-gold">
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Obrázek
+                                        (URL)</label>
+                                    <input type="text" id="blog-image"
+                                        class="w-full bg-gray-50 border border-gray-200 rounded p-3 outline-none focus:border-brand-gold"
+                                        placeholder="https://...">
+                                </div>
+                            </div>
+
+                            <div class="mb-6">
+                                <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Krátký Popis
+                                    (Perex)</label>
+                                <textarea id="blog-desc" rows="3"
+                                    class="w-full bg-gray-50 border border-gray-200 rounded p-3 text-sm outline-none focus:border-brand-gold"
+                                    placeholder="Stručný obsah článku..."></textarea>
+                            </div>
+
+                            <div class="mb-8">
+                                <label class="block text-xs font-bold uppercase text-gray-500 mb-2">Odkaz na celý článek
+                                    (External URL)</label>
+                                <div class="flex">
+                                    <span
+                                        class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-200 bg-gray-100 text-gray-500 text-sm">🔗</span>
+                                    <input type="text" id="blog-link"
+                                        class="w-full bg-gray-50 border border-gray-200 rounded-r-md p-3 outline-none focus:border-brand-gold"
+                                        placeholder="https://medium.com/@moje-clanky/...">
+                                </div>
+                                <p class="text-[10px] text-gray-400 mt-1 italic">Pokud je vyplněno, tlačítko "Číst dále"
+                                    povede sem (otevře se v novém okně).</p>
+                            </div>
+
+                            <div class="flex justify-end gap-4 border-t pt-6">
+                                <button onclick="window.BlogManager.closeEditor()"
+                                    class="px-4 py-2 text-gray-400 font-bold hover:text-gray-600">Zrušit</button>
+                                <button onclick="window.BlogManager.saveArticle()"
+                                    class="bg-brand-blue text-white px-8 py-2 rounded-lg font-bold shadow hover:bg-brand-gold transition-colors">Uložit
+                                    Článek</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="p-6 border-t border-gray-100 bg-gray-50 rounded-b-2xl flex justify-end">
-                <button onclick="saveProperty()"
-                    class="bg-brand-blue text-white font-bold py-3 px-8 rounded-lg shadow hover:bg-brand-gold transition-colors">ULOŽIT
-                    NEMOVITOST</button>
+
+                <!-- TAB 2: LEGAL TEXTS (Moved) -->
+                <div id="admin-tab-legal" class="hidden animate-fade-in">
+                    <!-- Disclaimer -->
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-8 rounded-r-lg">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <svg class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm text-yellow-700">
+                                    <span class="font-bold">Upozornění:</span> Tyto texty jsou připraveny jako
+                                    profesionální vzory. Makléřům doporučujeme, aby si do nich doplnili své údaje a
+                                    konzultovali je se svým právníkem.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid lg:grid-cols-3 gap-8">
+                        <!-- VOP -->
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col h-full">
+                            <h4 class="font-bold text-lg text-brand-blue mb-2">VOP</h4>
+                            <p class="text-xs text-gray-400 mb-4">Všeobecné obchodní podmínky</p>
+                            <textarea id="legal-vop"
+                                class="flex-1 w-full bg-gray-50 border border-gray-200 rounded p-4 text-sm mb-4 focus:border-brand-gold outline-none min-h-[300px]"
+                                placeholder="Text VOP..."></textarea>
+                            <button onclick="window.LegalManager.saveLegal('vop')"
+                                class="w-full bg-brand-blue text-white font-bold py-3 rounded hover:bg-brand-gold transition-colors">Uložit
+                                VOP</button>
+                        </div>
+                        <!-- GDPR -->
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col h-full">
+                            <h4 class="font-bold text-lg text-brand-blue mb-2">GDPR</h4>
+                            <p class="text-xs text-gray-400 mb-4">Ochrana osobních údajů</p>
+                            <textarea id="legal-gdpr"
+                                class="flex-1 w-full bg-gray-50 border border-gray-200 rounded p-4 text-sm mb-4 focus:border-brand-gold outline-none min-h-[300px]"
+                                placeholder="Text GDPR..."></textarea>
+                            <button onclick="window.LegalManager.saveLegal('gdpr')"
+                                class="w-full bg-brand-blue text-white font-bold py-3 rounded hover:bg-brand-gold transition-colors">Uložit
+                                GDPR</button>
+                        </div>
+                        <!-- AML -->
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col h-full">
+                            <h4 class="font-bold text-lg text-brand-blue mb-2">AML</h4>
+                            <p class="text-xs text-gray-400 mb-4">Anti-Money Laundering</p>
+                            <textarea id="legal-aml"
+                                class="flex-1 w-full bg-gray-50 border border-gray-200 rounded p-4 text-sm mb-4 focus:border-brand-gold outline-none min-h-[300px]"
+                                placeholder="Text AML..."></textarea>
+                            <button onclick="window.LegalManager.saveLegal('aml')"
+                                class="w-full bg-brand-blue text-white font-bold py-3 rounded hover:bg-brand-gold transition-colors">Uložit
+                                AML</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- END OF CONTENT WRAPPER -->
+
+            <!-- FOOTER ACTIONS -->
+            <div
+                class="p-6 border-t border-gray-100 bg-white rounded-b-2xl flex justify-between items-center sticky bottom-0 z-20">
+                <div class="text-xs text-gray-400 italic">Všechny změny se propíší ihned.</div>
+                <div class="flex gap-4">
+                    <button onclick="closeAddPropertyModal()"
+                        class="px-6 py-3 rounded-lg text-gray-500 font-bold hover:bg-gray-100 transition-colors">Zrušit</button>
+                    <button id="btn-save-property" onclick="saveProperty()"
+                        class="bg-brand-blue text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-brand-gold hover:text-brand-blue transform hover:-translate-y-1 transition-all flex items-center">
+                        <span id="btn-save-text">ULOŽIT NEMOVITOST</span>
+                        <div id="btn-save-loader"
+                            class="hidden w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin ml-2">
+                        </div>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -1469,7 +1705,13 @@
                     const pass = document.getElementById('admin-password').value;
                     if (pass === 'anela2026') {
                         document.getElementById('admin-login-modal').classList.add('hidden');
-                        document.getElementById('admin-overlay').classList.remove('hidden');
+                        // Show Overlay ONLY if in Nabidka view
+                        const overlay = document.getElementById('admin-overlay');
+                        if (window.location.hash === '#nabidka-view' || window.location.hash.includes('nabidka-view')) {
+                            overlay.classList.remove('hidden');
+                        } else {
+                            overlay.classList.add('hidden');
+                        }
                         showToast('Vítejte v Admin Módu');
                         console.log("Admin System: Login Successful");
 
@@ -1500,59 +1742,7 @@
                     }
                 };
 
-                window.openAddPropertyModal = function () {
-                    document.getElementById('add-property-modal').classList.remove('hidden');
-                    // Ensure at least one row exists if empty
-                    const container = document.getElementById('units-rows-container');
-                    if (container && container.children.length === 0) {
-                        addUnitRow();
-                    }
-                };
-                window.closeAddPropertyModal = function () {
-                    document.getElementById('add-property-modal').classList.add('hidden');
-                };
-
-                // 3. Dynamic Units Logic
-                window.addUnitRow = function () {
-                    const container = document.getElementById('units-rows-container');
-                    const rowId = 'unit-row-' + Date.now();
-                    const row = document.createElement('div');
-                    row.className = 'grid grid-cols-12 gap-2 items-center';
-                    row.id = rowId;
-                    row.innerHTML = `
-                        <div class="col-span-3"><input type="text" placeholder="Byt 101" class="unit-name w-full bg-white border border-gray-200 rounded p-2 text-sm focus:border-brand-gold outline-none"></div>
-                        <div class="col-span-2"><input type="text" placeholder="2+kk" class="unit-layout w-full bg-white border border-gray-200 rounded p-2 text-sm focus:border-brand-gold outline-none"></div>
-                        <div class="col-span-3"><input type="text" placeholder="56 m²" class="unit-size w-full bg-white border border-gray-200 rounded p-2 text-sm focus:border-brand-gold outline-none"></div>
-                        <div class="col-span-3"><input type="text" placeholder="5 600 000 Kč" class="unit-price w-full bg-white border border-gray-200 rounded p-2 text-sm focus:border-brand-gold outline-none"></div>
-                        <div class="col-span-1 text-center">
-                            <button onclick="removeUnitRow('${rowId}')" class="text-gray-400 hover:text-red-500 transition-colors">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-                            </button>
-                        </div>
-                    `;
-                    container.appendChild(row);
-                };
-
-                window.removeUnitRow = function (id) {
-                    const row = document.getElementById(id);
-                    if (row) row.remove();
-                };
-
-                window.serializeUnits = function () {
-                    const rows = document.querySelectorAll('#units-rows-container > div');
-                    const data = [];
-                    rows.forEach(row => {
-                        const name = row.querySelector('.unit-name').value;
-                        const layout = row.querySelector('.unit-layout').value;
-                        const size = row.querySelector('.unit-size').value;
-                        const price = row.querySelector('.unit-price').value;
-
-                        if (name || price) {
-                            data.push({ name, layout, size, price });
-                        }
-                    });
-                    return data;
-                };
+                // (Moved to universal-admin.js)
 
                 // 2. Keyboard Listeners
                 window.addEventListener('keydown', function (event) {
@@ -1566,7 +1756,7 @@
                     }
                 });
 
-                console.log("Admin System: Ready");
+                console.log("Admin System: Ready (Jeseniova Upgrade)");
             })();
     </script>
 
@@ -1574,6 +1764,8 @@
     <script src="js/config.js"></script>
     <!-- Universal Admin CMS -->
     <script src="js/universal-admin.js"></script>
+    <!-- Onboarding Sync (Agent Tool) -->
+    <script src="js/onboarding-sync.js"></script>
 
     <div id="property-detail" class="hidden"></div>
 
@@ -1710,271 +1902,7 @@
             // --- LISTING DETAIL LOGIC (Jeseniova Standard) ---
             // --- LISTING DETAIL LOGIC (Jeseniova Standard) ---
             // --- LISTING DETAIL LOGIC (Jeseniova Standard) ---
-            window.openPropertyDetail = async function (idInput) {
-                console.log("OPENING DETAIL FOR ID:", idInput);
-
-                const detailEl = document.getElementById('property-detail');
-                if (!detailEl) { console.error("Missing #property-detail"); return; }
-
-                // 1. Force Loading & Visibility
-                detailEl.innerHTML = '<div class="flex items-center justify-center h-screen bg-white"><div class="text-2xl font-bold text-brand-blue animate-pulse">Načítám luxusní detail...</div></div>';
-                detailEl.style.cssText = "display:block !important; position:fixed; top:0; left:0; width:100%; height:100vh; background:white; z-index:9999; overflow-y:auto;";
-                document.body.classList.add('detail-view-active');
-
-                try {
-                    const id = parseInt(idInput);
-                    if (isNaN(id)) throw new Error("Invalid ID");
-
-                    // 2. Fetch from LISTINGS (Strict Rule)
-                    const { data: item, error } = await window.supabaseClient
-                        .from('listings')
-                        .select('*')
-                        .eq('id', id)
-                        .single();
-
-                    if (error || !item) throw error || new Error("Nemovitost nenalezena");
-
-                    // 3. Construct Gallery HTML
-                    const gallery = (item.gallery || []).map(img =>
-                        `<div onclick="window.open('${img}', '_blank')" class="cursor-pointer aspect-[4/3] rounded-xl overflow-hidden shadow-lg hover:scale-105 transition-transform"><img src="${img}" class="w-full h-full object-cover"></div>`
-                    ).join('');
-
-                    // 4. Construct Units HTML
-                    let units = '';
-                    if (item.units_table && Array.isArray(item.units_table) && item.units_table.length > 0) {
-                        const rows = item.units_table.map(u =>
-                            `<tr class="border-b hover:bg-gray-50"><td class="p-4 font-bold text-brand-blue">${u.name}</td><td class="p-4">${u.layout}</td><td class="p-4">${u.size}</td><td class="p-4 font-bold text-brand-gold">${u.price}</td><td class="p-4 text-xs font-bold">${u.status}</td></tr>`
-                        ).join('');
-                        units = `<div class="bg-white rounded-2xl shadow-lg run-flow-root"><h3 class="text-xl font-bold bg-gray-50 p-6 border-b">Jednotky</h3><div class="overflow-x-auto"><table class="w-full text-left"><tbody>${rows}</tbody></table></div></div>`;
-                    }
-
-                    // 5. Construct FULL HTML (JESENIOVA STYLE)
-                    const html = `
-                        <div class="relative bg-white min-h-screen pb-0">
-                            <!-- Close Button (Fixed) -->
-                            <button onclick="window.closePropertyDetail()" class="fixed top-6 right-6 bg-white/10 backdrop-blur-md rounded-full p-4 shadow-2xl z-50 hover:bg-white hover:text-brand-blue text-white transition-all transform hover:scale-110 border border-white/20 group">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                <span class="absolute right-full mr-4 bg-white text-brand-blue text-xs font-bold px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Zavřít</span>
-                            </button>
-
-                            <!-- 1. HERO SECTION (Full Screen) -->
-                            <div class="relative h-screen w-full overflow-hidden">
-                                <img src="${item.main_image || item.image || 'img/placeholder.jpg'}" class="absolute inset-0 w-full h-full object-cover">
-                                <div class="absolute inset-0 bg-black/40"></div>
-                                <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent opacity-90"></div>
-                                
-                                <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-6 pb-24">
-                                    <div class="animate-fade-in-up">
-                                         <span class="inline-block bg-brand-gold text-brand-blue font-bold px-6 py-2 rounded-full text-sm uppercase tracking-widest mb-8 shadow-glow transform hover:scale-105 transition-transform cursor-default theme-badge">
-                                            ${item.status || 'NA PRODEJ'}
-                                        </span>
-                                        <h1 class="text-5xl lg:text-7xl font-bold text-white mb-6 drop-shadow-2xl max-w-5xl leading-tight font-display">
-                                            ${item.title}
-                                        </h1>
-                                        <p class="text-xl lg:text-2xl text-blue-100 font-light max-w-3xl mx-auto mb-12 flex items-center justify-center gap-2">
-                                            <svg class="w-6 h-6 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                            ${item.location}
-                                        </p>
-                                        <p class="text-4xl lg:text-5xl font-bold text-brand-gold drop-shadow-lg font-display">
-                                            ${item.price}
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-white/50">
-                                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
-                                </div>
-                            </div>
-
-                            <!-- 2. CONTENT SECTION (Centered) -->
-                            <div class="bg-white py-24 relative z-10">
-                                <div class="container mx-auto px-6 lg:px-12">
-                                    <div class="max-w-4xl mx-auto text-center mb-16">
-                                        <h2 class="text-sm font-bold text-brand-gold uppercase tracking-widest mb-4">O nemovitosti</h2>
-                                        <h3 class="text-4xl lg:text-5xl font-bold text-brand-blue mb-8 font-display">Popis projektu</h3>
-                                        <div class="prose prose-lg prose-blue mx-auto text-gray-600 leading-relaxed text-justify lg:text-center">
-                                            ${item.description || item.desc || '<p>Popis připravujeme...</p>'}
-                                        </div>
-                                    </div>
-
-                                    <!-- Specs Grid -->
-                                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto border-t border-b border-gray-100 py-12">
-                                        <div class="text-center p-6 hover:bg-gray-50 rounded-2xl transition-colors group">
-                                            <div class="text-xs text-gray-400 uppercase tracking-widest mb-2 group-hover:text-brand-gold transition-colors">Dispozice</div>
-                                            <div class="text-3xl font-bold text-brand-blue font-display">${item.specs?.disposition || '-'}</div>
-                                        </div>
-                                        <div class="text-center p-6 hover:bg-gray-50 rounded-2xl transition-colors group">
-                                            <div class="text-xs text-gray-400 uppercase tracking-widest mb-2 group-hover:text-brand-gold transition-colors">Plocha</div>
-                                            <div class="text-3xl font-bold text-brand-blue font-display">${item.specs?.area || '-'}</div>
-                                        </div>
-                                        <div class="text-center p-6 hover:bg-gray-50 rounded-2xl transition-colors group">
-                                            <div class="text-xs text-gray-400 uppercase tracking-widest mb-2 group-hover:text-brand-gold transition-colors">Podlaží</div>
-                                            <div class="text-3xl font-bold text-brand-blue font-display">${item.specs?.floor || '-'}</div>
-                                        </div>
-                                        <div class="text-center p-6 hover:bg-gray-50 rounded-2xl transition-colors group">
-                                            <div class="text-xs text-gray-400 uppercase tracking-widest mb-2 group-hover:text-brand-gold transition-colors">PENB</div>
-                                            <div class="text-3xl font-bold text-brand-blue font-display">${item.specs?.penb || '-'}</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- 3. GALLERY SECTION (Dark) -->
-                            <div class="bg-brand-blue py-32 text-white relative overflow-hidden">
-                                <!-- Background Pattern -->
-                                <div class="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
-                                
-                                <div class="container mx-auto px-6 lg:px-12 relative z-10">
-                                    <div class="text-center mb-20">
-                                        <h2 class="text-brand-gold font-bold uppercase tracking-widest text-sm mb-4">Fotogalerie</h2>
-                                        <h3 class="text-4xl lg:text-5xl font-bold font-display">Vizuální prohlídka</h3>
-                                    </div>
-                                    
-                                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                                        ${gallery}
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- 4. UNITS TABLE (If exists) -->
-                            ${units ? `
-                            <div class="py-24 bg-gray-50">
-                                <div class="container mx-auto px-6 lg:px-12 max-w-5xl">
-                                    <div class="text-center mb-12">
-                                        <h3 class="text-3xl font-bold text-brand-blue font-display">Jednotky v projektu</h3>
-                                    </div>
-                                    ${units}
-                                </div>
-                            </div>` : ''}
-
-                            <!-- 5. MAP SECTION (Full Width) -->
-                            <div class="w-full h-[600px] relative group bg-gray-200">
-                                <iframe src="${item.map_url || ''}" width="100%" height="100%" style="border:0; filter: grayscale(100%); transition: filter 0.5s;" allowfullscreen="" loading="lazy" class="group-hover:grayscale-0"></iframe>
-                                <div class="absolute top-10 left-10 bg-white/90 backdrop-blur-md px-8 py-4 rounded-2xl shadow-2xl pointer-events-none">
-                                    <span class="text-brand-blue font-bold flex items-center text-lg">
-                                        <svg class="w-6 h-6 mr-3 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                                        Lokalita
-                                    </span>
-                                </div>
-                            </div>
-
-                            <!-- 6. CONTACT SECTION (Bottom) -->
-                             <div class="bg-white py-24">
-                                <div class="container mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16 items-center">
-                                    <div class="order-2 lg:order-1 relative">
-                                        <div class="absolute -top-10 -left-10 w-24 h-24 bg-brand-gold/10 rounded-full blur-xl"></div>
-                                        <div class="relative bg-white p-10 rounded-3xl shadow-2xl border border-gray-100 text-center">
-                                             <img src="${document.querySelector('[data-key=main_photo]')?.src || ''}" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-brand-gold shadow-md">
-                                            <h3 class="text-2xl font-bold text-brand-blue mb-2">
-                                                <span data-editable="true" data-section="profile" data-key="first_name">Jan</span>
-                                                <span data-editable="true" data-section="profile" data-key="last_name">Novák</span>
-                                            </h3>
-                                            <p class="text-gray-500 uppercase tracking-widest text-sm mb-8">Váš realitní partner</p>
-                                            
-                                            <div class="space-y-4">
-                                                <a href="#" class="block bg-brand-blue text-white font-bold py-4 rounded-xl hover:bg-brand-gold transition-colors shadow-lg transform hover:-translate-y-1" data-editable="true" data-section="profile" data-key="phone" data-type="link">
-                                                    Zavolat makléři
-                                                </a>
-                                                 <a href="#" class="block bg-white border-2 border-brand-blue text-brand-blue font-bold py-4 rounded-xl hover:bg-brand-blue hover:text-white transition-colors" data-editable="true" data-section="profile" data-key="lead_email" data-type="link">
-                                                    Napsat email
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="order-1 lg:order-2 space-y-8">
-                                        <h2 class="text-4xl lg:text-5xl font-bold text-brand-blue leading-tight font-display">Zaujala vás tato<br><span class="text-brand-gold">exkluzivní nabídka?</span></h2>
-                                        <p class="text-lg text-gray-600 leading-relaxed">
-                                            Domluvte si soukromou prohlídku ještě dnes. Rád vám nemovitost osobně představím a probereme všechny detaily u dobré kávy.
-                                        </p>
-                                        <div class="flex items-center gap-4 text-brand-blue font-bold">
-                                            <div class="w-12 h-1 bg-brand-gold"></div>
-                                            <span>Jednám rychle a férově</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>`;
-
-                    detailEl.innerHTML = html;
-                    window.scrollTo(0, 0);
-
-                    // 6. Refresh Dynamic Content (Universal Editor)
-                    if (window.UniversalEditor && typeof window.UniversalEditor.fetchAndApplyContent === 'function') {
-                        window.UniversalEditor.fetchAndApplyContent();
-                        setTimeout(() => window.UniversalEditor.renderEditIcons(), 500);
-                    }
-                } catch (e) {
-                    console.error(e);
-                    detailEl.innerHTML = `<div class="flex items-center justify-center h-screen bg-white text-red-600 font-bold p-10"><div class="text-center"><h2 class="text-2xl mb-2">Chyba načítání</h2><p>${e.message}</p><button onclick="window.closePropertyDetail()" class="mt-4 bg-gray-200 px-4 py-2 rounded">Zavřít</button></div></div>`;
-                }
-            };
-
-            // Hash Handler
-            // Hash Handler (Router)
-            async function handleHashChange() {
-                const fullHash = window.location.hash.substring(1);
-                if (!fullHash) {
-                    switchView('home-page');
-                    return;
-                }
-
-                const [viewId, queryString] = fullHash.split('?');
-
-                if (viewId === 'listing-detail') {
-                    const urlParams = new URLSearchParams(queryString);
-                    const id = urlParams.get('id');
-                    if (id) {
-                        await openPropertyDetail(id);
-                    }
-                } else if (document.getElementById(viewId) && document.getElementById(viewId).classList.contains('page-view')) {
-                    switchView(viewId);
-                } else {
-                    switchView('home-page');
-                }
-            }
-            window.addEventListener('hashchange', handleHashChange);
-
-            // Initial Hash Check
-            handleHashChange();
-
-            // TESTIMONIALS SLIDER
-            let currentSlide = 0;
-            const slides = document.querySelectorAll('#testimonial-track > div');
-            const totalSlides = slides.length;
-            const track = document.getElementById('testimonial-track');
-            const dots = document.querySelectorAll('#testimonial-dots button');
-
-            window.goToSlide = function (slideIndex) {
-                currentSlide = slideIndex;
-                updateSlider();
-                resetTimer();
-            }
-
-            function updateSlider() {
-                if (!track) return;
-                const percent = currentSlide * 100;
-                track.style.transform = `translateX(-${percent}%)`;
-                dots.forEach((dot, index) => {
-                    if (index === currentSlide) {
-                        dot.classList.remove('bg-gray-300');
-                        dot.classList.add('bg-brand-gold');
-                    } else {
-                        dot.classList.add('bg-gray-300');
-                        dot.classList.remove('bg-brand-gold');
-                    }
-                });
-            }
-
-            function nextSlide() {
-                currentSlide = (currentSlide + 1) % totalSlides;
-                updateSlider();
-            }
-
-            let slideInterval = setInterval(nextSlide, 5000);
-            function resetTimer() {
-                clearInterval(slideInterval);
-                slideInterval = setInterval(nextSlide, 5000);
-            }
+            // Handled by Universal Admin (PropertyDetailManager)
 
             // --- LISTINGS ENGINE ---
             window.fetchAndRenderListings = async function () {
@@ -2060,11 +1988,7 @@
 
 
             // --- LEGACY / MODAL FUNCTIONS ---
-            window.closePropertyDetail = function () {
-                document.getElementById('property-detail').classList.add('hidden');
-                document.getElementById('nabidka-all').classList.remove('hidden');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            };
+            // Handled by Universal Admin
 
             // --- AWARDS RENDERER ---
             window.renderAwards = async function () {
@@ -2101,53 +2025,7 @@
                 }
             };
 
-            window.saveProperty = async function () {
-                const supabase = window.supabaseClient;
-                if (!supabase) {
-                    alert("Supabase Error: Backend not connected.");
-                    return;
-                }
-                const title = document.getElementById('prop-title').value;
-                const price = document.getElementById('prop-price').value;
-                const location = document.getElementById('prop-location').value;
-                const status = document.getElementById('prop-status').value;
-                const image = document.getElementById('prop-image').value;
-                const desc = document.getElementById('prop-desc').value;
-                const galleryRaw = document.getElementById('prop-gallery').value;
-
-                // NEW: Use the serializer from Admin Script
-                let units = [];
-                if (typeof window.serializeUnits === 'function') {
-                    units = window.serializeUnits();
-                } else {
-                    console.warn("Serializer not found, saving empty units.");
-                }
-
-                const gallery = galleryRaw ? galleryRaw.split(',').map(s => s.trim()) : [];
-
-                const specs = {
-                    disposition: document.getElementById('spec-disposition').value,
-                    area: document.getElementById('spec-area').value,
-                    floor: document.getElementById('spec-floor').value,
-                    penb: document.getElementById('spec-penb').value
-                };
-
-                const newProp = {
-                    title, price, location, status, image, desc,
-                    gallery, specs, units_table: units
-                };
-
-                const { error } = await supabase.from('listings').insert([newProp]);
-
-                if (error) {
-                    alert('Chyba při ukládání: ' + error.message);
-                } else {
-                    closeAddPropertyModal();
-                    showToast('Nemovitost úspěšně uložena!');
-                    window.fetchAndRenderListings();
-                    document.getElementById('prop-title').value = '';
-                }
-            };
+            // saveProperty is now in universal-admin.js
 
             function showToast(msg) {
                 const toast = document.getElementById('toast');
@@ -2175,6 +2053,7 @@
             generateRandomCoffeeStat();
         });
     </script>
+    <script src="js/universal-admin.js"></script>
 </body>
 
 </html>
